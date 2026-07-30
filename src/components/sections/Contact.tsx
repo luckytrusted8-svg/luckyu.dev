@@ -1,0 +1,121 @@
+import { useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
+import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { SectionHeading } from "../ui/SectionHeading";
+import { Reveal } from "../ui/Reveal";
+
+const contactDetails = [
+  { icon: Mail, label: "Email", value: "hello@luckyu.web.id" },
+  { icon: Phone, label: "Phone", value: "+62 812 3456 7890" },
+  { icon: MapPin, label: "Location", value: "Indonesia" },
+];
+
+export function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Project inquiry from ${form.name || "your site"}`);
+    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    window.location.href = `mailto:hello@luckyu.web.id?subject=${subject}&body=${body}`;
+    setSent(true);
+  }
+
+  return (
+    <section id="contact" className="px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionHeading
+              eyebrow="Get In Touch"
+              heading="Have a project in mind? Let's build it."
+              description="Whether it's a full product or a single tricky feature — tell me what you're trying to build."
+              index="07"
+            />
+
+            <Reveal delay={0.15}>
+              <div className="mt-10 space-y-5">
+                {contactDetails.map((c) => (
+                  <div key={c.label} className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-primary-soft">
+                      <c.icon size={16} />
+                    </span>
+                    <div>
+                      <p className="text-xs text-muted-dim">{c.label}</p>
+                      <p className="text-sm text-text">{c.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.1}>
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-border bg-surface p-6 sm:p-8"
+            >
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="sm:col-span-1">
+                  <label htmlFor="name" className="text-xs text-muted">
+                    Your name
+                  </label>
+                  <input
+                    id="name"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="mt-2 w-full rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary-soft"
+                    placeholder="Jane Doe"
+                  />
+                </div>
+                <div className="sm:col-span-1">
+                  <label htmlFor="email" className="text-xs text-muted">
+                    Your email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    className="mt-2 w-full rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary-soft"
+                    placeholder="jane@email.com"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="message" className="text-xs text-muted">
+                    Your message
+                  </label>
+                  <textarea
+                    id="message"
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    className="mt-2 w-full resize-none rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary-soft"
+                    placeholder="Tell me a bit about the project…"
+                  />
+                </div>
+              </div>
+
+              <motion.button
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                type="submit"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-secondary to-accent px-6 py-3 text-sm font-medium text-white"
+              >
+                {sent ? <CheckCircle2 size={16} /> : <Send size={16} />}
+                {sent ? "Opening your email app…" : "Send message"}
+              </motion.button>
+              <p className="mt-3 text-[11px] text-muted-dim">
+                This opens your email app with the message pre-filled — no data is stored.
+              </p>
+            </form>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}

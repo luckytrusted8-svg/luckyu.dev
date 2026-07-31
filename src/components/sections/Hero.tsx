@@ -1,21 +1,27 @@
 import { motion } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
+
 import { ArrowUpRight, PlayCircle, Sparkles } from "lucide-react";
+
 import { StatusTerminal } from "../ui/StatusTerminal";
 import { fadeUp, staggerContainer } from "../../animations/variants";
 
 const stack = ["React", "Next.js", "Laravel", "Express", "Tailwind", "Prisma"];
 
 // Helper Animasi Floating untuk Badges
-const floatingAnimation = (delay = 0, duration = 3.5) => ({
+const floatingAnimation = (
+  delay = 0,
+  duration = 3.5
+): Pick<HTMLMotionProps<"div">, "animate" | "transition"> => ({
   animate: {
     y: [0, -8, 0],
-    transition: {
-      duration: duration,
-      repeat: Infinity,
-      repeatType: "reverse" as const,
-      ease: "easeInOut",
-      delay: delay,
-    },
+  },
+  transition: {
+    duration,
+    delay,
+    repeat: Infinity,
+    repeatType: "reverse",
+    ease: [0.42, 0, 0.58, 1],
   },
 });
 

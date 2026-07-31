@@ -11,11 +11,13 @@ export function Sidebar() {
     <aside className="fixed inset-y-0 left-0 z-40 hidden w-[268px] flex-col justify-between border-r border-border bg-bg-elevated/60 px-6 py-8 backdrop-blur-md lg:flex">
       <div>
         <a href="#home" className="flex items-center gap-2.5 group">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-secondary to-accent font-display text-sm font-bold text-white">
-            L
-          </span>
+          <img
+            src="/LuckyDev2.png" 
+            alt="Logo"
+            className="h-8 w-8 rounded-lg object-contain"
+          />
           <span>
-            <span className="block font-display text-sm font-semibold text-text">Lucky</span>
+            <span className="block font-display text-sm font-semibold text-text">Lucky Ubaidillah</span>
             <span className="block text-[11px] text-muted">Full-Stack Developer</span>
           </span>
         </a>
@@ -69,7 +71,7 @@ export function Sidebar() {
         </div>
 
         <a
-          href="/resume.pdf"
+          href="/MyCV.pdf"
           download
           className="flex items-center justify-center gap-2 rounded-lg border border-border py-2.5 text-xs font-medium text-muted hover:text-text hover:border-primary-soft transition-colors"
         >

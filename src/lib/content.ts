@@ -2,7 +2,6 @@ import matter from "gray-matter";
 import type {
   AboutContent,
   ExperienceEntry,
-  ProjectEntry,
   ServiceEntry,
   SkillsContent,
   TestimonialEntry,
@@ -81,28 +80,7 @@ export function getServices(): ServiceEntry[] {
   return sortByOrder(entries);
 }
 
-// ---- Projects ----
-const projectsRaw = import.meta.glob("../content/projects/*.md", {
-  eager: true,
-  query: "?raw",
-  import: "default",
-}) as Record<string, string>;
-
-export function getProjects(): ProjectEntry[] {
-  const entries = Object.entries(projectsRaw).map(([path, raw]) => {
-    const { data, content } = matter(raw);
-    return {
-      slug: slugFromPath(path),
-      ...(data as Omit<ProjectEntry, "slug" | "body">),
-      body: content.trim(),
-    };
-  });
-  return sortByOrder(entries);
-}
-
-export function getProjectBySlug(slug: string): ProjectEntry | undefined {
-  return getProjects().find((p) => p.slug === slug);
-}
+// ---- Projects: see ../components/sections/Projects.tsx (data lives directly in that component file) ----
 
 // ---- Testimonials ----
 const testimonialsRaw = import.meta.glob("../content/testimonials/*.md", {

@@ -30,4 +30,6 @@ categories:
       - { name: "Scoping & planning", level: 76 }
       - { name: "Client communication", level: 70 }
       - { name: "Debugging under pressure", level: 84 }
+      - { name: "Critical Thingking", level: 80 }
+      - { name: "Teamwork", level: 75 }
 ---

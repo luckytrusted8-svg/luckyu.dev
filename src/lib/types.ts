@@ -54,6 +54,7 @@ export interface ProjectEntry {
   github: string;
   demo: string;
   accent: ProjectAccent;
+  images: string[];
   featured: boolean;
   order: number;
   body: string;

@@ -7,10 +7,12 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <a href="#home" className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-secondary to-accent font-display text-xs font-bold text-white">
-              L
-            </span>
-            <span className="font-display text-sm font-semibold text-text">Lucky</span>
+          <img
+            src="/LuckyDev2.png" 
+            alt="Logo"
+            className="h-8 w-8 rounded-lg object-contain"
+          />
+            <span className="font-display text-sm font-semibold text-text">Lucky Ubaidillah</span>
           </a>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2" aria-label="Footer navigation">

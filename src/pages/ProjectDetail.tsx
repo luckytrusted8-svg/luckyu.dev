@@ -2,8 +2,8 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, GitFork, ExternalLink } from "lucide-react";
-import { getProjectBySlug, getProjects } from "../lib/content";
-import { ProjectThumb } from "../components/ui/ProjectThumb";
+import { getProjectBySlug, projects } from "../components/sections/Projects";
+import { ProjectGallery } from "../components/ui/ProjectGallery";
 import { Tag } from "../components/ui/Tag";
 import { Footer } from "../components/layout/Footer";
 import { fadeUp } from "../animations/variants";
@@ -16,7 +16,7 @@ export function ProjectDetail() {
     return <Navigate to="/" replace />;
   }
 
-  const others = getProjects()
+  const others = projects
     .filter((p) => p.slug !== project.slug)
     .slice(0, 2);
 
@@ -26,18 +26,18 @@ export function ProjectDetail() {
         <div className="mx-auto max-w-3xl">
           <Link
             to="/#projects"
-            className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-medium text-body hover:text-ink transition-colors"
           >
             <ArrowLeft size={14} />
             Back to projects
           </Link>
 
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="mt-8">
-            <p className="text-[11px] font-mono uppercase tracking-wider text-primary-soft">
+            <p className="text-[11px] font-mono uppercase tracking-wider text-link">
               {project.category}
             </p>
-            <h1 className="mt-3 text-3xl font-bold text-text sm:text-4xl">{project.title}</h1>
-            <p className="mt-4 text-muted leading-relaxed">{project.description}</p>
+            <h1 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{project.title}</h1>
+            <p className="mt-4 text-body leading-relaxed">{project.description}</p>
 
             <div className="mt-6 flex flex-wrap gap-2">
               {project.tech.map((t) => (
@@ -51,7 +51,7 @@ export function ProjectDetail() {
                   href={project.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs font-medium text-muted hover:text-text hover:border-primary-soft transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full border border-hairline px-5 py-2.5 text-xs font-medium text-body hover:text-ink hover:border-link transition-colors"
                 >
                   <GitFork size={14} />
                   View code
@@ -62,7 +62,7 @@ export function ProjectDetail() {
                   href={project.demo}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-secondary to-accent px-5 py-2.5 text-xs font-medium text-white"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-medium text-on-primary shadow-card"
                 >
                   <ExternalLink size={14} />
                   Live demo
@@ -77,34 +77,29 @@ export function ProjectDetail() {
             transition={{ delay: 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-10"
           >
-            <ProjectThumb
-              title={project.title}
-              category={project.category}
-              accent={project.accent}
-              className="aspect-[16/9]"
-            />
+            <ProjectGallery title={project.title} images={project.images} />
           </motion.div>
 
-          <div className="prose-custom mt-12 space-y-5 text-[15px] leading-[1.85] text-muted">
+          <div className="prose-custom mt-12 space-y-5 text-[15px] leading-[1.85] text-body">
             <ReactMarkdown
               components={{
                 h2: ({ children }) => (
-                  <h2 className="mt-10 font-display text-xl font-semibold text-text first:mt-0">
+                  <h2 className="mt-10 font-display text-xl font-semibold text-ink first:mt-0">
                     {children}
                   </h2>
                 ),
                 p: ({ children }) => <p>{children}</p>,
                 ul: ({ children }) => (
-                  <ul className="list-disc space-y-2 pl-5 marker:text-primary-soft">
+                  <ul className="list-disc space-y-2 pl-5 marker:text-link">
                     {children}
                   </ul>
                 ),
                 li: ({ children }) => <li className="pl-1">{children}</li>,
                 strong: ({ children }) => (
-                  <strong className="font-medium text-text">{children}</strong>
+                  <strong className="font-medium text-ink">{children}</strong>
                 ),
                 code: ({ children }) => (
-                  <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-[13px] text-primary-soft">
+                  <code className="rounded bg-canvas px-1.5 py-0.5 font-mono text-[13px] text-link">
                     {children}
                   </code>
                 ),
@@ -115,8 +110,8 @@ export function ProjectDetail() {
           </div>
 
           {others.length > 0 && (
-            <div className="mt-16 border-t border-border pt-10">
-              <p className="text-xs font-mono uppercase tracking-wider text-muted-dim">
+            <div className="mt-16 border-t border-hairline pt-10">
+              <p className="text-xs font-mono uppercase tracking-wider text-mute">
                 More projects
               </p>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -124,12 +119,12 @@ export function ProjectDetail() {
                   <Link
                     key={o.slug}
                     to={`/projects/${o.slug}`}
-                    className="group rounded-xl border border-border bg-surface p-5 transition-colors hover:border-primary/40"
+                    className="group rounded-xl border border-hairline bg-canvas p-5 transition-colors hover:border-primary/40"
                   >
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-primary-soft">
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-link">
                       {o.category}
                     </p>
-                    <h3 className="mt-1.5 font-display text-sm font-semibold text-text group-hover:text-primary-soft transition-colors">
+                    <h3 className="mt-1.5 font-display text-sm font-semibold text-ink group-hover:text-link transition-colors">
                       {o.title}
                     </h3>
                   </Link>

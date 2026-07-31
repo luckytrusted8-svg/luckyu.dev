@@ -11,10 +11,12 @@ export function MobileNav() {
     <>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-bg/85 px-5 py-4 backdrop-blur-md lg:hidden">
         <a href="#home" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-secondary to-accent font-display text-xs font-bold text-white">
-            L
-          </span>
-          <span className="font-display text-sm font-semibold text-text">Lucky</span>
+          <img
+            src="/LuckyDev2.png"
+            alt="Logo"
+            className="h-8 w-8 rounded-lg object-contain"
+          />
+          <span className="font-display text-sm font-semibold text-text">Lucky Ubaidillah</span>
         </a>
         <button
           onClick={() => setOpen(true)}
@@ -75,7 +77,7 @@ export function MobileNav() {
 
               <div className="flex flex-col gap-4">
                 <a
-                  href="/resume.pdf"
+                  href="/MyCV.pdf"
                   download
                   className="flex items-center justify-center gap-2 rounded-lg border border-border py-2.5 text-xs font-medium text-muted hover:text-text"
                 >

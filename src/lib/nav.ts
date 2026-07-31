@@ -31,7 +31,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const socialLinks: { label: string; href: string; icon: LucideIcon }[] = [
-  { label: "GitHub", href: "https://github.com/", icon: GitFork },
-  { label: "Instagram", href: "https://instagram.com/", icon: Camera },
-  { label: "LinkedIn", href: "https://linkedin.com/", icon: Link2 },
+  { label: "GitHub", href: "https://github.com/luckytrusted8-svg", icon: GitFork },
+  { label: "Instagram", href: "https://www.instagram.com/kyyyyuuuww/?next=%2Fdirect%2Ft%2F17843334251546557%2F&hl=en", icon: Camera },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/lucky-ubaidillah-1a31b8404/", icon: Link2 },
 ];

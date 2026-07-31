@@ -5,9 +5,9 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 
 const contactDetails = [
-  { icon: Mail, label: "Email", value: "hello@luckyu.web.id" },
-  { icon: Phone, label: "Phone", value: "+62 812 3456 7890" },
-  { icon: MapPin, label: "Location", value: "Indonesia" },
+  { icon: Mail, label: "Email", value: "luckyubidillah5@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+62 895 6292 44156" },
+  { icon: MapPin, label: "Location", value: "Ciledug, Tangerang Banten, Indonesia 15155" },
 ];
 
 export function Contact() {
@@ -38,7 +38,7 @@ export function Contact() {
               <div className="mt-10 space-y-5">
                 {contactDetails.map((c) => (
                   <div key={c.label} className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-primary-soft">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-primary">
                       <c.icon size={16} />
                     </span>
                     <div>
@@ -66,7 +66,7 @@ export function Contact() {
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="mt-2 w-full rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary-soft"
+                    className="mt-2 w-full rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary"
                     placeholder="Jane Doe"
                   />
                 </div>
@@ -80,7 +80,7 @@ export function Contact() {
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="mt-2 w-full rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary-soft"
+                    className="mt-2 w-full rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary"
                     placeholder="jane@email.com"
                   />
                 </div>
@@ -94,21 +94,23 @@ export function Contact() {
                     rows={5}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="mt-2 w-full resize-none rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary-soft"
+                    className="mt-2 w-full resize-none rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary"
                     placeholder="Tell me a bit about the project…"
                   />
                 </div>
               </div>
 
+              {/* Tombol Submit Solid & Clean */}
               <motion.button
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-secondary to-accent px-6 py-3 text-sm font-medium text-white"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary/90"
               >
                 {sent ? <CheckCircle2 size={16} /> : <Send size={16} />}
                 {sent ? "Opening your email app…" : "Send message"}
               </motion.button>
+              
               <p className="mt-3 text-[11px] text-muted-dim">
                 This opens your email app with the message pre-filled — no data is stored.
               </p>

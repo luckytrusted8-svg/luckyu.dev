@@ -2,8 +2,8 @@
 eyebrow: "Who I Am"
 heading: "I build things end-to-end, then keep shipping."
 availability: "Open to freelance & internship work"
-yearsBuilding: 2
-projectsShipped: 12
+yearsBuilding: 1
+projectsShipped: 10
 stacksUsed: 6
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: "work"
 role: "Independent Developer"
-org: "Skillage Edupark (personal project)"
+org: "Skillage Edupark (Teamwork)"
 period: "2025 — 2025"
 order: 2
 ---

@@ -24,18 +24,20 @@ export function Testimonials() {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading eyebrow="Feedback" heading="What people I've worked with say" index="06" />
+          
+          {/* Tombol Navigasi Clean */}
           <div className="flex gap-2">
             <button
               onClick={() => go(index - 1)}
               aria-label="Previous testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-primary-soft transition-colors"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-text/30 transition-colors"
             >
               <ChevronLeft size={16} />
             </button>
             <button
               onClick={() => go(index + 1)}
               aria-label="Next testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-primary-soft transition-colors"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-text/30 transition-colors"
             >
               <ChevronRight size={16} />
             </button>
@@ -51,12 +53,14 @@ export function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 * direction }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-2xl border border-border bg-surface p-8"
+              className="rounded-2xl border border-border bg-surface p-8 shadow-sm"
             >
-              <Quote className="text-primary-soft/60" size={28} />
+              <Quote className="text-primary" size={28} />
               <p className="mt-4 text-lg leading-relaxed text-text">{current.body}</p>
+              
               <div className="mt-6 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary via-secondary to-accent font-display text-sm font-semibold text-white">
+                {/* Avatar Inisial Solid Clean */}
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-display text-sm font-semibold text-white">
                   {current.name.charAt(0)}
                 </span>
                 <div>
@@ -68,6 +72,7 @@ export function Testimonials() {
           </AnimatePresence>
         </div>
 
+        {/* Indicator Dots */}
         <div className="mt-6 flex gap-2">
           {testimonials.map((t, i) => (
             <button
@@ -75,7 +80,7 @@ export function Testimonials() {
               onClick={() => go(i)}
               aria-label={`Go to testimonial ${i + 1}`}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-6 bg-primary-soft" : "w-1.5 bg-border"
+                i === index ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-muted"
               }`}
             />
           ))}

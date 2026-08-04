@@ -1,7 +1,7 @@
 ---
 icon: "LayoutTemplate"
 title: "Frontend & Interface"
-summary: "Interface React dan Next.js dengan motion yang beneran, responsif beneran, dan gak terasa template."
+summary: "Antarmuka React dan Next.js yang responsif, interaktif, dan dirancang sesuai kebutuhan produk."
 order: 2
 ---
-Saya peduli sama detail yang sering dilewatin orang ritme spacing, hover state, loading state, dan gimana layout tetap enak dilihat di layar kecil. Framer Motion jadi andalan saya buat apa pun yang harus terasa hidup.
+Saya memperhatikan detail yang sering terlewat, seperti ritme jarak, status hover, status pemuatan, dan kenyamanan tata letak pada layar kecil. Framer Motion saya gunakan untuk menciptakan interaksi yang terasa hidup dan tetap terarah.

@@ -10,8 +10,8 @@ export function Experience() {
     <section id="experience" className="px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Timeline"
-          heading="Where the work has happened"
+          eyebrow="Perjalanan Karier"
+          heading="Pengalaman yang membentuk cara saya bekerja"
           index="05"
         />
 

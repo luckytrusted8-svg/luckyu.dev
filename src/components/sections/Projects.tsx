@@ -19,9 +19,9 @@ export const projects: ProjectEntry[] = [
   {
     slug: "event-registration",
     title: "Event Registration",
-    category: "Event Management Platform",
+    category: "Platform Manajemen Acara",
     description:
-      "An internal event platform for Spero — event discovery, registration, and QR-based check-in in one dashboard.",
+      "Platform acara internal untuk Spero yang menyatukan pencarian acara, pendaftaran, dan check-in berbasis QR dalam satu dashboard.",
     tech: ["Express.js", "Prisma", "MySQL", "React", "Vite", "Tailwind CSS"],
     github: "https://github.com/Spero-id/event-registration",
     demo: "",
@@ -29,27 +29,27 @@ export const projects: ProjectEntry[] = [
     images: ["/images/projects/event/home-event.png"],
     featured: true,
     order: 1,
-    body: `## Overview
+    body: `## Gambaran Umum
 
-Event Registration is a full-stack event platform I built during my internship at Spero. It covers the full lifecycle — browsing and discovering events, registering with a few clicks, and checking in on-site with a scanned QR code — with three tiers of admin access controlling what each staff member can see and do.
+Event Registration adalah platform acara full-stack yang saya bangun selama magang di Spero. Platform ini mendukung pencarian acara, pendaftaran, dan check-in di lokasi melalui pemindaian kode QR. Tiga tingkat akses admin memastikan setiap staf hanya dapat mengelola hal yang sesuai dengan perannya.
 
-## What I built
+## Fitur yang Dibangun
 
-- JWT authentication across three admin roles, enforced through custom middleware
-- QR-code based attendance flow with live scan feedback
-- Async email notifications via Nodemailer, queued so they never block the UI
-- A \`usePolling\` hook that keeps the admin dashboard's live numbers in sync without a websocket layer
+- Autentikasi JWT untuk tiga peran admin melalui middleware khusus
+- Alur absensi berbasis QR dengan umpan balik pemindaian langsung
+- Notifikasi email asinkron melalui Nodemailer agar tidak menghambat antarmuka
+- Hook \`usePolling\` untuk menyinkronkan data dashboard tanpa WebSocket
 
-## Design
+## Desain
 
-The landing page went through several iterations to land on a clean, event-tech aesthetic — category filters, a location picker, and a search bar front and center — with careful attention to spacing and contrast rather than heavy visual effects.`,
+Halaman utama dikembangkan melalui beberapa iterasi untuk menghasilkan tampilan teknologi acara yang bersih, dengan filter kategori, pemilih lokasi, dan kolom pencarian sebagai fokus utama.`,
   },
   {
     slug: "pos-skillage-mart",
     title: "POS Skillage Mart",
     category: "Laravel + Filament",
     description:
-      "A point-of-sale and inventory admin panel for Skillage Mart — the school's student-run store — built entirely on Laravel and Filament.",
+      "Panel admin kasir dan inventaris untuk Skillage Mart, toko yang dikelola siswa di sekolah, dibangun dengan Laravel dan Filament.",
     tech: ["Laravel 10", "Filament", "Blade", "TailwindCSS", "MySQL", "PHP"],
     github: "https://github.com/azyaamnf/skillage-pos",
     demo: "https://skillage-mart.com/admin/login",
@@ -60,27 +60,27 @@ The landing page went through several iterations to land on a clean, event-tech 
     ],
     featured: true,
     order: 2,
-    body: `## Overview
+    body: `## Gambaran Umum
 
-POS Skillage Mart is an admin panel that runs the school's student-run store — products, stock, and transactions — built on Laravel with Filament as the admin framework instead of a hand-rolled dashboard.
+POS Skillage Mart adalah panel admin untuk mengelola toko yang dikelola siswa di sekolah, mencakup produk, stok, dan transaksi. Sistem ini dibangun dengan Laravel dan Filament sebagai framework admin.
 
-## What I built
+## Fitur yang Dibangun
 
-- Filament resources for products, categories, and stock, with validation and searchable/sortable tables out of the box
-- Role-based access so staff and admins see different panel sections
-- A transaction flow that deducts stock automatically and keeps a running sales log
-- Blade + TailwindCSS for the storefront-facing pages, kept separate from the Filament-generated admin UI
+- Resource Filament untuk produk, kategori, dan stok dengan validasi serta tabel yang dapat dicari dan diurutkan
+- Akses berbasis peran agar staf dan admin melihat bagian panel yang berbeda
+- Alur transaksi yang mengurangi stok secara otomatis dan mencatat riwayat penjualan
+- Blade dan Tailwind CSS untuk halaman toko yang dipisahkan dari antarmuka admin
 
-## Why Filament
+## Alasan Menggunakan Filament
 
-For an internal tool like this, hand-building CRUD screens would have been wasted effort — Filament gave me production-ready tables, forms, and validation, so I could spend the time on the actual business logic (stock deduction, role permissions, reporting) instead of re-building form inputs.`,
+Filament menyediakan tabel, formulir, dan validasi yang siap digunakan sehingga fokus pengembangan dapat diarahkan ke logika bisnis seperti pengurangan stok, izin peran, dan pelaporan.`,
   },
   {
     slug: "attendance",
-    title: "School Attendance System",
-    category: "Laravel + Geotagging",
+    title: "Sistem Absensi Sekolah",
+    category: "Laravel dan Geotagging",
     description:
-      "A web-based attendance system for my school, with geotagged check-ins and separate dashboards for employees and admins.",
+      "Sistem absensi berbasis web untuk sekolah dengan check-in bergeotag dan dashboard terpisah untuk pegawai serta admin.",
     tech: ["Laravel 11", "Breeze", "Inertia.js", "React", "Recharts", "Google Maps API"],
     github: "https://github.com/luckytrusted8-svg/attendance-system",
     demo: "",
@@ -98,28 +98,28 @@ For an internal tool like this, hand-building CRUD screens would have been waste
     ],
     featured: true,
     order: 3,
-    body: `## Overview
+    body: `## Gambaran Umum
 
-A production system used by staff at SMK Skill Village Islamic School to record attendance with location verification, replacing a manual paper process. It has two sides: an employee portal for check-in/history, and an admin portal for oversight.
+Sistem produksi untuk staf SMK Skill Village Islamic School yang menggantikan absensi manual berbasis kertas dengan verifikasi lokasi. Sistem terdiri dari portal pegawai untuk check-in dan riwayat, serta portal admin untuk pemantauan.
 
-## Employee side
+## Sisi Pegawai
 
-- Geotagged check-in and check-out via the Google Maps API, so location is verified automatically
-- A personal dashboard showing today's status and recent history
-- Simple, mobile-first check-in flow — most staff use it from their phone
+- Check-in dan check-out bergeotag melalui Google Maps API agar lokasi diverifikasi otomatis
+- Dashboard pribadi untuk menampilkan status hari ini dan riwayat terbaru
+- Alur check-in sederhana dengan pendekatan mobile-first
 
-## Admin side
+## Sisi Admin
 
-- A dashboard with Recharts visualizations for attendance trends across staff
-- A full attendance log with filtering, plus a scheduler for managing shift rules
-- Auto-checkout via Laravel's task scheduler for staff who forget to sign out`,
+- Dashboard dengan visualisasi Recharts untuk memantau tren kehadiran staf
+- Log absensi lengkap dengan filter dan penjadwal aturan shift
+- Check-out otomatis melalui Laravel Task Scheduler bagi staf yang lupa melakukan check-out`,
   },
   {
     slug: "skillage",
     title: "Skillage Edupark",
-    category: "React + Firebase",
+    category: "React dan Firebase",
     description:
-      "A tourism and education platform with ticket booking and a role-based content CMS.",
+      "Platform wisata dan pendidikan dengan pemesanan tiket serta CMS konten berbasis peran.",
     tech: ["React", "Firebase Realtime Database", "JavaScript"],
     github: "https://github.com/rafazakyyunus-code/skillage-edupark",
     demo: "",
@@ -133,15 +133,15 @@ A production system used by staff at SMK Skill Village Islamic School to record 
     ],
     featured: false,
     order: 4,
-    body: `## Overview
+    body: `## Gambaran Umum
 
-A tourism/education park platform covering ticket booking, an article CMS with writer/editor/admin portals, a product catalog, gallery, and testimonials — all on Firebase Realtime Database.
+Platform taman wisata dan edukasi yang mencakup pemesanan tiket, CMS artikel dengan portal penulis, editor, dan admin, katalog produk, galeri, serta testimoni. Seluruh data dikelola melalui Firebase Realtime Database.
 
-## Notable patterns
+## Implementasi Utama
 
-- Images stored as base64 in Firebase to avoid the paid Storage tier
-- A four-tier CMS role system (admin, editor, writer, pending) with an approval workflow for new contributors
-- Real-time updates throughout via \`onValue\` listeners, so content changes reflect instantly`,
+- Gambar disimpan sebagai base64 di Firebase untuk menghindari penggunaan paket Storage berbayar
+- Sistem peran CMS empat tingkat dengan alur persetujuan untuk kontributor baru
+- Pembaruan waktu nyata melalui listener \`onValue\` sehingga perubahan konten langsung tampil`,
   },
 ];
 
@@ -157,8 +157,8 @@ export function Projects() {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Pekerjaanku"
-            heading="Beberapa project yang pernah saya bikin"
+            eyebrow="Proyek Pilihan"
+            heading="Beberapa proyek yang telah saya kerjakan"
             index="04"
           />
         </div>
@@ -213,13 +213,13 @@ export function Projects() {
                     className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-text transition-colors"
                   >
                     <GitFork size={14} />
-                    Code
+                    Kode
                   </a>
                   <Link
                     to={`/projects/${project.slug}`}
                     className="flex items-center gap-1.5 text-xs font-medium text-primary-soft hover:gap-2.5 transition-all"
                   >
-                    Case study
+                    Studi kasus
                     <ArrowUpRight size={13} />
                   </Link>
                 </div>

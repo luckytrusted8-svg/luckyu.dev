@@ -16,7 +16,7 @@ export function Services() {
         <SectionHeading
           eyebrow="Yang Saya Kerjakan"
           heading="Layanan yang dibangun dari project nyata"
-          description="Bukan menu baku ini jenis kerjaan yang beneran saya ambil, diambil dari project-project yang sudah saya kerjakan."
+          description="Layanan ini berangkat dari pengalaman mengerjakan proyek nyata dan dapat disesuaikan dengan kebutuhan Anda."
           index="02"
         />
 

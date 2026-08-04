@@ -27,8 +27,8 @@ export function Testimonials() {
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Feedback"
-            heading="What people I've worked with say"
+            eyebrow="Testimoni"
+            heading="Kata mereka yang pernah bekerja bersama saya"
             index="06"
           />
 
@@ -39,14 +39,14 @@ export function Testimonials() {
             <div className="flex gap-2">
               <button
                 onClick={() => go(index - 1)}
-                aria-label="Previous testimonial"
+                aria-label="Testimoni sebelumnya"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-primary-soft/50 hover:text-text"
               >
                 <ChevronLeft size={16} />
               </button>
               <button
                 onClick={() => go(index + 1)}
-                aria-label="Next testimonial"
+                aria-label="Testimoni berikutnya"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-primary-soft/50 hover:text-text"
               >
                 <ChevronRight size={16} />
@@ -98,7 +98,7 @@ export function Testimonials() {
             <button
               key={t.slug}
               onClick={() => go(i)}
-              aria-label={`Go to testimonial ${i + 1}`}
+              aria-label={`Buka testimoni ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === index
                   ? "w-8 bg-gradient-to-r from-primary via-secondary to-accent"

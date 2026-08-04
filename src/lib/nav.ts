@@ -20,14 +20,14 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "about", label: "About", icon: User },
-  { id: "services", label: "Services", icon: Briefcase },
-  { id: "skills", label: "Skills", icon: Code2 },
-  { id: "projects", label: "Projects", icon: FolderGit2 },
-  { id: "experience", label: "Experience", icon: History },
-  { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote },
-  { id: "contact", label: "Contact", icon: Mail },
+  { id: "home", label: "Beranda", icon: Home },
+  { id: "about", label: "Tentang", icon: User },
+  { id: "services", label: "Layanan", icon: Briefcase },
+  { id: "skills", label: "Keahlian", icon: Code2 },
+  { id: "projects", label: "Proyek", icon: FolderGit2 },
+  { id: "experience", label: "Pengalaman", icon: History },
+  { id: "testimonials", label: "Testimoni", icon: MessageSquareQuote },
+  { id: "contact", label: "Kontak", icon: Mail },
 ];
 
 export const socialLinks: { label: string; href: string; icon: LucideIcon }[] = [

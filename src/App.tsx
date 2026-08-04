@@ -7,11 +7,20 @@ import { useLenis } from "./hooks/useLenis";
 
 function ScrollToTopOnNavigate() {
   const location = useLocation();
+
   useEffect(() => {
-    if (!location.hash) {
-      window.scrollTo(0, 0);
+    if (location.hash) {
+      const sectionId = decodeURIComponent(location.hash.slice(1));
+      const frame = requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      });
+
+      return () => cancelAnimationFrame(frame);
     }
-  }, [location.pathname]);
+
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.hash]);
+
   return null;
 }
 

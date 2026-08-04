@@ -29,7 +29,7 @@ export function ProjectDetail() {
             className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
           >
             <ArrowLeft size={14} />
-            Back to projects
+            Kembali ke proyek
           </Link>
 
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="mt-8">
@@ -54,7 +54,7 @@ export function ProjectDetail() {
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs font-medium text-muted hover:text-text hover:border-primary-soft transition-colors"
                 >
                   <GitFork size={14} />
-                  View code
+                  Lihat kode
                 </a>
               )}
               {project.demo && (
@@ -65,7 +65,7 @@ export function ProjectDetail() {
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-medium text-white"
                 >
                   <ExternalLink size={14} />
-                  Live demo
+                  Demo langsung
                 </a>
               )}
             </div>
@@ -112,7 +112,7 @@ export function ProjectDetail() {
           {others.length > 0 && (
             <div className="mt-16 border-t border-border pt-10">
               <p className="text-xs font-mono uppercase tracking-wider text-muted-dim">
-                More projects
+                Proyek lainnya
               </p>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {others.map((o) => (

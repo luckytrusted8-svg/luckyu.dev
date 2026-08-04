@@ -3,9 +3,9 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 
 const statLabels: { key: "yearsBuilding" | "projectsShipped" | "stacksUsed"; label: string }[] = [
-  { key: "yearsBuilding", label: "Years building" },
-  { key: "projectsShipped", label: "Projects shipped" },
-  { key: "stacksUsed", label: "Stacks worked in" },
+  { key: "yearsBuilding", label: "Tahun berkarya" },
+  { key: "projectsShipped", label: "Proyek terselesaikan" },
+  { key: "stacksUsed", label: "Teknologi dikuasai" },
 ];
 
 export function About() {

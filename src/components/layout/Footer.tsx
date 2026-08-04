@@ -30,14 +30,14 @@ export function Footer() {
           <a
             href="#home"
             className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-primary-soft transition-colors"
-            aria-label="Back to top"
+            aria-label="Kembali ke atas"
           >
             <ArrowUp size={15} />
           </a>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-dim">
-          <p>© {new Date().getFullYear()} Lucky. Built from scratch, section by section.</p>
+          <p>© {new Date().getFullYear()} Lucky. Dibangun dari nol, bagian demi bagian.</p>
           <div className="flex gap-4">
             {socialLinks.map((s) => (
               <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="hover:text-text transition-colors">

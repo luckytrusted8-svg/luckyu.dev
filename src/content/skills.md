@@ -1,6 +1,6 @@
 ---
-eyebrow: "Toolbox"
-heading: "Apa yang saya cari saat sedang membangun"
+eyebrow: "Keahlian Teknis"
+heading: "Teknologi dan kemampuan yang saya gunakan dalam pengembangan"
 categories:
   - name: "Frontend"
     skills:
@@ -14,7 +14,7 @@ categories:
       - { name: "Express.js", level: 75 }
       - { name: "Prisma / MySQL", level: 80 }
       - { name: "REST API design", level: 78 }
-  - name: "Tools"
+  - name: "Perangkat"
     skills:
       - { name: "Git & GitHub", level: 85 }
       - { name: "Figma", level: 65 }
@@ -25,7 +25,7 @@ categories:
       - { name: "Design systems", level: 74 }
       - { name: "Motion design (Framer Motion)", level: 70 }
       - { name: "Responsive layout", level: 88 }
-  - name: "Soft Skills"
+  - name: "Keahlian Profesional"
     skills:
       - { name: "Scoping & planning", level: 76 }
       - { name: "Client communication", level: 70 }

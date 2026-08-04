@@ -1,7 +1,7 @@
 ---
 icon: "Layers"
 title: "Aplikasi Web Full-Stack"
-summary: "Aplikasi web end-to-end skema, backend, dan interface dibangun supaya beneran bisa dipakai."
+summary: "Aplikasi web end-to-end dengan skema data, backend, dan antarmuka yang dirancang siap digunakan."
 order: 1
 ---
-Saya rancang model data dulu, baru bangun ke luar: migrations dan API di backend, lalu interface yang rapi dan responsif di atasnya. Nyaman pegang satu project dari commit pertama sampai polish terakhir.
+Saya merancang model data terlebih dahulu, kemudian membangun migrasi dan API di backend, lalu melengkapinya dengan antarmuka yang rapi dan responsif. Saya siap menangani proyek dari commit pertama hingga tahap penyempurnaan akhir.

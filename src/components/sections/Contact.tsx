@@ -6,8 +6,8 @@ import { Reveal } from "../ui/Reveal";
 
 const contactDetails = [
   { icon: Mail, label: "Email", value: "luckyubidillah5@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+62 895 6292 44156" },
-  { icon: MapPin, label: "Location", value: "Ciledug, Tangerang Banten, Indonesia 15155" },
+  { icon: Phone, label: "Telepon", value: "+62 895 6292 44156" },
+  { icon: MapPin, label: "Lokasi", value: "Ciledug, Tangerang, Banten, Indonesia 15155" },
 ];
 
 export function Contact() {
@@ -28,9 +28,9 @@ export function Contact() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <SectionHeading
-              eyebrow="Get In Touch"
-              heading="Have a project in mind? Let's build it."
-              description="Whether it's a full product or a single tricky feature — tell me what you're trying to build."
+              eyebrow="Mari Terhubung"
+              heading="Punya rencana proyek? Mari wujudkan bersama."
+              description="Baik produk lengkap maupun satu fitur khusus, ceritakan kebutuhan yang ingin Anda bangun."
               index="07"
             />
 
@@ -59,7 +59,7 @@ export function Contact() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="sm:col-span-1">
                   <label htmlFor="name" className="text-xs text-muted">
-                    Your name
+                    Nama Anda
                   </label>
                   <input
                     id="name"
@@ -72,7 +72,7 @@ export function Contact() {
                 </div>
                 <div className="sm:col-span-1">
                   <label htmlFor="email" className="text-xs text-muted">
-                    Your email
+                    Email Anda
                   </label>
                   <input
                     id="email"
@@ -86,7 +86,7 @@ export function Contact() {
                 </div>
                 <div className="sm:col-span-2">
                   <label htmlFor="message" className="text-xs text-muted">
-                    Your message
+                    Pesan Anda
                   </label>
                   <textarea
                     id="message"
@@ -95,7 +95,7 @@ export function Contact() {
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className="mt-2 w-full resize-none rounded-lg border border-border bg-bg-elevated px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary"
-                    placeholder="Tell me a bit about the project…"
+                    placeholder="Ceritakan secara singkat tentang proyek Anda..."
                   />
                 </div>
               </div>
@@ -108,11 +108,11 @@ export function Contact() {
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary/90"
               >
                 {sent ? <CheckCircle2 size={16} /> : <Send size={16} />}
-                {sent ? "Opening your email app…" : "Send message"}
+                {sent ? "Membuka aplikasi email..." : "Kirim pesan"}
               </motion.button>
               
               <p className="mt-3 text-[11px] text-muted-dim">
-                This opens your email app with the message pre-filled — no data is stored.
+                Formulir ini akan membuka aplikasi email Anda dengan pesan yang sudah terisi. Tidak ada data yang disimpan.
               </p>
             </form>
           </Reveal>

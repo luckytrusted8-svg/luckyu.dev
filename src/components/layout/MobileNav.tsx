@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import { navItems, socialLinks } from "../../lib/nav";
 import { cn } from "../../utils/cn";
 
@@ -10,17 +11,17 @@ export function MobileNav() {
   return (
     <>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-bg/85 px-5 py-4 backdrop-blur-md lg:hidden">
-        <a href="#home" className="flex items-center gap-2">
+        <Link to="/#home" className="flex items-center gap-2">
           <img
             src="/LuckyDev2.png"
             alt="Logo"
             className="h-8 w-8 rounded-lg object-contain"
           />
           <span className="font-display text-sm font-semibold text-text">Lucky Ubaidillah</span>
-        </a>
+        </Link>
         <button
           onClick={() => setOpen(true)}
-          aria-label="Open navigation menu"
+          aria-label="Buka menu navigasi"
           className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted hover:text-text"
         >
           <Menu size={18} />
@@ -52,7 +53,7 @@ export function MobileNav() {
                   <span className="font-display text-sm font-semibold text-text">Menu</span>
                   <button
                     onClick={() => setOpen(false)}
-                    aria-label="Close navigation menu"
+                    aria-label="Tutup menu navigasi"
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted hover:text-text"
                   >
                     <X size={18} />
@@ -60,9 +61,9 @@ export function MobileNav() {
                 </div>
                 <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile navigation">
                   {navItems.map((item) => (
-                    <a
+                    <Link
                       key={item.id}
-                      href={`#${item.id}`}
+                      to={`/#${item.id}`}
                       onClick={() => setOpen(false)}
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3.5 py-3 text-sm text-muted hover:bg-surface hover:text-text transition-colors"
@@ -70,7 +71,7 @@ export function MobileNav() {
                     >
                       <item.icon size={16} />
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </div>
@@ -82,7 +83,7 @@ export function MobileNav() {
                   className="flex items-center justify-center gap-2 rounded-lg border border-border py-2.5 text-xs font-medium text-muted hover:text-text"
                 >
                   <Download size={14} />
-                  Download CV
+                  Unduh CV
                 </a>
                 <div className="flex items-center gap-4 px-1">
                   {socialLinks.map((s) => (

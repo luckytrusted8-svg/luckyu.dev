@@ -5,4 +5,4 @@ org: "Skillage Edupark (Teamwork)"
 period: "2025 — 2025"
 order: 2
 ---
-Designed and built a React + Firebase tourism/education platform with ticket booking, a role-based article CMS, and a four-tier approval workflow for content contributors.
+Merancang dan membangun platform wisata dan pendidikan berbasis React serta Firebase dengan pemesanan tiket, CMS artikel berbasis peran, dan alur persetujuan empat tingkat bagi kontributor konten.

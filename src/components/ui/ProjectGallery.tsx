@@ -132,7 +132,7 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
                     e.stopPropagation();
                     prev();
                   }}
-                  aria-label="Previous screenshot"
+                  aria-label="Tangkapan layar sebelumnya"
                   className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors sm:left-6"
                 >
                   <ChevronLeft size={20} />
@@ -143,7 +143,7 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
                     e.stopPropagation();
                     next();
                   }}
-                  aria-label="Next screenshot"
+                  aria-label="Tangkapan layar berikutnya"
                   className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors sm:right-6"
                 >
                   <ChevronRight size={20} />

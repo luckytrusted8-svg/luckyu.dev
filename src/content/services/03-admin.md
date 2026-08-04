@@ -1,7 +1,7 @@
 ---
 icon: "ShieldCheck"
 title: "Sistem Admin Berbasis Role"
-summary: "Dashboard dan sistem permission buat tim yang punya lebih dari satu tipe user."
+summary: "Dashboard dan sistem izin akses untuk tim dengan berbagai jenis pengguna."
 order: 3
 ---
-Sebagian besar kerjaan saya belakangan ini melibatkan banyak role admin, staff, client masing-masing dengan akses berbeda. Saya rancang middleware dan routing-nya supaya permission diterapkan secara konsisten, bukan cuma ditempel belakangan.
+Sebagian besar pekerjaan saya melibatkan beberapa peran, seperti admin, staf, dan klien, dengan hak akses yang berbeda. Saya merancang middleware dan routing agar izin diterapkan secara konsisten sejak awal pengembangan.

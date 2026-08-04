@@ -105,3 +105,19 @@ h1, h2, h3, h4, h5 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Grain animasi halus khusus loading screen — dot pattern yang bergeser pelan */
+.loading-grain {
+  background-image: radial-gradient(var(--color-border) 0.6px, transparent 0.6px);
+  background-size: 22px 22px;
+  animation: loadingGrainShift 9s ease-in-out infinite;
+}
+
+@keyframes loadingGrainShift {
+  0%, 100% { background-position: 0px 0px; }
+  50% { background-position: 10px 14px; }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,14 +1,18 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
 
 import { ArrowUpRight, PlayCircle, Sparkles } from "lucide-react";
 
 import { StatusTerminal } from "../ui/StatusTerminal";
+import { HeroBackdrop } from "../ui/HeroBackdrop";
 import { fadeUp, staggerContainer } from "../../animations/variants";
+import { cn } from "../../utils/cn";
 
 const stack = ["React", "Next.js", "Laravel", "Express", "Tailwind", "Prisma"];
 
-// Helper animasi floating untuk badge-badge tech stack
+// Helper animasi floating (loop tanpa akhir) untuk badge tech stack —
+// dipakai HANYA setelah seluruh entrance hero selesai (lihat `entranceDone`).
 const floatingAnimation = (
   delay = 0,
   duration = 3.5
@@ -25,7 +29,37 @@ const floatingAnimation = (
   },
 });
 
+// Susunan kata untuk headline word-by-word reveal.
+// `highlight: true` pada kata-kata yang jadi satu frasa disorot (warna primary + underline).
+const headlineWords = [
+  { text: "Lucky", highlight: false },
+  { text: "—", highlight: false },
+  { text: "saya membangun produk,", highlight: true },
+  { text: "bukan", highlight: false },
+  { text: "sekadar", highlight: false },
+  { text: "halaman.", highlight: false },
+];
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
 export function Hero() {
+  // Total durasi kira-kira sampai seluruh entrance (headline, paragraf, CTA,
+  // stack chip, kartu avatar) selesai tampil — setelah ini badge tech baru
+  // mulai melayang, bukan dari awal mount.
+  const [entranceDone, setEntranceDone] = useState(false);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setEntranceDone(true), 1700);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="home"
@@ -51,22 +85,38 @@ export function Hero() {
           </motion.p>
 
           <motion.h1
-            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ delayChildren: 0.15, staggerChildren: 0.09 }}
             className="mt-3 text-5xl font-bold leading-[1.08] text-text sm:text-6xl lg:text-[3.4rem] tracking-tight"
           >
-            Lucky {" "}
-            <span className="relative inline-block text-primary">
-              saya membangun produk,
-              <svg className="absolute -bottom-2 left-0 w-full h-2 text-primary/30" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <path d="M0 15 Q 50 0 100 15" stroke="currentColor" strokeWidth="4" fill="none" />
-              </svg>
-            </span>{" "}
-            bukan sekadar halaman.
+            {headlineWords.map((word, i) => (
+              <motion.span
+                key={i}
+                variants={wordVariants}
+                className={cn(
+                  "relative inline-block",
+                  word.highlight && "text-primary"
+                )}
+              >
+                {word.text}
+                {word.highlight && (
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-2 text-primary/30"
+                    viewBox="0 0 100 20"
+                    preserveAspectRatio="none"
+                  >
+                    <path d="M0 15 Q 50 0 100 15" stroke="currentColor" strokeWidth="4" fill="none" />
+                  </svg>
+                )}
+                {i < headlineWords.length - 1 ? "\u00A0" : ""}
+              </motion.span>
+            ))}
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-6 max-w-lg text-muted leading-relaxed text-base sm:text-lg">
             Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya
-            mengubah ide menjadi aplikasi web yang benar-benar jalan dari skema database
+            mengubah ide menjadi aplikasi web yang benar-benar jalan — dari skema database
             sampai detail hover yang terakhir.
           </motion.p>
 
@@ -110,11 +160,24 @@ export function Hero() {
         <motion.div variants={fadeUp} className="relative mx-auto flex justify-center lg:justify-end">
           <div className="relative p-6 sm:p-8">
 
-            {/* BADGE TECH MELAYANG */}
+            {/* Scene holografik dekoratif — panel kaca, partikel, bentuk geometris */}
+            <HeroBackdrop />
+
+            {/* BADGE TECH — fade/scale masuk dulu, baru mulai melayang setelah entrance selesai */}
 
             {/* Badge React */}
             <motion.div
-              {...floatingAnimation(0, 3.4)}
+              initial={{ opacity: 0, scale: 0.85, y: 10 }}
+              animate={
+                entranceDone
+                  ? floatingAnimation(0, 3.4).animate
+                  : { opacity: 1, scale: 1, y: 0 }
+              }
+              transition={
+                entranceDone
+                  ? floatingAnimation(0, 3.4).transition
+                  : { duration: 0.5, delay: 1.1, ease: [0.16, 1, 0.3, 1] }
+              }
               className="absolute top-2 -right-2 sm:-right-4 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
             >
               <svg className="h-5 w-5 fill-none stroke-[#61DAFB]" viewBox="-11.5 -10.23174 23 20.46348">
@@ -130,7 +193,17 @@ export function Hero() {
 
             {/* Badge Laravel */}
             <motion.div
-              {...floatingAnimation(0.8, 3.8)}
+              initial={{ opacity: 0, scale: 0.85, y: 10 }}
+              animate={
+                entranceDone
+                  ? floatingAnimation(0.8, 3.8).animate
+                  : { opacity: 1, scale: 1, y: 0 }
+              }
+              transition={
+                entranceDone
+                  ? floatingAnimation(0.8, 3.8).transition
+                  : { duration: 0.5, delay: 1.25, ease: [0.16, 1, 0.3, 1] }
+              }
               className="absolute top-12 -left-4 sm:-left-8 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
             >
               <svg className="h-5 w-5 fill-[#FF2D20]" viewBox="0 0 24 24">
@@ -141,7 +214,17 @@ export function Hero() {
 
             {/* Badge Next.js */}
             <motion.div
-              {...floatingAnimation(1.2, 3.6)}
+              initial={{ opacity: 0, scale: 0.85, y: 10 }}
+              animate={
+                entranceDone
+                  ? floatingAnimation(1.2, 3.6).animate
+                  : { opacity: 1, scale: 1, y: 0 }
+              }
+              transition={
+                entranceDone
+                  ? floatingAnimation(1.2, 3.6).transition
+                  : { duration: 0.5, delay: 1.4, ease: [0.16, 1, 0.3, 1] }
+              }
               className="absolute bottom-20 -right-4 sm:-right-8 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
             >
               <svg className="h-5 w-5" viewBox="0 0 180 180" fill="none">
@@ -156,10 +239,13 @@ export function Hero() {
             <div className="group relative z-10 h-72 w-72 overflow-hidden rounded-[2.5rem] border border-border bg-surface p-2 sm:h-80 sm:w-80 shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
               <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-surface-hover">
 
-                {/* Foto utama profil */}
-                <img
+                {/* Foto utama profil — masuk blur lalu jadi tajam */}
+                <motion.img
                   src="/image.png"
                   alt="Lucky"
+                  initial={{ opacity: 0, scale: 1.06, filter: "blur(18px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
 

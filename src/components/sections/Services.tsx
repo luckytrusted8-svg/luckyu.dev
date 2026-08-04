@@ -14,9 +14,9 @@ export function Services() {
     <section id="services" className="px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="What I Do"
-          heading="Services built around real projects"
-          description="Not a fixed menu — these are the kinds of work I actually take on, drawn from the projects I've shipped."
+          eyebrow="Yang Saya Kerjakan"
+          heading="Layanan yang dibangun dari project nyata"
+          description="Bukan menu baku ini jenis kerjaan yang beneran saya ambil, diambil dari project-project yang sudah saya kerjakan."
           index="02"
         />
 
@@ -69,7 +69,7 @@ export function Services() {
                   }
                   aria-expanded={expanded === service.slug}
                 >
-                  {expanded === service.slug ? "Show less" : "Learn more"}
+                  {expanded === service.slug ? "Tampilkan lebih sedikit" : "Selengkapnya"}
                   <Icons.ArrowRight size={13} />
                 </button>
               </motion.div>

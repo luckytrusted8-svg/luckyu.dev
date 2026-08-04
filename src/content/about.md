@@ -1,14 +1,14 @@
 ---
-eyebrow: "Who I Am"
-heading: "I build things end-to-end, then keep shipping."
-availability: "Open to freelance & internship work"
+eyebrow: "Siapa Saya"
+heading: "Saya membangun sesuatu dari nol sampai jadi, lalu terus ship."
+availability: "Terbuka untuk kerja freelance & magang"
 yearsBuilding: 1
 projectsShipped: 10
 stacksUsed: 6
 ---
 
-I'm Lucky — a software engineering student and full-stack developer based in Indonesia, currently doing my internship (PKL) at PT. Spero Mahakarya Nusantara while finishing my Software Engineering program at SMK Skill Village Islamic School.
+Saya Lucky mahasiswa Rekayasa Perangkat Lunak dan full-stack developer asal Indonesia, sedang menjalani magang (PKL) di PT. Spero Mahakarya Nusantara sambil menyelesaikan program Rekayasa Perangkat Lunak di SMK Skill Village Islamic School.
 
-I like taking a project from an empty folder to a working product: designing the schema, wiring up the backend, and polishing the interface until it feels intentional. Most of my recent work lives across **Laravel + Inertia**, **Next.js**, and **Express + Prisma**, with a growing habit of building role-based systems — the kind with real admin tiers, real permissions, and real edge cases.
+Saya suka membawa sebuah project dari folder kosong sampai jadi produk yang benar-benar jalan: merancang skema, menyambungkan backend, lalu memoles interface sampai terasa niat betul. Sebagian besar pekerjaan saya belakangan ini ada di **Laravel + Inertia**, **Next.js**, dan **Express + Prisma**, dengan kebiasaan yang makin sering muncul: membangun sistem berbasis role yang beneran punya tingkatan admin, permission, dan edge case nyata.
 
-Outside of client and school work, I spend time on creative coding experiments with Three.js and MediaPipe, and I write about what I build for a small audience of local freelance clients on Instagram.
+Di luar kerjaan client dan sekolah, saya menghabiskan waktu untuk eksperimen creative coding dengan Three.js dan MediaPipe, dan menulis tentang apa yang saya bangun untuk sedikit audiens client freelance lokal di Instagram.

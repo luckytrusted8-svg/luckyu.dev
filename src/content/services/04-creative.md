@@ -1,7 +1,7 @@
 ---
 icon: "Sparkles"
-title: "Creative & Interactive Coding"
-summary: "Three.js and MediaPipe experiments for portfolios, landing pages, and playful UI moments."
+title: "Coding Kreatif & Interaktif"
+summary: "Eksperimen Three.js dan MediaPipe buat portfolio, landing page, dan momen UI yang playful."
 order: 4
 ---
-When a project calls for something beyond a standard layout, I build small interactive pieces — particle systems, hand-tracking demos, and scroll-driven scenes — to make a page memorable.
+Kalau sebuah project butuh sesuatu di luar layout standar, saya bikin potongan interaktif kecil particle system, demo hand-tracking, dan scene yang jalan berdasarkan scroll biar halamannya lebih nempel di ingatan.

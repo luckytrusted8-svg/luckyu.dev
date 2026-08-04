@@ -19,28 +19,39 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60"
+      className="relative px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60 overflow-hidden"
     >
-      <div className="mx-auto max-w-6xl">
+      {/* ambient glow, consistent with the rest of the dark theme */}
+      <div className="pointer-events-none absolute right-[-10%] top-1/3 h-[380px] w-[380px] -translate-y-1/2 rounded-full bg-primary/10 blur-[110px]" />
+
+      <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading eyebrow="Feedback" heading="What people I've worked with say" index="06" />
-          
-          {/* Tombol Navigasi Clean */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => go(index - 1)}
-              aria-label="Previous testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-text/30 transition-colors"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <button
-              onClick={() => go(index + 1)}
-              aria-label="Next testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-text hover:border-text/30 transition-colors"
-            >
-              <ChevronRight size={16} />
-            </button>
+          <SectionHeading
+            eyebrow="Feedback"
+            heading="What people I've worked with say"
+            index="06"
+          />
+
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs text-muted-dim">
+              {String(index + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
+            </span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => go(index - 1)}
+                aria-label="Previous testimonial"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-primary-soft/50 hover:text-text"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                onClick={() => go(index + 1)}
+                aria-label="Next testimonial"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-primary-soft/50 hover:text-text"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -53,15 +64,25 @@ export function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 * direction }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-2xl border border-border bg-surface p-8 shadow-sm"
+              className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-bg-elevated p-8 shadow-[0_20px_60px_-24px_rgba(139,92,246,0.35)] sm:p-10"
             >
-              <Quote className="text-primary" size={28} />
-              <p className="mt-4 text-lg leading-relaxed text-text">{current.body}</p>
-              
-              <div className="mt-6 flex items-center gap-3">
-                {/* Avatar Inisial Solid Clean */}
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-display text-sm font-semibold text-white">
-                  {current.name.charAt(0)}
+              {/* oversized decorative quote mark */}
+              <Quote
+                size={120}
+                strokeWidth={1}
+                className="pointer-events-none absolute -right-4 -top-6 text-primary/[0.07]"
+              />
+
+              <Quote className="relative text-primary-soft" size={26} />
+              <p className="relative mt-5 text-lg leading-relaxed text-text sm:text-xl">
+                {current.body}
+              </p>
+
+              <div className="relative mt-8 flex items-center gap-3 border-t border-border/60 pt-6">
+                <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-[2px]">
+                  <span className="flex h-full w-full items-center justify-center rounded-full bg-bg-elevated font-display text-sm font-semibold text-text">
+                    {current.name.charAt(0)}
+                  </span>
                 </span>
                 <div>
                   <p className="text-sm font-medium text-text">{current.name}</p>
@@ -72,15 +93,16 @@ export function Testimonials() {
           </AnimatePresence>
         </div>
 
-        {/* Indicator Dots */}
         <div className="mt-6 flex gap-2">
           {testimonials.map((t, i) => (
             <button
               key={t.slug}
               onClick={() => go(i)}
               aria-label={`Go to testimonial ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-muted"
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === index
+                  ? "w-8 bg-gradient-to-r from-primary via-secondary to-accent"
+                  : "w-1.5 bg-border hover:bg-muted-dim"
               }`}
             />
           ))}

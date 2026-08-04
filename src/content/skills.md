@@ -1,6 +1,6 @@
 ---
 eyebrow: "Toolbox"
-heading: "What I reach for when I'm building"
+heading: "Apa yang saya cari saat sedang membangun"
 categories:
   - name: "Frontend"
     skills:

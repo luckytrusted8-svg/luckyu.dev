@@ -8,7 +8,7 @@ import { fadeUp, staggerContainer } from "../../animations/variants";
 
 const stack = ["React", "Next.js", "Laravel", "Express", "Tailwind", "Prisma"];
 
-// Helper Animasi Floating untuk Badges
+// Helper animasi floating untuk badge-badge tech stack
 const floatingAnimation = (
   delay = 0,
   duration = 3.5
@@ -31,7 +31,7 @@ export function Hero() {
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden px-5 pt-24 pb-16 sm:px-10 lg:pt-32"
     >
-      {/* Subtle Background Grid Line & Grain */}
+      {/* Garis grid halus & tekstur grain di background */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-grain opacity-[0.04]" />
 
@@ -41,33 +41,33 @@ export function Hero() {
         animate="show"
         className="relative z-10 grid w-full max-w-6xl mx-auto items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]"
       >
-        {/* === KOLOM KIRI: CONTENT === */}
+        {/* === KOLOM KIRI: KONTEN === */}
         <div>
           <motion.p
             variants={fadeUp}
             className="font-mono text-xs uppercase tracking-[0.3em] text-primary font-semibold"
           >
-            Hello, I'm
+            Halo, saya
           </motion.p>
 
           <motion.h1
             variants={fadeUp}
             className="mt-3 text-5xl font-bold leading-[1.08] text-text sm:text-6xl lg:text-[3.4rem] tracking-tight"
           >
-            Lucky —{" "}
+            Lucky {" "}
             <span className="relative inline-block text-primary">
-              I build products,
+              saya membangun produk,
               <svg className="absolute -bottom-2 left-0 w-full h-2 text-primary/30" viewBox="0 0 100 20" preserveAspectRatio="none">
                 <path d="M0 15 Q 50 0 100 15" stroke="currentColor" strokeWidth="4" fill="none" />
               </svg>
             </span>{" "}
-            not just pages.
+            bukan sekadar halaman.
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-6 max-w-lg text-muted leading-relaxed text-base sm:text-lg">
-            Full-stack developer and Software Engineering student in Indonesia. I turn
-            ideas into working web applications — from the database schema to the last
-            hover state.
+            Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya
+            mengubah ide menjadi aplikasi web yang benar-benar jalan dari skema database
+            sampai detail hover yang terakhir.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-4">
@@ -75,7 +75,7 @@ export function Hero() {
               href="#projects"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>View my work</span>
+              <span>Lihat karya saya</span>
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
 
@@ -84,14 +84,14 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-6 py-3.5 text-sm font-medium text-muted transition-all hover:text-text hover:border-text/30 hover:bg-surface"
             >
               <PlayCircle size={16} />
-              More about me
+              Lebih lanjut tentang saya
             </a>
           </motion.div>
 
-          {/* Tech Stack Chips */}
+          {/* Chip Tech Stack */}
           <motion.div variants={fadeUp} className="mt-12 pt-6 border-t border-border/40">
             <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-muted-dim font-medium">
-              Stack I ship with
+              Stack yang saya pakai
             </p>
             <div className="mt-3.5 flex flex-wrap gap-2">
               {stack.map((s) => (
@@ -106,13 +106,13 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* === KOLOM KANAN: AVATAR CARD & FLOATING BADGES === */}
+        {/* === KOLOM KANAN: KARTU AVATAR & BADGE MELAYANG === */}
         <motion.div variants={fadeUp} className="relative mx-auto flex justify-center lg:justify-end">
           <div className="relative p-6 sm:p-8">
-            
-            {/* FLOATING TECH BADGES */}
-            
-            {/* React Badge */}
+
+            {/* BADGE TECH MELAYANG */}
+
+            {/* Badge React */}
             <motion.div
               {...floatingAnimation(0, 3.4)}
               className="absolute top-2 -right-2 sm:-right-4 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
@@ -128,7 +128,7 @@ export function Hero() {
               <span className="font-mono text-xs font-semibold text-text">React</span>
             </motion.div>
 
-            {/* Laravel Badge */}
+            {/* Badge Laravel */}
             <motion.div
               {...floatingAnimation(0.8, 3.8)}
               className="absolute top-12 -left-4 sm:-left-8 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
@@ -139,7 +139,7 @@ export function Hero() {
               <span className="font-mono text-xs font-semibold text-text">Laravel</span>
             </motion.div>
 
-            {/* Next.js Badge */}
+            {/* Badge Next.js */}
             <motion.div
               {...floatingAnimation(1.2, 3.6)}
               className="absolute bottom-20 -right-4 sm:-right-8 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
@@ -152,38 +152,38 @@ export function Hero() {
               <span className="font-mono text-xs font-semibold text-text">Next.js</span>
             </motion.div>
 
-            {/* MAIN AVATAR CARD */}
+            {/* KARTU AVATAR UTAMA */}
             <div className="group relative z-10 h-72 w-72 overflow-hidden rounded-[2.5rem] border border-border bg-surface p-2 sm:h-80 sm:w-80 shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
               <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-surface-hover">
-                
-                {/* Foto Utama Profil */}
+
+                {/* Foto utama profil */}
                 <img
                   src="/image.png"
                   alt="Lucky"
                   className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
 
-                {/* Subtle Gradient Overlay untuk Teks di Atas & Bawah */}
+                {/* Overlay gradient halus untuk keterbacaan teks di atas & bawah */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
 
-                {/* Top Badge Inside Card */}
+                {/* Badge di bagian atas kartu */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
                   <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 text-[10px] font-mono text-white/90 backdrop-blur-md">
                     <Sparkles size={12} className="text-primary" />
-                    <span>Software Dev</span>
+                    <span>Pengembang Web</span>
                   </span>
                   <span className="flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
                 </div>
 
-                {/* Bottom Info inside Card */}
+                {/* Info di bagian bawah kartu */}
                 <div className="absolute bottom-4 left-0 right-0 text-center z-10">
-                  <p className="font-mono text-[11px] text-white/80 font-medium">Based in Indonesia 🇮🇩</p>
+                  <p className="font-mono text-[11px] text-white/80 font-medium">Berbasis di Indonesia 🇮🇩</p>
                 </div>
 
               </div>
             </div>
 
-            {/* Status Terminal (Bisa digeser) */}
+            {/* Terminal status (bisa digeser) */}
             <div className="absolute -bottom-4 -left-6 hidden sm:block z-40">
               <StatusTerminal />
             </div>

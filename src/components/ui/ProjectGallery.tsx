@@ -41,11 +41,11 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
     return (
       <div
         className={cn(
-          "relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-xl border border-hairline bg-primary shadow-card",
+          "relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-xl border border-border bg-bg-elevated",
           className
         )}
       >
-        <p className="font-mono text-xs uppercase tracking-wider text-white/40">
+        <p className="font-mono text-xs uppercase tracking-wider text-muted-dim">
           {title} — screenshots coming soon
         </p>
       </div>
@@ -58,7 +58,7 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
       <button
         type="button"
         onClick={() => setLightboxOpen(true)}
-        className="group relative block w-full overflow-hidden rounded-xl border border-hairline bg-canvas-soft-2 shadow-card"
+        className="group relative block w-full overflow-hidden rounded-xl border border-border bg-bg-elevated"
         aria-label={`View ${title} screenshot ${active + 1} full size`}
       >
         <img
@@ -66,14 +66,14 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
           alt={`${title} screenshot ${active + 1} of ${images.length}`}
           className="aspect-[16/9] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]"
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/20">
-          <span className="flex items-center gap-1.5 rounded-full bg-canvas px-3 py-1.5 text-xs font-medium text-ink opacity-0 shadow-card transition-opacity group-hover:opacity-100">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/40">
+          <span className="flex items-center gap-1.5 rounded-full bg-surface px-3 py-1.5 text-xs font-medium text-text opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
             <ZoomIn size={13} />
             View full size
           </span>
         </div>
         {images.length > 1 && (
-          <span className="absolute bottom-3 right-3 rounded-full bg-primary/85 px-2.5 py-1 text-[11px] font-mono text-on-primary">
+          <span className="absolute bottom-3 right-3 rounded-full bg-bg/80 px-2.5 py-1 text-[11px] font-mono text-white">
             {active + 1} / {images.length}
           </span>
         )}
@@ -92,8 +92,8 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
               className={cn(
                 "relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border transition-colors",
                 i === active
-                  ? "border-ink"
-                  : "border-hairline opacity-70 hover:opacity-100"
+                  ? "border-primary-soft"
+                  : "border-border opacity-60 hover:opacity-100"
               )}
             >
               <img src={src} alt="" className="h-full w-full object-cover object-top" />
@@ -159,7 +159,7 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
               src={images[active]}
               alt={`${title} screenshot ${active + 1} of ${images.length}`}
               onClick={(e) => e.stopPropagation()}
-              className="max-h-full max-w-full rounded-lg object-contain shadow-modal"
+              className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
             />
 
             {images.length > 1 && (

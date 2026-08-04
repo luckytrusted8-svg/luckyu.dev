@@ -1,7 +1,7 @@
 ---
 icon: "Layers"
-title: "Full-Stack Web Apps"
-summary: "End-to-end web applications — schema, backend, and interface — built to actually ship."
+title: "Aplikasi Web Full-Stack"
+summary: "Aplikasi web end-to-end skema, backend, dan interface dibangun supaya beneran bisa dipakai."
 order: 1
 ---
-I plan the data model first, then build outward: migrations and APIs on the backend, then a clean, responsive interface on top. Comfortable owning a project from the first commit to the last polish pass.
+Saya rancang model data dulu, baru bangun ke luar: migrations dan API di backend, lalu interface yang rapi dan responsif di atasnya. Nyaman pegang satu project dari commit pertama sampai polish terakhir.

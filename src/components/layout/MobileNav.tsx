@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import { navItems, socialLinks } from "../../lib/nav";
 import { cn } from "../../utils/cn";
 
@@ -10,12 +11,17 @@ export function MobileNav() {
   return (
     <>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-bg/85 px-5 py-4 backdrop-blur-md lg:hidden">
-        <a href="#home" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-display text-xs font-semibold text-white">
-            L
-          </span>
+        <Link to="/#home" className="flex items-center gap-2">
+          <picture className="brand-logo-shell flex h-9 w-9 shrink-0 items-center justify-center">
+            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark-transparent.png" />
+            <img
+              src="/logo-light-transparent.png"
+              alt="Logo Lucky"
+              className="h-full w-full object-contain"
+            />
+          </picture>
           <span className="font-display text-sm font-semibold text-text">Lucky</span>
-        </a>
+        </Link>
         <button
           onClick={() => setOpen(true)}
           aria-label="Open navigation menu"
@@ -58,9 +64,9 @@ export function MobileNav() {
                 </div>
                 <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile navigation">
                   {navItems.map((item) => (
-                    <a
+                    <Link
                       key={item.id}
-                      href={`#${item.id}`}
+                      to={`/#${item.id}`}
                       onClick={() => setOpen(false)}
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3.5 py-3 text-sm text-muted hover:bg-surface hover:text-text transition-colors"
@@ -68,7 +74,7 @@ export function MobileNav() {
                     >
                       <item.icon size={16} />
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </div>

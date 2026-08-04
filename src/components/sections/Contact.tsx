@@ -17,7 +17,7 @@ export function Contact() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const subject = encodeURIComponent(`Project inquiry from ${form.name || "your site"}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    const body = encodeURIComponent(`${form.message}\n\n- ${form.name} (${form.email})`);
     window.location.href = `mailto:hello@luckyu.web.id?subject=${subject}&body=${body}`;
     setSent(true);
   }

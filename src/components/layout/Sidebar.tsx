@@ -1,40 +1,48 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import { navItems, socialLinks } from "../../lib/nav";
 import { cn } from "../../utils/cn";
 import { useActiveSection } from "../../hooks/useActiveSection";
 
 export function Sidebar() {
-  const active = useActiveSection(navItems.map((n) => n.id));
+  const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
+  const active = useActiveSection(sectionIds);
 
   return (
     <motion.aside
       initial={{ x: -40, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-y-0 left-0 z-40 hidden w-[268px] flex-col justify-between border-r border-border bg-bg-elevated px-6 py-8 lg:flex"
+      className="sidebar-panel fixed inset-y-0 left-0 z-40 hidden w-[268px] flex-col justify-between overflow-y-auto overscroll-contain border-r border-border bg-bg-elevated px-6 py-8 no-scrollbar lg:flex"
     >
       <div>
-        <a href="#home" className="flex items-center gap-2.5 group">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-display text-sm font-semibold text-white">
-            L
-          </span>
+        <Link to="/#home" className="flex items-center gap-2.5 group">
+          <picture className="brand-logo-shell flex h-10 w-10 shrink-0 items-center justify-center">
+            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark-transparent.png" />
+            <img
+              src="/logo-light-transparent.png"
+              alt="Logo Lucky"
+              className="h-full w-full object-contain"
+            />
+          </picture>
           <span>
             <span className="block font-display text-sm font-semibold text-text">Lucky</span>
             <span className="block text-[11px] text-muted">Full-Stack Developer</span>
           </span>
-        </a>
+        </Link>
 
-        <nav className="mt-10 flex flex-col gap-1" aria-label="Main navigation">
+        <nav className="sidebar-nav mt-10 flex flex-col gap-1" aria-label="Main navigation">
           {navItems.map((item) => {
             const isActive = active === item.id;
             const Icon = item.icon;
             return (
-              <a
+              <Link
                 key={item.id}
-                href={`#${item.id}`}
+                to={`/#${item.id}`}
                 className={cn(
-                  "relative flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
+                  "sidebar-nav-link relative flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
                   isActive ? "text-text" : "text-muted hover:text-text"
                 )}
               >
@@ -47,14 +55,14 @@ export function Sidebar() {
                 )}
                 <Icon size={16} className="relative z-10" />
                 <span className="relative z-10">{item.label}</span>
-              </a>
+              </Link>
             );
           })}
         </nav>
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="rounded-xl border border-border bg-surface p-4">
+        <div className="sidebar-status rounded-xl border border-border bg-surface p-4">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-soft opacity-60" />
@@ -65,12 +73,12 @@ export function Sidebar() {
           <p className="mt-2 text-[12px] leading-relaxed text-muted">
             Currently taking on small-to-mid web projects alongside my internship.
           </p>
-          <a
-            href="#contact"
+          <Link
+            to="/#contact"
             className="mt-3 inline-block text-[12px] font-medium text-primary-soft hover:text-text transition-colors"
           >
             Say hello →
-          </a>
+          </Link>
         </div>
 
         <a

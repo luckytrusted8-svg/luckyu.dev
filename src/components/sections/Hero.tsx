@@ -33,8 +33,10 @@ const floatingAnimation = (
 // `highlight: true` pada kata-kata yang jadi satu frasa disorot (warna primary + underline).
 const headlineWords = [
   { text: "Lucky", highlight: false },
-  { text: "—", highlight: false },
-  { text: "saya membangun produk,", highlight: true },
+  { text: ",", highlight: false },
+  { text: "saya", highlight: true },
+  { text: "membangun", highlight: true },
+  { text: "produk,", highlight: true },
   { text: "bukan", highlight: false },
   { text: "sekadar", highlight: false },
   { text: "halaman.", highlight: false },
@@ -63,7 +65,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-5 pt-24 pb-16 sm:px-10 lg:pt-32"
+      className="hero-section relative flex min-h-screen items-center overflow-hidden px-5 pt-24 pb-16 sm:px-10 lg:pt-32"
     >
       {/* Garis grid halus & tekstur grain di background */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
@@ -73,7 +75,7 @@ export function Hero() {
         variants={staggerContainer(0.12)}
         initial="hidden"
         animate="show"
-        className="relative z-10 grid w-full max-w-6xl mx-auto items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]"
+        className="hero-layout relative z-10 grid w-full max-w-6xl mx-auto items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]"
       >
         {/* === KOLOM KIRI: KONTEN === */}
         <div>
@@ -88,7 +90,7 @@ export function Hero() {
             initial="hidden"
             animate="show"
             transition={{ delayChildren: 0.15, staggerChildren: 0.09 }}
-            className="mt-3 text-5xl font-bold leading-[1.08] text-text sm:text-6xl lg:text-[3.4rem] tracking-tight"
+            className="hero-title mt-3 text-5xl font-bold leading-[1.08] text-text sm:text-6xl lg:text-[3.4rem] tracking-tight"
           >
             {headlineWords.map((word, i) => (
               <motion.span
@@ -114,13 +116,13 @@ export function Hero() {
             ))}
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="mt-6 max-w-lg text-muted leading-relaxed text-base sm:text-lg">
+          <motion.p variants={fadeUp} className="hero-description mt-6 max-w-lg text-muted leading-relaxed text-base sm:text-lg">
             Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya
-            mengubah ide menjadi aplikasi web yang benar-benar jalan — dari skema database
+            mengubah ide menjadi aplikasi web yang benar-benar jalan - dari skema database
             sampai detail hover yang terakhir.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-4">
+          <motion.div variants={fadeUp} className="hero-actions mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#projects"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0"
@@ -139,7 +141,7 @@ export function Hero() {
           </motion.div>
 
           {/* Chip Tech Stack */}
-          <motion.div variants={fadeUp} className="mt-12 pt-6 border-t border-border/40">
+          <motion.div variants={fadeUp} className="hero-stack mt-12 pt-6 border-t border-border/40">
             <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-muted-dim font-medium">
               Stack yang saya pakai
             </p>
@@ -157,7 +159,7 @@ export function Hero() {
         </div>
 
         {/* === KOLOM KANAN: KARTU AVATAR & BADGE MELAYANG === */}
-        <motion.div variants={fadeUp} className="relative mx-auto flex justify-center lg:justify-end">
+        <motion.div variants={fadeUp} className="hero-visual relative mx-auto flex justify-center lg:justify-end">
           <div className="relative p-6 sm:p-8">
 
             {/* Scene holografik dekoratif — panel kaca, partikel, bentuk geometris */}
@@ -236,7 +238,7 @@ export function Hero() {
             </motion.div>
 
             {/* KARTU AVATAR UTAMA */}
-            <div className="group relative z-10 h-72 w-72 overflow-hidden rounded-[2.5rem] border border-border bg-surface p-2 sm:h-80 sm:w-80 shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
+            <div className="hero-avatar group relative z-10 h-72 w-72 overflow-hidden rounded-[2.5rem] border border-border bg-surface p-2 sm:h-80 sm:w-80 shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
               <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-surface-hover">
 
                 {/* Foto utama profil — masuk blur lalu jadi tajam */}
@@ -270,7 +272,7 @@ export function Hero() {
             </div>
 
             {/* Terminal status (bisa digeser) */}
-            <div className="absolute -bottom-4 -left-6 hidden sm:block z-40">
+            <div className="hero-terminal absolute -bottom-4 -left-6 hidden sm:block z-40">
               <StatusTerminal />
             </div>
 

@@ -46,7 +46,7 @@ export function ProjectGallery({ title, images, className }: ProjectGalleryProps
         )}
       >
         <p className="font-mono text-xs uppercase tracking-wider text-muted-dim">
-          {title} — screenshots coming soon
+          {title} - screenshots coming soon
         </p>
       </div>
     );

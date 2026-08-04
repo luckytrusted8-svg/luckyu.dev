@@ -2,20 +2,20 @@
 
 @theme {
   /* ---- Color tokens ---- */
-  --color-bg: #080b17;
-  --color-bg-elevated: #0c1024;
-  --color-surface: #10142a;
-  --color-surface-hover: #151a35;
-  --color-border: #1e2440;
+  --color-bg: #090b0f;
+  --color-bg-elevated: #0f1319;
+  --color-surface: #161b22;
+  --color-surface-hover: #202732;
+  --color-border: #303946;
 
-  --color-primary: #8b5cf6;
-  --color-primary-soft: #a78bfa;
-  --color-secondary: #3b82f6;
-  --color-accent: #ec4899;
+  --color-primary: #64748b;
+  --color-primary-soft: #cbd5e1;
+  --color-secondary: #94a3b8;
+  --color-accent: #475569;
 
   --color-text: #f8fafc;
-  --color-muted: #94a3b8;
-  --color-muted-dim: #5b6785;
+  --color-muted: #a8b2c1;
+  --color-muted-dim: #718096;
 
   /* ---- Type tokens ---- */
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
@@ -57,6 +57,24 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Varian terang menggunakan logo outline gelap dan palet netral yang sama. */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f7f8fa;
+    --color-bg-elevated: #ffffff;
+    --color-surface: #eef1f5;
+    --color-surface-hover: #e2e8f0;
+    --color-border: #cbd5e1;
+    --color-primary: #334155;
+    --color-primary-soft: #475569;
+    --color-secondary: #64748b;
+    --color-accent: #1e293b;
+    --color-text: #111827;
+    --color-muted: #475569;
+    --color-muted-dim: #64748b;
+  }
 }
 
 h1, h2, h3, h4, h5 {
@@ -120,4 +138,63 @@ h1, h2, h3, h4, h5 {
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Menjaga hero tetap utuh pada layar laptop dengan tinggi viewport pendek. */
+@media (min-width: 1024px) and (max-height: 850px) {
+  .sidebar-panel {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .sidebar-nav {
+    margin-top: 1.5rem;
+  }
+
+  .sidebar-nav-link {
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    font-size: 0.8125rem;
+  }
+
+  .sidebar-status {
+    padding: 0.75rem;
+  }
+
+  .hero-section {
+    align-items: flex-start;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-layout {
+    gap: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 3.3vw, 3.1rem);
+  }
+
+  .hero-description {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    margin-top: 1.5rem;
+  }
+
+  .hero-stack {
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+  }
+
+  .hero-avatar {
+    height: 17.5rem;
+    width: 17.5rem;
+  }
+
+  .hero-terminal {
+    display: none;
+  }
 }

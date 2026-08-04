@@ -7,11 +7,14 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <a href="#home" className="flex items-center gap-2.5">
-          <img
-            src="/LuckyDev2.png" 
-            alt="Logo"
-            className="h-8 w-8 rounded-lg object-contain"
-          />
+          <picture className="brand-logo-shell flex h-8 w-8 shrink-0 items-center justify-center">
+            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark-transparent.png" />
+            <img
+              src="/logo-light-transparent.png"
+              alt="Logo Lucky"
+              className="h-full w-full object-contain"
+            />
+          </picture>
             <span className="font-display text-sm font-semibold text-text">Lucky Ubaidillah</span>
           </a>
 

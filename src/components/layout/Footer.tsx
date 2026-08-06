@@ -8,9 +8,9 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-between gap-6">
           <a href="#home" className="flex items-center gap-2.5">
           <picture className="brand-logo-shell flex h-8 w-8 shrink-0 items-center justify-center">
-            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark-transparent.png" />
+            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark.png" />
             <img
-              src="/logo-light-transparent.png"
+              src="/logo-dark.png"
               alt="Logo Lucky"
               className="h-full w-full object-contain"
             />

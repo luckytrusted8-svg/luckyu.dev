@@ -20,9 +20,9 @@ export function Sidebar() {
       <div>
         <Link to="/#home" className="flex items-center gap-2.5 group">
           <picture className="brand-logo-shell flex h-10 w-10 shrink-0 items-center justify-center">
-            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark-transparent.png" />
+            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark.png" />
             <img
-              src="/logo-light-transparent.png"
+              src="/logo-dark.png"
               alt="Logo Lucky"
               className="h-full w-full object-contain"
             />

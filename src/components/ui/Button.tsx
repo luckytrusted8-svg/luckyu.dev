@@ -9,7 +9,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-gradient-to-r from-primary via-secondary to-accent text-white shadow-[0_8px_30px_-8px_rgba(139,92,246,0.55)] hover:shadow-[0_10px_36px_-6px_rgba(139,92,246,0.7)]",
+    "bg-[linear-gradient(135deg,#111827_0%,#334155_100%)] text-white shadow-[0_10px_30px_-10px_rgba(15,23,42,0.24)] hover:shadow-[0_14px_36px_-10px_rgba(15,23,42,0.32)]",
   ghost: "text-text hover:bg-surface-hover border border-border",
   outline: "border border-border text-muted hover:text-text hover:border-primary-soft",
 };

@@ -13,9 +13,9 @@ export function MobileNav() {
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-bg/85 px-5 py-4 backdrop-blur-md lg:hidden">
         <Link to="/#home" className="flex items-center gap-2">
           <picture className="brand-logo-shell flex h-9 w-9 shrink-0 items-center justify-center">
-            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark-transparent.png" />
+            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark.png" />
             <img
-              src="/logo-light-transparent.png"
+              src="/logo-dark.png"
               alt="Logo Lucky"
               className="h-full w-full object-contain"
             />

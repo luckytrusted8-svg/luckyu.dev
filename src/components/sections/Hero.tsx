@@ -1,33 +1,88 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import type { HTMLMotionProps } from "framer-motion";
 
-import { ArrowUpRight, PlayCircle, Sparkles } from "lucide-react";
+import { ArrowUpRight, PlayCircle } from "lucide-react";
 
 import { StatusTerminal } from "../ui/StatusTerminal";
 import { HeroBackdrop } from "../ui/HeroBackdrop";
 import { fadeUp, staggerContainer } from "../../animations/variants";
 import { cn } from "../../utils/cn";
 
-const stack = ["React", "Next.js", "Laravel", "Express", "Tailwind", "Prisma"];
+const stack = [
+  {
+    name: "React",
+    accent: "#61DAFB",
+    logo: (
+      <svg viewBox="-11.5 -10.23174 23 20.46348" className="h-14 w-14 text-white">
+        <circle r="2.05" fill="currentColor" />
+        <g stroke="currentColor" strokeWidth="1">
+          <ellipse rx="11" ry="4.2" />
+          <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+          <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+        </g>
+      </svg>
+    ),
+  },
+  {
+    name: "Next.js",
+    accent: "#000000",
+    logo: (
+      <svg viewBox="0 0 128 128" className="h-14 w-14 text-white">
+        <rect width="128" height="128" rx="24" fill="currentColor" />
+        <path d="M42 38h14l24 46 22-46h12l-30 56 30 56h-14l-24-46-22 46H42l30-56-30-56Z" fill="white" />
+      </svg>
+    ),
+  },
+  {
+    name: "Laravel",
+    accent: "#FF2D20",
+    logo: (
+      <svg viewBox="0 0 120 120" className="h-14 w-14 text-white">
+        <path d="M20 30h28l20 22.5L84 30h28v60H20V30Z" fill="currentColor" />
+        <path d="M48 30 28 60v30h64V60L72 30" stroke="white" strokeWidth="6" fill="none" />
+      </svg>
+    ),
+  },
+  {
+    name: "Express",
+    accent: "#000000",
+    logo: (
+      <svg viewBox="0 0 128 128" className="h-14 w-14 text-white">
+        <path d="M24 40c0-11 8-20 20-20h40c11 0 20 9 20 20v48c0 11-9 20-20 20H44c-11 0-20-9-20-20V40Z" fill="currentColor" />
+        <path d="M46 56h36v12H46v20h20v12H46v12h36" stroke="white" strokeWidth="8" fill="none" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    name: "Tailwind",
+    accent: "#38BDF8",
+    logo: (
+      <svg viewBox="0 0 128 128" className="h-14 w-14 text-white">
+        <path d="M26 78c18 0 32-10 42-28 18 0 34 10 54 28-24 24-40 34-54 34-18 0-32-10-42-28Z" fill="currentColor" />
+        <path d="M42 66c14 0 24-8 32-24 14 0 26 8 42 24-18 18-32 26-42 26-14 0-24-8-32-24Z" fill="white" opacity="0.95" />
+      </svg>
+    ),
+  },
+  {
+    name: "Prisma",
+    accent: "#7C3AED",
+    logo: (
+      <svg viewBox="0 0 128 128" className="h-14 w-14 text-white">
+        <path d="M20 108 64 20 108 108H20Z" fill="currentColor" />
+        <path d="M64 30 38 94h52L64 30Z" fill="white" opacity="0.8" />
+      </svg>
+    ),
+  },
+];
 
-// Helper animasi floating (loop tanpa akhir) untuk badge tech stack —
-// dipakai HANYA setelah seluruh entrance hero selesai (lihat `entranceDone`).
-const floatingAnimation = (
-  delay = 0,
-  duration = 3.5
-): Pick<HTMLMotionProps<"div">, "animate" | "transition"> => ({
-  animate: {
-    y: [0, -8, 0],
-  },
-  transition: {
-    duration,
-    delay,
-    repeat: Infinity,
-    repeatType: "reverse",
-    ease: [0.42, 0, 0.58, 1],
-  },
-});
+function getOffset(index: number, activeIndex: number) {
+  const total = stack.length;
+  const raw = index - activeIndex;
+  const half = total / 2;
+  if (raw > half) return raw - total;
+  if (raw < -half) return raw + total;
+  return raw;
+}
 
 // Susunan kata untuk headline word-by-word reveal.
 // `highlight: true` pada kata-kata yang jadi satu frasa disorot (warna primary + underline).
@@ -53,21 +108,35 @@ const wordVariants = {
 };
 
 export function Hero() {
-  // Total durasi kira-kira sampai seluruh entrance (headline, paragraf, CTA,
-  // stack chip, kartu avatar) selesai tampil — setelah ini badge tech baru
-  // mulai melayang, bukan dari awal mount.
-  const [entranceDone, setEntranceDone] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
-    const timer = window.setTimeout(() => setEntranceDone(true), 1700);
-    return () => window.clearTimeout(timer);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") {
+        setActiveIndex((current) => (current + 1) % stack.length);
+      }
+      if (event.key === "ArrowLeft") {
+        setActiveIndex((current) => (current - 1 + stack.length) % stack.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  const moveNext = () => setActiveIndex((current) => (current + 1) % stack.length);
+  const movePrev = () => setActiveIndex((current) => (current - 1 + stack.length) % stack.length);
+
+  const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
+    if (info.offset.x > 60) movePrev();
+    if (info.offset.x < -60) moveNext();
+  };
 
   return (
     <section
       id="home"
       className="hero-section relative flex min-h-screen items-center overflow-hidden px-5 pt-24 pb-16 sm:px-10 lg:pt-32"
     >
-      {/* Garis grid halus & tekstur grain di background */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-grain opacity-[0.04]" />
 
@@ -77,7 +146,6 @@ export function Hero() {
         animate="show"
         className="hero-layout relative z-10 grid w-full max-w-6xl mx-auto items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]"
       >
-        {/* === KOLOM KIRI: KONTEN === */}
         <div>
           <motion.p
             variants={fadeUp}
@@ -117,9 +185,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p variants={fadeUp} className="hero-description mt-6 max-w-lg text-muted leading-relaxed text-base sm:text-lg">
-            Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya
-            mengubah ide menjadi aplikasi web yang benar-benar jalan - dari skema database
-            sampai detail hover yang terakhir.
+            Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya mengubah ide menjadi aplikasi web yang benar-benar jalan — dari skema database sampai detail hover yang terakhir.
           </motion.p>
 
           <motion.div variants={fadeUp} className="hero-actions mt-9 flex flex-wrap items-center gap-4">
@@ -140,142 +206,126 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* Chip Tech Stack */}
           <motion.div variants={fadeUp} className="hero-stack mt-12 pt-6 border-t border-border/40">
             <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-muted-dim font-medium">
               Stack yang saya pakai
             </p>
-            <div className="mt-3.5 flex flex-wrap gap-2">
-              {stack.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-lg border border-border/60 bg-surface/60 px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-primary/40 hover:text-text hover:bg-surface"
+            <div className="mt-4 flex flex-wrap gap-2">
+              {stack.map((item, index) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className={cn(
+                    "rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30",
+                    activeIndex === index
+                      ? "border-primary bg-primary/10 text-text shadow-sm shadow-primary/10"
+                      : "border-border/60 bg-surface/70 text-muted hover:border-primary/40 hover:text-text hover:bg-surface"
+                  )}
                 >
-                  {s}
-                </span>
+                  {item.name}
+                </button>
               ))}
             </div>
+            <p className="mt-4 max-w-xl text-sm text-muted">
+              Klik badge, geser kartu, atau gunakan keyboard untuk berpindah antar teknologi dengan animasi halus.
+            </p>
           </motion.div>
         </div>
 
-        {/* === KOLOM KANAN: KARTU AVATAR & BADGE MELAYANG === */}
         <motion.div variants={fadeUp} className="hero-visual relative mx-auto flex justify-center lg:justify-end">
-          <div className="relative p-6 sm:p-8">
-
-            {/* Scene holografik dekoratif — panel kaca, partikel, bentuk geometris */}
+          <div className="relative p-4 sm:p-6 lg:p-8">
             <HeroBackdrop />
 
-            {/* BADGE TECH — fade/scale masuk dulu, baru mulai melayang setelah entrance selesai */}
-
-            {/* Badge React */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.85, y: 10 }}
-              animate={
-                entranceDone
-                  ? floatingAnimation(0, 3.4).animate
-                  : { opacity: 1, scale: 1, y: 0 }
-              }
-              transition={
-                entranceDone
-                  ? floatingAnimation(0, 3.4).transition
-                  : { duration: 0.5, delay: 1.1, ease: [0.16, 1, 0.3, 1] }
-              }
-              className="absolute top-2 -right-2 sm:-right-4 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.18}
+              onDragEnd={handleDragEnd}
+              className="relative mx-auto flex h-[30rem] w-[30rem] max-w-[100vw] items-center justify-center sm:h-[32rem] sm:w-[32rem] lg:h-[34rem] lg:w-[34rem]"
             >
-              <svg className="h-5 w-5 fill-none stroke-[#61DAFB]" viewBox="-11.5 -10.23174 23 20.46348">
-                <circle r="2.05" fill="#61DAFB" />
-                <g stroke="#61DAFB" strokeWidth="1">
-                  <ellipse rx="11" ry="4.2" />
-                  <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-                  <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-                </g>
-              </svg>
-              <span className="font-mono text-xs font-semibold text-text">React</span>
+              {stack.map((item, index) => {
+                const offset = getOffset(index, activeIndex);
+                const absOffset = Math.abs(offset);
+                const x = offset * 72;
+                const y = absOffset * 12;
+                const rotate = offset * -8;
+                const scale = offset === 0 ? 1 : 0.88;
+                const opacity = offset === 0 ? 1 : 0.55;
+                const blur = offset === 0 ? 0 : 1.5;
+
+                return (
+                  <motion.button
+                    key={item.name}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    initial={false}
+                    animate={{
+                      x,
+                      y,
+                      rotate,
+                      scale,
+                      opacity,
+                      filter: `blur(${blur}px)`,
+                      zIndex: 30 - absOffset,
+                    }}
+                    transition={{ type: "spring", stiffness: 210, damping: 25, mass: 0.75 }}
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[2.5rem] border border-border bg-surface/95 p-6 shadow-2xl shadow-black/10 backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-primary/25"
+                  >
+                    <div
+                      className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-white/10 to-black/10"
+                      style={{ boxShadow: offset === 0 ? "0 32px 140px rgba(15, 23, 42, 0.16)" : "0 18px 60px rgba(15, 23, 42, 0.08)" }}
+                    />
+                    <div className="relative flex h-full w-full flex-col justify-between gap-4">
+                      <div>
+                        <div className="flex h-16 w-16 items-center justify-center rounded-3xl" style={{ backgroundColor: item.accent, opacity: 0.16 }}>
+                          {item.logo}
+                        </div>
+                        <div className="mt-6 text-sm font-mono uppercase tracking-[0.28em] text-muted">
+                          Teknologi
+                        </div>
+                        <h2 className="mt-3 text-3xl font-semibold text-text">
+                          {item.name}
+                        </h2>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-between rounded-3xl border border-border/70 bg-black/10 p-4 text-sm text-muted shadow-sm shadow-black/5">
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.2em] text-muted-dim">Aksen</p>
+                          <p className="mt-1 font-semibold text-text" style={{ color: item.accent }}>
+                            {item.accent}
+                          </p>
+                        </div>
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-xs font-semibold text-white/90" style={{ borderColor: item.accent }}>
+                          {index + 1}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.button>
+                );
+              })}
             </motion.div>
 
-            {/* Badge Laravel */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, y: 10 }}
-              animate={
-                entranceDone
-                  ? floatingAnimation(0.8, 3.8).animate
-                  : { opacity: 1, scale: 1, y: 0 }
-              }
-              transition={
-                entranceDone
-                  ? floatingAnimation(0.8, 3.8).transition
-                  : { duration: 0.5, delay: 1.25, ease: [0.16, 1, 0.3, 1] }
-              }
-              className="absolute top-12 -left-4 sm:-left-8 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
-            >
-              <svg className="h-5 w-5 fill-[#FF2D20]" viewBox="0 0 24 24">
-                <path d="M22.5 14.5L12 20.5L1.5 14.5V9.5L12 15.5L22.5 9.5V14.5ZM12 3.5L22.5 9.5L12 15.5L1.5 9.5L12 3.5Z" />
-              </svg>
-              <span className="font-mono text-xs font-semibold text-text">Laravel</span>
-            </motion.div>
-
-            {/* Badge Next.js */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, y: 10 }}
-              animate={
-                entranceDone
-                  ? floatingAnimation(1.2, 3.6).animate
-                  : { opacity: 1, scale: 1, y: 0 }
-              }
-              transition={
-                entranceDone
-                  ? floatingAnimation(1.2, 3.6).transition
-                  : { duration: 0.5, delay: 1.4, ease: [0.16, 1, 0.3, 1] }
-              }
-              className="absolute bottom-20 -right-4 sm:-right-8 z-30 flex items-center gap-2.5 rounded-xl border border-border bg-surface/90 backdrop-blur-md px-3.5 py-2 shadow-md transition-all hover:scale-105 select-none"
-            >
-              <svg className="h-5 w-5" viewBox="0 0 180 180" fill="none">
-                <circle cx="90" cy="90" r="90" fill="currentColor" className="text-text" />
-                <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="white" />
-                <rect x="115" y="54" width="12" height="72" fill="white" />
-              </svg>
-              <span className="font-mono text-xs font-semibold text-text">Next.js</span>
-            </motion.div>
-
-            {/* KARTU AVATAR UTAMA */}
-            <div className="hero-avatar group relative z-10 h-72 w-72 overflow-hidden rounded-[2.5rem] border border-border bg-surface p-2 sm:h-80 sm:w-80 shadow-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl">
-              <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-surface-hover">
-
-                {/* Foto utama profil — masuk blur lalu jadi tajam */}
-                <motion.img
-                  src="/image.png"
-                  alt="Lucky"
-                  initial={{ opacity: 0, scale: 1.06, filter: "blur(18px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-
-                {/* Overlay gradient halus untuk keterbacaan teks di atas & bawah */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-
-                {/* Badge di bagian atas kartu */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 text-[10px] font-mono text-white/90 backdrop-blur-md">
-                    <Sparkles size={12} className="text-primary" />
-                    <span>Pengembang Web</span>
-                  </span>
-                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                </div>
-
-                {/* Info di bagian bawah kartu */}
-                <div className="absolute bottom-4 left-0 right-0 text-center z-10">
-                  <p className="font-mono text-[11px] text-white/80 font-medium">Berbasis di Indonesia 🇮🇩</p>
-                </div>
-
-              </div>
+            <div className="mt-6 flex justify-center gap-3">
+              <button
+                type="button"
+                onClick={movePrev}
+                className="inline-flex items-center justify-center rounded-full border border-border/60 bg-surface/80 px-4 py-2 text-sm font-medium text-muted transition hover:border-primary/40 hover:text-text hover:bg-surface"
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                onClick={moveNext}
+                className="inline-flex items-center justify-center rounded-full border border-border/60 bg-surface/80 px-4 py-2 text-sm font-medium text-muted transition hover:border-primary/40 hover:text-text hover:bg-surface"
+              >
+                Next
+              </button>
             </div>
 
-            {/* Terminal status (bisa digeser) */}
             <div className="hero-terminal absolute -bottom-4 -left-6 hidden sm:block z-40">
               <StatusTerminal />
             </div>
-
           </div>
         </motion.div>
       </motion.div>

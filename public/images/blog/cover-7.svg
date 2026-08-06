@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" rx="48" fill="#111827"/>
+  <rect x="88" y="92" width="1024" height="446" rx="38" fill="#0f172a"/>
+  <text x="120" y="220" fill="#f8fafc" font-family="Inter, sans-serif" font-size="52" font-weight="700">Meningkatkan Kinerja Aplikasi</text>
+  <text x="120" y="296" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="30">Optimasi loading dan rendering</text>
+  <rect x="120" y="376" width="280" height="14" rx="7" fill="#0ea5e9"/>
+  <rect x="120" y="410" width="560" height="14" rx="7" fill="#38bdf8"/>
+  <circle cx="950" cy="160" r="72" fill="#3b82f6" opacity="0.88"/>
+  <circle cx="940" cy="420" r="50" fill="#22d3ee" opacity="0.75"/>
+</svg>

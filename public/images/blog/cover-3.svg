@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" rx="48" fill="#0b1120"/>
+  <rect x="72" y="84" width="1056" height="462" rx="40" fill="#111827"/>
+  <text x="120" y="220" fill="#f8fafc" font-family="Inter, sans-serif" font-size="52" font-weight="700">Event Registration</text>
+  <text x="120" y="298" fill="#bfc9d9" font-family="Inter, sans-serif" font-size="32">Studi kasus dengan Next.js</text>
+  <rect x="120" y="380" width="300" height="14" rx="7" fill="#f97316"/>
+  <rect x="120" y="414" width="540" height="14" rx="7" fill="#fb923c"/>
+  <circle cx="940" cy="180" r="70" fill="#f97316" opacity="0.8"/>
+  <circle cx="960" cy="430" r="44" fill="#fb923c" opacity="0.7"/>
+</svg>

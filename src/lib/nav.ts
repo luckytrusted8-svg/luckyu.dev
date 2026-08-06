@@ -17,6 +17,7 @@ export interface NavItem {
   id: string;
   label: string;
   icon: LucideIcon;
+  path?: string;
 }
 
 export const navItems: NavItem[] = [
@@ -26,6 +27,7 @@ export const navItems: NavItem[] = [
   { id: "skills", label: "Keahlian", icon: Code2 },
   { id: "projects", label: "Proyek", icon: FolderGit2 },
   { id: "experience", label: "Pengalaman", icon: History },
+  { id: "blog", label: "Blog", icon: MessageSquareQuote },
   { id: "testimonials", label: "Testimoni", icon: MessageSquareQuote },
   { id: "contact", label: "Kontak", icon: Mail },
 ];

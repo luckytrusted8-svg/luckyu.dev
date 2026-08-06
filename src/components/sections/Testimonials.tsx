@@ -24,12 +24,12 @@ export function Testimonials() {
       {/* ambient glow, consistent with the rest of the dark theme */}
       <div className="pointer-events-none absolute right-[-10%] top-1/3 h-[380px] w-[380px] -translate-y-1/2 rounded-full bg-primary/10 blur-[110px]" />
 
-      <div className="relative mx-auto max-w-6xl">
+<div className="relative mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Testimoni"
             heading="Kata mereka yang pernah bekerja bersama saya"
-            index="06"
+            index="07"
           />
 
           <div className="flex items-center gap-3">

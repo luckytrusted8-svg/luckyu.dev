@@ -63,19 +63,22 @@ export function MobileNav() {
                   </button>
                 </div>
                 <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile navigation">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.id}
-                      to={`/#${item.id}`}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        "flex items-center gap-3 rounded-lg px-3.5 py-3 text-sm text-muted hover:bg-surface hover:text-text transition-colors"
-                      )}
-                    >
-                      <item.icon size={16} />
-                      {item.label}
-                    </Link>
-                  ))}
+                  {navItems.map((item) => {
+                    const to = item.path ?? `/#${item.id}`;
+                    return (
+                      <Link
+                        key={item.id}
+                        to={to}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "flex items-center gap-3 rounded-lg px-3.5 py-3 text-sm text-muted hover:bg-surface hover:text-text transition-colors"
+                        )}
+                      >
+                        <item.icon size={16} />
+                        {item.label}
+                      </Link>
+                    );
+                  })}
                 </nav>
               </div>
 

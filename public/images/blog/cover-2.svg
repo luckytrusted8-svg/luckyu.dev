@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" rx="48" fill="#0f172a"/>
+  <rect x="84" y="92" width="1032" height="446" rx="36" fill="#111827"/>
+  <text x="120" y="220" fill="#f9fafb" font-family="Inter, sans-serif" font-size="50" font-weight="700">Deploy React ke Vercel</text>
+  <text x="120" y="290" fill="#9ca3af" font-family="Inter, sans-serif" font-size="30">Domain custom dan optimasi build</text>
+  <rect x="120" y="360" width="200" height="14" rx="7" fill="#22d3ee"/>
+  <rect x="120" y="392" width="520" height="14" rx="7" fill="#38bdf8"/>
+  <circle cx="950" cy="160" r="64" fill="#3b82f6" opacity="0.9"/>
+  <circle cx="920" cy="420" r="52" fill="#06b6d4" opacity="0.7"/>
+</svg>

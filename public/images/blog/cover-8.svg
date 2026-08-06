@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" rx="48" fill="#0f172a"/>
+  <rect x="76" y="86" width="1048" height="458" rx="40" fill="#111827"/>
+  <text x="120" y="220" fill="#f8fafc" font-family="Inter, sans-serif" font-size="52" font-weight="700">Tips Produktivitas Developer</text>
+  <text x="120" y="296" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="30">Rutin, fokus, dan workflow modern</text>
+  <rect x="120" y="382" width="260" height="14" rx="7" fill="#14b8a6"/>
+  <rect x="120" y="416" width="520" height="14" rx="7" fill="#38bdf8"/>
+  <circle cx="950" cy="170" r="70" fill="#14b8a6" opacity="0.84"/>
+  <circle cx="966" cy="430" r="54" fill="#22d3ee" opacity="0.72"/>
+</svg>

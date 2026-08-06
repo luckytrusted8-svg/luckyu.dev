@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" rx="48" fill="#111827"/>
+  <rect x="80" y="80" width="1040" height="470" rx="40" fill="#1f2937" stroke="#4f46e5" stroke-width="8"/>
+  <text x="120" y="210" fill="#e5e7eb" font-family="Inter, sans-serif" font-size="54" font-weight="700">Portfolio Modern</text>
+  <text x="120" y="300" fill="#9ca3af" font-family="Inter, sans-serif" font-size="32">React · Vite · Tailwind CSS</text>
+  <rect x="120" y="360" width="240" height="14" rx="7" fill="#8b5cf6"/>
+  <rect x="120" y="390" width="640" height="14" rx="7" fill="#4f46e5"/>
+  <circle cx="960" cy="190" r="68" fill="#4338ca" opacity="0.85"/>
+  <circle cx="980" cy="410" r="48" fill="#7c3aed" opacity="0.7"/>
+</svg>

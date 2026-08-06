@@ -27,11 +27,11 @@ export function Contact() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <SectionHeading
+<SectionHeading
               eyebrow="Mari Terhubung"
               heading="Punya rencana proyek? Mari wujudkan bersama."
               description="Baik produk lengkap maupun satu fitur khusus, ceritakan kebutuhan yang ingin Anda bangun."
-              index="07"
+              index="08"
             />
 
             <Reveal delay={0.15}>

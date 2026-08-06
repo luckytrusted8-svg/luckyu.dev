@@ -7,7 +7,10 @@ import { cn } from "../../utils/cn";
 import { useActiveSection } from "../../hooks/useActiveSection";
 
 export function Sidebar() {
-  const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
+  const sectionIds = useMemo(
+    () => navItems.filter((item) => !item.path).map((item) => item.id),
+    []
+  );
   const active = useActiveSection(sectionIds);
 
   return (
@@ -37,10 +40,11 @@ export function Sidebar() {
           {navItems.map((item) => {
             const isActive = active === item.id;
             const Icon = item.icon;
+            const to = item.path ?? `/#${item.id}`;
             return (
               <Link
                 key={item.id}
-                to={`/#${item.id}`}
+                to={to}
                 className={cn(
                   "sidebar-nav-link relative flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
                   isActive ? "text-text" : "text-muted hover:text-text"
@@ -62,35 +66,16 @@ export function Sidebar() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="sidebar-status rounded-xl border border-border bg-surface p-4">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-soft opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-soft" />
-            </span>
-            <p className="text-xs font-medium text-text">Open for freelance work</p>
-          </div>
-          <p className="mt-2 text-[12px] leading-relaxed text-muted">
-            Currently taking on small-to-mid web projects alongside my internship.
-          </p>
-          <Link
-            to="/#contact"
-            className="mt-3 inline-block text-[12px] font-medium text-primary-soft hover:text-text transition-colors"
-          >
-            Say hello →
-          </Link>
-        </div>
-
         <a
           href="/resume.pdf"
           download
-          className="flex items-center justify-center gap-2 rounded-lg border border-border py-2.5 text-xs font-medium text-muted hover:text-text hover:border-primary-soft transition-colors"
+          className="flex items-center justify-center gap-2 rounded-lg bg-surface py-3 text-xs font-medium text-text transition-colors hover:border hover:border-primary-soft"
         >
           <Download size={14} />
           Download CV
         </a>
 
-        <div className="flex items-center gap-4 px-1">
+        <div className="flex items-center justify-center gap-4 px-1">
           {socialLinks.map((s) => (
             <a
               key={s.label}

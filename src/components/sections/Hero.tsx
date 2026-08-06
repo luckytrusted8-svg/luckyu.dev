@@ -126,6 +126,7 @@ export function Hero() {
 
   const moveNext = () => setActiveIndex((current) => (current + 1) % stack.length);
   const movePrev = () => setActiveIndex((current) => (current - 1 + stack.length) % stack.length);
+  const activeItem = stack[activeIndex];
 
   const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
     if (info.offset.x > 60) movePrev();
@@ -185,7 +186,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p variants={fadeUp} className="hero-description mt-6 max-w-lg text-muted leading-relaxed text-base sm:text-lg">
-            Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya mengubah ide menjadi aplikasi web yang benar-benar jalan — dari skema database sampai detail hover yang terakhir.
+            Full-stack developer dan mahasiswa Rekayasa Perangkat Lunak di Indonesia. Saya mengubah ide menjadi aplikasi web yang benar-benar jalan dari skema database sampai detail hover yang terakhir.
           </motion.p>
 
           <motion.div variants={fadeUp} className="hero-actions mt-9 flex flex-wrap items-center gap-4">
@@ -233,17 +234,18 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <motion.div variants={fadeUp} className="hero-visual relative mx-auto flex justify-center lg:justify-end">
-          <div className="relative p-4 sm:p-6 lg:p-8">
+        <motion.div variants={fadeUp} className="hero-visual relative mx-auto flex justify-center px-2 lg:justify-end">
+          <div className="relative overflow-hidden rounded-[3rem] border border-border/50 bg-surface/70 p-4 backdrop-blur-xl sm:p-6 lg:p-8">
             <HeroBackdrop />
 
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.18}
-              onDragEnd={handleDragEnd}
-              className="relative mx-auto flex h-[30rem] w-[30rem] max-w-[100vw] items-center justify-center sm:h-[32rem] sm:w-[32rem] lg:h-[34rem] lg:w-[34rem]"
-            >
+            <div className="relative mx-auto w-full max-w-[22rem] overflow-hidden rounded-[2.5rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem]">
+              <motion.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.18}
+                onDragEnd={handleDragEnd}
+                className="relative mx-auto flex h-[24rem] w-full items-center justify-center sm:h-[28rem] md:h-[30rem] lg:h-[34rem]"
+              >
               {stack.map((item, index) => {
                 const offset = getOffset(index, activeIndex);
                 const absOffset = Math.abs(offset);
@@ -305,19 +307,26 @@ export function Hero() {
                 );
               })}
             </motion.div>
+          </div>
 
-            <div className="mt-6 flex justify-center gap-3">
+            <div className="mt-5 rounded-[2rem] border border-border/70 bg-black/10 p-4 text-center shadow-sm shadow-black/5 sm:mt-6">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">Stack terpilih</p>
+              <p className="mt-2 text-xl font-semibold text-text">{activeItem.name}</p>
+              <div className="mx-auto mt-3 h-2 w-24 rounded-full" style={{ backgroundColor: activeItem.accent }} />
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <button
                 type="button"
                 onClick={movePrev}
-                className="inline-flex items-center justify-center rounded-full border border-border/60 bg-surface/80 px-4 py-2 text-sm font-medium text-muted transition hover:border-primary/40 hover:text-text hover:bg-surface"
+                className="inline-flex w-full items-center justify-center rounded-full border border-border/60 bg-surface/80 px-4 py-3 text-sm font-medium text-muted transition hover:border-primary/40 hover:text-text hover:bg-surface sm:w-auto"
               >
                 Previous
               </button>
               <button
                 type="button"
                 onClick={moveNext}
-                className="inline-flex items-center justify-center rounded-full border border-border/60 bg-surface/80 px-4 py-2 text-sm font-medium text-muted transition hover:border-primary/40 hover:text-text hover:bg-surface"
+                className="inline-flex w-full items-center justify-center rounded-full border border-border/60 bg-surface/80 px-4 py-3 text-sm font-medium text-muted transition hover:border-primary/40 hover:text-text hover:bg-surface sm:w-auto"
               >
                 Next
               </button>

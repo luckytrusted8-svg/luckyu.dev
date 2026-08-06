@@ -4,6 +4,7 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { AppLoader } from "./components/layout/AppLoader";
 import { Home } from "./pages/Home";
 import { ProjectDetail } from "./pages/ProjectDetail";
+import { AllProjects } from "./pages/AllProjects";
 import { useLenis } from "./hooks/useLenis";
 
 function ScrollToTopOnNavigate() {
@@ -33,6 +34,7 @@ function AppShell() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects/:slug" element={<ProjectDetail />} />
+        <Route path="/all-projects" element={<AllProjects />} />
       </Routes>
     </MainLayout>
   );

@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { GitFork, ArrowUpRight } from "lucide-react";
+import { GitFork, ArrowUpRight, ArrowRight } from "lucide-react";
 import type { ProjectEntry } from "../../lib/types";
 import { SectionHeading } from "../ui/SectionHeading";
 import { ProjectThumb } from "../ui/ProjectThumb";
 import { Tag } from "../ui/Tag";
 import { staggerContainer, fadeUp } from "../../animations/variants";
+import { cn } from "../../utils/cn";
 
 /**
  * All project data lives right here — edit this array directly to add,
@@ -143,6 +144,40 @@ Platform taman wisata dan edukasi yang mencakup pemesanan tiket, CMS artikel den
 - Sistem peran CMS empat tingkat dengan alur persetujuan untuk kontributor baru
 - Pembaruan waktu nyata melalui listener \`onValue\` sehingga perubahan konten langsung tampil`,
   },
+  {
+    slug: "luckystore-mini-commerce",
+    title: "LuckyStore Mini Commerce",
+    category: "UI Prototype E-Commerce",
+    description:
+      "Desain UI/UX prototype e-commerce responsif untuk toko online dengan katalog produk, detail produk, dan keranjang belanja.",
+    tech: ["React", "Vite","JavaScript", "Tailwind CSS"],
+    github: "https://luckytrusted8-svg.github.io/E-commerce.mini/",
+    demo: "",
+    accent: "blue",
+    images: [
+      "/images/projects/luckystore/home-luckystore.png",
+      "/images/projects/luckystore/product-detail-luckystore.png",
+    ],
+    featured: false,
+    order: 5,
+    body: `## Gambaran Umum
+
+LuckyStore Mini Commerce adalah prototype UI/UX untuk aplikasi e-commerce yang dibangun dengan React, Vite, dan Tailwind CSS. Proyek ini fokus pada desain antarmuka yang bersih dan responsif untuk pengalaman berbelanja yang optimal di semua perangkat.
+
+## Komponen UI yang Dibangun
+
+- Header dengan navigasi dan keranjang belanja
+- Hero section dengan banner promosi "Diskon Besar Hari Ini"
+- Grid katalog produk dengan kartu produk yang interaktif
+- Halaman detail produk dengan galeri gambar dan informasi lengkap
+- Sistem rating dan review produk
+- Tombol aksi (Masukkan Keranjang, Beli Sekarang)
+- Desain responsif mobile-first dengan Tailwind CSS
+
+## Fokus Desain
+
+Desain antarmuka memprioritaskan kemudahan navigasi dan visual hierarchy yang jelas. Penggunaan warna cerah (khususnya orange/red) menciptakan sense of urgency untuk fitur promosi, sementara layout yang terstruktur membuat produk mudah ditemukan dan dibandingkan.`,
+  },
 ];
 
 export function getProjectBySlug(slug: string): ProjectEntry | undefined {
@@ -151,6 +186,7 @@ export function getProjectBySlug(slug: string): ProjectEntry | undefined {
 
 export function Projects() {
   const sorted = [...projects].sort((a, b) => a.order - b.order);
+  const displayedProjects = sorted.slice(0, 4);
 
   return (
     <section id="projects" className="px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60">
@@ -170,7 +206,7 @@ export function Projects() {
           viewport={{ once: true, margin: "-80px" }}
           className="mt-14 grid gap-6 sm:grid-cols-2"
         >
-          {sorted.map((project) => (
+          {displayedProjects.map((project) => (
             <motion.article
               key={project.slug}
               variants={fadeUp}
@@ -227,6 +263,32 @@ export function Projects() {
             </motion.article>
           ))}
         </motion.div>
+
+        {sorted.length > 4 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ delay: 0.3 }}
+            className="mt-12 flex justify-center"
+          >
+            <motion.div
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Link
+                to="/all-projects"
+                className={cn(
+                  "inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm px-6 py-3 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2",
+                  "bg-[linear-gradient(135deg,#111827_0%,#334155_100%)] text-white shadow-[0_10px_30px_-10px_rgba(15,23,42,0.24)] hover:shadow-[0_14px_36px_-10px_rgba(15,23,42,0.32)]"
+                )}
+              >
+                Lihat Lainnya
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

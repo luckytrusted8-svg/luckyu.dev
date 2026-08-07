@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://luckyu.dev/</loc>
+    <loc>https://luckyu.my.id/</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog</loc>
+    <loc>https://luckyu.my.id/blog</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/membangun-portfolio-modern-react-vite-tailwind</loc>
+    <loc>https://luckyu.my.id/blog/membangun-portfolio-modern-react-vite-tailwind</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/cara-deploy-react-ke-vercel-custom-domain</loc>
+    <loc>https://luckyu.my.id/blog/cara-deploy-react-ke-vercel-custom-domain</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/pengalaman-membuat-event-registration-nextjs</loc>
+    <loc>https://luckyu.my.id/blog/pengalaman-membuat-event-registration-nextjs</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/mengatasi-merge-conflict-git-dalam-tim</loc>
+    <loc>https://luckyu.my.id/blog/mengatasi-merge-conflict-git-dalam-tim</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/kenapa-saya-memilih-laravel-untuk-backend</loc>
+    <loc>https://luckyu.my.id/blog/kenapa-saya-memilih-laravel-untuk-backend</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/mendesain-ui-portfolio-modern-dengan-framer-motion</loc>
+    <loc>https://luckyu.my.id/blog/mendesain-ui-portfolio-modern-dengan-framer-motion</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/struktur-folder-react-yang-saya-gunakan</loc>
+    <loc>https://luckyu.my.id/blog/struktur-folder-react-yang-saya-gunakan</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/blog/perjalanan-belajar-web-development</loc>
+    <loc>https://luckyu.my.id/blog/perjalanan-belajar-web-development</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/all-projects</loc>
+    <loc>https://luckyu.my.id/all-projects</loc>
   </url>
   <url>
-    <loc>https://luckyu.dev/projects</loc>
+    <loc>https://luckyu.my.id/projects/event-registration</loc>
+  </url>
+  <url>
+    <loc>https://luckyu.my.id/projects/pos-skillage-mart</loc>
+  </url>
+  <url>
+    <loc>https://luckyu.my.id/projects/attendance</loc>
+  </url>
+  <url>
+    <loc>https://luckyu.my.id/projects/skillage</loc>
+  </url>
+  <url>
+    <loc>https://luckyu.my.id/projects/luckystore-mini-commerce</loc>
   </url>
 </urlset>

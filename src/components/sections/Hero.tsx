@@ -238,13 +238,13 @@ export function Hero() {
           <div className="relative overflow-hidden rounded-[3rem] border border-border/50 bg-surface/70 p-4 backdrop-blur-xl sm:p-6 lg:p-8">
             <HeroBackdrop />
 
-            <div className="relative mx-auto w-full max-w-[22rem] overflow-hidden rounded-[2.5rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem]">
+<div className="relative mx-auto w-full max-w-[22rem] overflow-hidden rounded-[2.5rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem]">
               <motion.div
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.18}
                 onDragEnd={handleDragEnd}
-                className="relative mx-auto flex h-[24rem] w-full items-center justify-center sm:h-[28rem] md:h-[30rem] lg:h-[34rem]"
+                className="hero-visual-card relative mx-auto flex h-[24rem] w-full items-center justify-center sm:h-[28rem] md:h-[30rem] lg:h-[34rem]"
               >
               {stack.map((item, index) => {
                 const offset = getOffset(index, activeIndex);

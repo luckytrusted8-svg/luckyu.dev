@@ -82,11 +82,11 @@ export function MobileNav() {
                 </nav>
               </div>
 
-              <div className="flex flex-col gap-4">
-                <a
+<div className="flex flex-col gap-4 border-t border-border pt-4">
+<a
                   href="/resume.pdf"
                   download
-                  className="flex items-center justify-center gap-2 rounded-lg border border-border py-2.5 text-xs font-medium text-muted hover:text-text"
+                  className="flex items-center justify-center gap-2 rounded-lg bg-surface py-2.5 text-xs font-medium text-text transition-colors hover:border hover:border-primary-soft"
                 >
                   <Download size={14} />
                   Download CV

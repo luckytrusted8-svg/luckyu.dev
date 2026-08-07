@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, Filter, ArrowRight } from "lucide-react";
+import { Search, Filter, ArrowRight, ArrowLeft } from "lucide-react";
 import { Footer } from "../components/layout/Footer";
 import { Tag } from "../components/ui/Tag";
 import { blogCategories, blogPosts } from "../content/blog";
@@ -71,12 +71,20 @@ export function Blog() {
     <div className="bg-bg">
       <section className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-14 lg:py-20">
         <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="relative mx-auto max-w-6xl">
+<div className="relative mx-auto max-w-6xl">
+          <Link
+            to="/#blog"
+            className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
+          >
+            <ArrowLeft size={14} />
+            Kembali ke beranda
+          </Link>
+
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-[2.5rem] border border-border bg-surface/80 p-8 shadow-2xl shadow-black/5 backdrop-blur-xl sm:p-12"
+            className="mt-8 rounded-[2.5rem] border border-border bg-surface/80 p-8 shadow-2xl shadow-black/5 backdrop-blur-xl sm:p-12"
           >
 <div className="max-w-3xl">
               <p className="text-[11px] font-mono uppercase tracking-[0.3em] text-primary-soft">Blog</p>

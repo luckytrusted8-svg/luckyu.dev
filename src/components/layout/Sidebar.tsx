@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { Download, UserCog } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navItems, socialLinks } from "../../lib/nav";
 import { cn } from "../../utils/cn";
@@ -18,25 +18,28 @@ export function Sidebar() {
       initial={{ x: -40, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="sidebar-panel fixed inset-y-0 left-0 z-40 hidden w-[268px] flex-col justify-between overflow-y-auto overscroll-contain border-r border-border bg-bg-elevated px-6 py-8 no-scrollbar lg:flex"
+className="sidebar-panel fixed inset-y-0 left-0 z-40 hidden w-[268px] flex-col border-r border-border bg-bg-elevated px-6 py-6 no-scrollbar lg:flex"
     >
-      <div>
-        <Link to="/#home" className="flex items-center gap-2.5 group">
-          <picture className="brand-logo-shell flex h-10 w-10 shrink-0 items-center justify-center">
-            <source media="(prefers-color-scheme: light)" srcSet="/logo-dark.png" />
-            <img
-              src="/logo-dark.png"
-              alt="Logo Lucky"
-              className="h-full w-full object-contain"
-            />
-          </picture>
-          <span>
-            <span className="block font-display text-sm font-semibold text-text">Lucky</span>
-            <span className="block text-[11px] text-muted">Full-Stack Developer</span>
-          </span>
-        </Link>
+      <Link to="/#home" className="flex items-center gap-2.5 group">
+        <picture className="brand-logo-shell flex h-10 w-10 shrink-0 items-center justify-center">
+          <source media="(prefers-color-scheme: light)" srcSet="/logo-dark.png" />
+          <img
+            src="/logo-dark.png"
+            alt="Logo Lucky"
+            className="h-full w-full object-contain"
+          />
+        </picture>
+        <span>
+          <span className="block font-display text-sm font-semibold text-text">Lucky</span>
+          <span className="block text-[11px] text-muted">Full-Stack Developer</span>
+        </span>
+      </Link>
 
-        <nav className="sidebar-nav mt-10 flex flex-col gap-1" aria-label="Main navigation">
+<nav
+        className="sidebar-nav mt-5 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto no-scrollbar"
+        aria-label="Main navigation"
+      >
+        <div className="flex flex-col gap-1">
           {navItems.map((item) => {
             const isActive = active === item.id;
             const Icon = item.icon;
@@ -46,7 +49,7 @@ export function Sidebar() {
                 key={item.id}
                 to={to}
                 className={cn(
-                  "sidebar-nav-link relative flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors",
+                  "sidebar-nav-link relative flex min-h-[38px] items-center gap-3 rounded-lg px-3.5 py-2 text-sm transition-colors",
                   isActive ? "text-text" : "text-muted hover:text-text"
                 )}
               >
@@ -62,14 +65,22 @@ export function Sidebar() {
               </Link>
             );
           })}
-        </nav>
-      </div>
+        </div>
+      </nav>
 
-      <div className="flex flex-col gap-4">
+<div className="flex shrink-0 flex-col gap-3 border-t border-border pt-4">
+        <button
+          type="button"
+          className="flex min-h-[38px] items-center gap-3 rounded-lg px-3.5 text-sm text-muted transition-colors hover:text-text"
+        >
+          <UserCog size={16} />
+          Admin
+        </button>
+
         <a
           href="/resume.pdf"
           download
-          className="flex items-center justify-center gap-2 rounded-lg bg-surface py-3 text-xs font-medium text-text transition-colors hover:border hover:border-primary-soft"
+          className="flex items-center justify-center gap-2 rounded-lg bg-surface py-2.5 text-xs font-medium text-text transition-colors hover:border hover:border-primary-soft"
         >
           <Download size={14} />
           Download CV

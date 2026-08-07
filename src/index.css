@@ -139,22 +139,22 @@ h1, h2, h3, h4, h5 {
     font-size: 0.8125rem;
   }
 
-  .sidebar-status {
+.sidebar-status {
     padding: 0.75rem;
   }
 
   .hero-section {
-    align-items: flex-start;
-    padding-top: 4rem;
+    align-items: center;
+    padding-top: 3.5rem;
     padding-bottom: 3rem;
   }
 
   .hero-layout {
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 3.3vw, 3.1rem);
+    font-size: clamp(2.4rem, 3.3vw, 3rem);
   }
 
   .hero-description {
@@ -167,8 +167,12 @@ h1, h2, h3, h4, h5 {
   }
 
   .hero-stack {
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
     padding-top: 1rem;
+  }
+
+  .hero-visual-card {
+    height: 23rem !important;
   }
 
   .hero-avatar {

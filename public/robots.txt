@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://luckyu.dev/sitemap.xml
+Sitemap: https://luckyu.my.id/sitemap.xml

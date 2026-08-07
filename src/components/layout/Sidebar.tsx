@@ -78,7 +78,7 @@ className="sidebar-panel fixed inset-y-0 left-0 z-40 hidden w-[268px] flex-col b
         </button>
 
         <a
-          href="/resume.pdf"
+          href="/MyCV.pdf"
           download
           className="flex items-center justify-center gap-2 rounded-lg bg-surface py-2.5 text-xs font-medium text-text transition-colors hover:border hover:border-primary-soft"
         >

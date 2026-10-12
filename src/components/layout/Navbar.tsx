@@ -29,78 +29,75 @@ export function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-200 ${
-        scrolled
-          ? "bg-[var(--color-paper)]/95 backdrop-blur-md border-b border-[var(--color-rule)]"
-          : "bg-[var(--color-paper)]/80 backdrop-blur-xs border-b border-[var(--color-rule)]/60"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 sm:h-18 flex items-center justify-between gap-6">
-        {/* Left: Brand Identity (Swiss Monogram & Folio) */}
+    <header className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 pt-4 sm:pt-6 pointer-events-none transition-all duration-300">
+      <div
+        className={`pointer-events-auto w-full max-w-5xl rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between border transition-all duration-300 ${
+          scrolled
+            ? "bg-[#0b101a]/90 backdrop-blur-xl border-white/15 shadow-[0_15px_35px_rgba(0,0,0,0.6)]"
+            : "bg-[#0e1422]/75 backdrop-blur-md border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+        }`}
+      >
+        {/* Left: Brand Monogram */}
         <Link
           to="/#home"
-          className="flex items-center gap-3 group shrink-0"
-          aria-label="luckyu.dev homepage"
+          className="flex items-center gap-2.5 group shrink-0"
+          aria-label="luckyu.dev beranda"
         >
-          <div className="w-8 h-8 rounded-none bg-[var(--color-ink)] text-white font-mono text-xs font-bold flex items-center justify-center transition-colors group-hover:bg-[var(--color-signal)]">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 font-mono text-xs font-black flex items-center justify-center shadow-[0_0_12px_rgba(245,158,11,0.35)] group-hover:scale-105 transition-transform">
             LU
           </div>
           <div className="flex flex-col">
-            <span className="font-display font-bold text-sm tracking-tight text-[var(--color-ink)] leading-none">
-              luckyu.dev
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-ink-dim)] mt-1">
-              portfolio / 2026
+            <span className="font-display font-bold text-sm tracking-tight text-white leading-tight">
+              luckyu<span className="text-amber-400">.dev</span>
             </span>
           </div>
         </Link>
 
-        {/* Center: Architectural Nav Links */}
+        {/* Center: Atmospheric Nav Links */}
         <nav
-          className="hidden md:flex items-center gap-1 lg:gap-2"
+          className="hidden md:flex items-center gap-1"
           aria-label="Navigasi Utama"
         >
           {navLinks.map((item) => (
             <Link
               key={item.label}
               to={item.href}
-              className="px-3 py-1.5 text-xs font-medium text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-paper-2)] border border-transparent hover:border-[var(--color-rule)] transition-all duration-150"
+              className="px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        {/* Right: Availability & Action Button */}
-        <div className="hidden sm:flex items-center gap-4">
-          <div className="hidden lg:flex items-center gap-2 font-mono text-[11px] text-[var(--color-ink-muted)] border-r border-[var(--color-rule)] pr-4">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="uppercase tracking-wider">Tersedia Proyek Q2/Q3</span>
+        {/* Right: Availability Badge & CTA */}
+        <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 font-mono text-[11px] text-emerald-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="uppercase tracking-wider">Tersedia Q2/Q3</span>
           </div>
 
           <Link
             to="/#contact"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--color-ink)] text-[var(--color-paper)] hover:bg-[var(--color-signal)] text-xs font-medium tracking-wide uppercase transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 hover:from-amber-300 hover:to-amber-400 text-xs font-bold tracking-wide uppercase transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)] hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] cursor-pointer"
           >
             <span>Mulai Diskusi</span>
             <ArrowUpRight size={13} />
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="flex sm:hidden items-center gap-3">
+        {/* Mobile Hamburger Toggle */}
+        <div className="flex sm:hidden items-center gap-2">
           <Link
             to="/#contact"
-            className="px-3 py-1.5 bg-[var(--color-ink)] text-white text-xs font-medium uppercase"
+            className="px-3 py-1.5 rounded-full bg-amber-400 text-slate-950 text-xs font-bold uppercase"
           >
             Kontak
           </Link>
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 border border-[var(--color-rule)] text-[var(--color-ink)]"
-            aria-label="Toggle navigation menu"
+            className="p-2 text-slate-300 hover:text-white"
+            aria-label="Menu"
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -108,22 +105,22 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Sheet */}
       {mobileOpen && (
-        <div className="sm:hidden border-b border-[var(--color-rule)] bg-[var(--color-paper)] px-5 py-6 space-y-4">
-          <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-ink-muted)] pb-2 border-b border-[var(--color-rule)]">
-            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+        <div className="pointer-events-auto fixed top-20 inset-x-4 max-w-sm mx-auto rounded-3xl border border-white/15 bg-[#0b101a]/95 backdrop-blur-2xl p-5 shadow-2xl z-50">
+          <div className="flex items-center gap-2 font-mono text-xs text-emerald-400 pb-3 border-b border-white/10">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
             <span>TERSEDIA UNTUK PROYEK Q2/Q3</span>
           </div>
-          <nav className="flex flex-col space-y-1">
+          <nav className="flex flex-col space-y-1 pt-3">
             {navLinks.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className="py-2.5 text-sm font-medium text-[var(--color-ink)] border-b border-[var(--color-rule)]/40 flex items-center justify-between"
+                className="py-2.5 text-sm font-medium text-slate-200 hover:text-amber-400 border-b border-white/5 flex items-center justify-between"
               >
                 <span>{item.label}</span>
-                <span className="font-mono text-xs text-[var(--color-ink-dim)]">→</span>
+                <span className="font-mono text-xs text-slate-500">→</span>
               </Link>
             ))}
           </nav>

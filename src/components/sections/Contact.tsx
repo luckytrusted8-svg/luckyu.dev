@@ -44,107 +44,107 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 border-b border-[var(--color-rule)] bg-[var(--color-paper)]"
+      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
     >
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header Folio */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-[var(--color-rule)]">
+      <div className="max-w-7xl mx-auto space-y-14">
+        {/* Folio Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-white/10">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-ink-muted)]">
-              <span className="px-2 py-0.5 bg-[var(--color-ink)] text-white font-bold">08</span>
-              <span className="uppercase tracking-widest font-semibold">KOMUNIKASI & INKUIRI PROYEK</span>
+            <div className="flex items-center gap-2 font-mono text-xs text-amber-400">
+              <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 font-bold border border-amber-400/20">08</span>
+              <span className="uppercase tracking-widest font-semibold">KOMUNIKASI &amp; INKUIRI PROYEK</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[var(--color-ink)] tracking-[-0.035em] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.03em] leading-tight">
               mulai diskusi atau kirimkan brief.
             </h2>
           </div>
-          <span className="font-mono text-xs text-[var(--color-signal)] uppercase font-semibold">
+          <span className="font-mono text-xs text-emerald-400 uppercase font-semibold">
             ESTIMASI_RESPON: &lt; 24 JAM
           </span>
         </div>
 
         {/* 12-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Left (Cols 1-5): Direct Channels & Availability Ledger */}
+          {/* Left (Cols 1-5): Direct Channels & Info */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="border border-[var(--color-rule)] bg-white p-6 sm:p-8 space-y-6">
-              <div className="border-b border-[var(--color-rule)] pb-4 font-mono text-xs text-[var(--color-ink-dim)] uppercase tracking-wider">
+            <div className="rounded-3xl border border-white/10 bg-[#0e1422] p-6 sm:p-8 space-y-6 shadow-xl">
+              <div className="border-b border-white/10 pb-4 font-mono text-xs text-slate-400 uppercase tracking-wider">
                 SALURAN_LANGSUNG
               </div>
 
               {/* Email Box with Copy */}
               <div className="space-y-2">
-                <span className="font-mono text-xs text-[var(--color-ink-dim)] uppercase block">
+                <span className="font-mono text-xs text-slate-400 uppercase block">
                   Surel (Email)
                 </span>
-                <div className="flex items-center justify-between p-3 border border-[var(--color-rule)] bg-[var(--color-paper-2)]">
-                  <span className="font-mono text-xs sm:text-sm font-semibold text-[var(--color-ink)] truncate mr-2">
+                <div className="flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-[#070a10]">
+                  <span className="font-mono text-xs sm:text-sm font-semibold text-white truncate mr-2">
                     luckyubidillah5@gmail.com
                   </span>
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="p-1.5 bg-white border border-[var(--color-rule)] hover:border-[var(--color-ink)] text-[var(--color-ink)] transition-colors cursor-pointer shrink-0"
+                    className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-amber-400 text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0"
                     title="Salin Email"
                   >
-                    {copied ? <Check size={14} className="text-emerald-600" /> : <Copy size={14} />}
+                    {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
                   </button>
                 </div>
               </div>
 
               {/* WhatsApp Box */}
               <div className="space-y-2">
-                <span className="font-mono text-xs text-[var(--color-ink-dim)] uppercase block">
+                <span className="font-mono text-xs text-slate-400 uppercase block">
                   WhatsApp Bisnis
                 </span>
                 <a
                   href={WHATSAPP_BASE_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between p-3 border border-[var(--color-rule)] bg-[var(--color-paper-2)] hover:border-[var(--color-signal)] transition-colors group"
+                  className="flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-[#070a10] hover:border-emerald-400/50 transition-colors group"
                 >
-                  <span className="font-mono text-xs sm:text-sm font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-signal)] transition-colors">
+                  <span className="font-mono text-xs sm:text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
                     +62 895 6292 44156
                   </span>
-                  <ArrowUpRight size={15} className="text-[var(--color-ink-dim)] group-hover:text-[var(--color-signal)]" />
+                  <ArrowUpRight size={15} className="text-slate-500 group-hover:text-emerald-400" />
                 </a>
               </div>
 
               {/* Location */}
-              <div className="pt-4 border-t border-[var(--color-rule)] font-mono text-xs text-[var(--color-ink-muted)] space-y-1">
-                <div className="flex items-center gap-1.5 text-[var(--color-ink)] font-semibold">
-                  <MapPin size={13} className="text-[var(--color-signal)]" />
-                  <span>Tangerang & Jabodetabek, Indonesia</span>
+              <div className="pt-4 border-t border-white/10 font-mono text-xs text-slate-400 space-y-1">
+                <div className="flex items-center gap-1.5 text-white font-semibold">
+                  <MapPin size={13} className="text-amber-400" />
+                  <span>Tangerang &amp; Jabodetabek, Indonesia</span>
                 </div>
-                <p className="text-[11px] text-[var(--color-ink-dim)]">
+                <p className="text-[11px] text-slate-500">
                   Terbuka untuk kolaborasi jarak jauh (Remote) atau pertemuan proyek onsite.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right (Cols 6-12): Swiss Architectural Form */}
+          {/* Right (Cols 6-12): Atmospheric Form */}
           <div className="lg:col-span-7">
-            <div className="border border-[var(--color-ink)] bg-white p-6 sm:p-10 space-y-6">
-              <div className="flex items-center justify-between border-b border-[var(--color-rule)] pb-4 font-mono text-xs">
-                <span className="font-bold text-[var(--color-ink)] uppercase">FORMULIR_INKUIRI_PROYEK</span>
-                <span className="text-[var(--color-ink-dim)]">KONEKSI: WHATSAPP DIRECT</span>
+            <div className="rounded-3xl border border-white/15 bg-[#0e1422] p-6 sm:p-10 space-y-6 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 pb-4 font-mono text-xs">
+                <span className="font-bold text-white uppercase">FORMULIR_INKUIRI_PROYEK</span>
+                <span className="text-slate-500">WHATSAPP DIRECT</span>
               </div>
 
               {sent ? (
-                <div className="p-6 bg-[var(--color-paper-2)] border border-[var(--color-signal)] space-y-2">
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-[var(--color-signal)]">
+                <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
+                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-emerald-400">
                     <Check size={16} />
                     <span>PESAN BERHASIL DISIAPKAN</span>
                   </div>
-                  <p className="text-xs text-[var(--color-ink-muted)]">
-                    Tautan WhatsApp telah dibuka. Jika tab belum muncul, silakan klik tombol WhatsApp langsung di samping.
+                  <p className="text-xs text-slate-300">
+                    Tautan WhatsApp telah dibuka. Jika tab belum muncul, silakan klik kontak WhatsApp di samping.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="contact-name" className="block font-mono text-xs font-semibold uppercase text-[var(--color-ink)] mb-1.5">
+                    <label htmlFor="contact-name" className="block font-mono text-xs font-semibold uppercase text-slate-300 mb-2">
                       Nama Lengkap / Instansi *
                     </label>
                     <input
@@ -153,15 +153,15 @@ export function Contact() {
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       placeholder="e.g. John Doe / PT Nama Bisnis"
-                      className={`w-full p-3 text-xs sm:text-sm border bg-[var(--color-paper-2)] text-[var(--color-ink)] font-body focus:bg-white focus:outline-none focus:border-[var(--color-signal)] transition-colors ${
-                        errors.name ? "border-red-500" : "border-[var(--color-rule)]"
+                      className={`w-full p-3.5 rounded-xl text-xs sm:text-sm border bg-[#070a10] text-white font-body focus:outline-none focus:border-amber-400 transition-colors ${
+                        errors.name ? "border-red-500" : "border-white/10"
                       }`}
                     />
-                    {errors.name && <p className="font-mono text-[11px] text-red-600 mt-1">{errors.name}</p>}
+                    {errors.name && <p className="font-mono text-[11px] text-red-400 mt-1">{errors.name}</p>}
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block font-mono text-xs font-semibold uppercase text-[var(--color-ink)] mb-1.5">
+                    <label htmlFor="contact-email" className="block font-mono text-xs font-semibold uppercase text-slate-300 mb-2">
                       Alamat Email *
                     </label>
                     <input
@@ -170,15 +170,15 @@ export function Contact() {
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       placeholder="nama@domain.com"
-                      className={`w-full p-3 text-xs sm:text-sm border bg-[var(--color-paper-2)] text-[var(--color-ink)] font-body focus:bg-white focus:outline-none focus:border-[var(--color-signal)] transition-colors ${
-                        errors.email ? "border-red-500" : "border-[var(--color-rule)]"
+                      className={`w-full p-3.5 rounded-xl text-xs sm:text-sm border bg-[#070a10] text-white font-body focus:outline-none focus:border-amber-400 transition-colors ${
+                        errors.email ? "border-red-500" : "border-white/10"
                       }`}
                     />
-                    {errors.email && <p className="font-mono text-[11px] text-red-600 mt-1">{errors.email}</p>}
+                    {errors.email && <p className="font-mono text-[11px] text-red-400 mt-1">{errors.email}</p>}
                   </div>
 
                   <div>
-                    <label htmlFor="contact-message" className="block font-mono text-xs font-semibold uppercase text-[var(--color-ink)] mb-1.5">
+                    <label htmlFor="contact-message" className="block font-mono text-xs font-semibold uppercase text-slate-300 mb-2">
                       Deskripsi Kebutuhan Proyek *
                     </label>
                     <textarea
@@ -187,16 +187,16 @@ export function Contact() {
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Jelaskan gambaran aplikasi web, tujuan, atau fitur utama yang Anda butuhkan..."
-                      className={`w-full p-3 text-xs sm:text-sm border bg-[var(--color-paper-2)] text-[var(--color-ink)] font-body focus:bg-white focus:outline-none focus:border-[var(--color-signal)] transition-colors ${
-                        errors.message ? "border-red-500" : "border-[var(--color-rule)]"
+                      className={`w-full p-3.5 rounded-xl text-xs sm:text-sm border bg-[#070a10] text-white font-body focus:outline-none focus:border-amber-400 transition-colors ${
+                        errors.message ? "border-red-500" : "border-white/10"
                       }`}
                     />
-                    {errors.message && <p className="font-mono text-[11px] text-red-600 mt-1">{errors.message}</p>}
+                    {errors.message && <p className="font-mono text-[11px] text-red-400 mt-1">{errors.message}</p>}
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 bg-[var(--color-ink)] text-white hover:bg-[var(--color-signal)] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 hover:from-amber-300 hover:to-amber-400 font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Kirim Pesan via WhatsApp</span>
                     <ArrowUpRight size={14} />

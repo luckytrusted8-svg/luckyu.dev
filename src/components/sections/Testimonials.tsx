@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { getTestimonials } from "../../lib/content";
 
 export function Testimonials() {
@@ -15,32 +15,32 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 border-b border-[var(--color-rule)] bg-[var(--color-paper)]"
+      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
     >
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header Folio */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-[var(--color-rule)]">
+      <div className="max-w-7xl mx-auto space-y-14">
+        {/* Folio Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-white/10">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-ink-muted)]">
-              <span className="px-2 py-0.5 bg-[var(--color-ink)] text-white font-bold">07</span>
-              <span className="uppercase tracking-widest font-semibold">TESTIMONI & TESTIMONI KLIEN</span>
+            <div className="flex items-center gap-2 font-mono text-xs text-amber-400">
+              <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 font-bold border border-amber-400/20">07</span>
+              <span className="uppercase tracking-widest font-semibold">TESTIMONI &amp; KEPERCAYAAN KLIEN</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[var(--color-ink)] tracking-[-0.035em] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.03em] leading-tight">
               reputasi hasil kerja nyata.
             </h2>
           </div>
 
-          {/* Controller */}
+          {/* Stepper Controls */}
           <div className="flex items-center gap-3 font-mono text-xs">
-            <span className="text-[var(--color-ink-dim)]">
+            <span className="text-slate-500">
               [{String(index + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}]
             </span>
-            <div className="flex items-center border border-[var(--color-rule)] bg-white">
+            <div className="flex items-center rounded-lg border border-white/10 bg-[#0e1422] overflow-hidden">
               <button
                 type="button"
                 onClick={() => go(index - 1)}
                 aria-label="Testimoni sebelumnya"
-                className="p-2.5 border-r border-[var(--color-rule)] text-[var(--color-ink)] hover:bg-[var(--color-paper-2)] transition-colors cursor-pointer"
+                className="p-2.5 border-r border-white/10 text-slate-300 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
               >
                 <ChevronLeft size={16} />
               </button>
@@ -48,7 +48,7 @@ export function Testimonials() {
                 type="button"
                 onClick={() => go(index + 1)}
                 aria-label="Testimoni berikutnya"
-                className="p-2.5 text-[var(--color-ink)] hover:bg-[var(--color-paper-2)] transition-colors cursor-pointer"
+                className="p-2.5 text-slate-300 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
               >
                 <ChevronRight size={16} />
               </button>
@@ -56,27 +56,33 @@ export function Testimonials() {
           </div>
         </div>
 
-        {/* Editorial Quote Box */}
-        <div className="border border-[var(--color-ink)] bg-white p-8 sm:p-14 relative">
-          <div className="font-mono text-xs text-[var(--color-signal)] mb-6 font-bold uppercase tracking-wider">
-            &ldquo; KUTIPAN_TERVERIFIKASI &rdquo;
+        {/* Cinematic Quote Plate */}
+        <div className="rounded-3xl border border-white/15 bg-[#0e1422] p-8 sm:p-14 relative shadow-2xl overflow-hidden">
+          <Quote
+            size={120}
+            className="absolute -right-6 -bottom-6 text-white/[0.03] pointer-events-none"
+          />
+
+          <div className="font-mono text-xs text-amber-400 mb-6 font-bold uppercase tracking-wider flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <span>KUTIPAN_TERVERIFIKASI</span>
           </div>
 
-          <blockquote className="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-[var(--color-ink)] leading-snug tracking-tight max-w-4xl">
+          <blockquote className="font-display font-medium text-xl sm:text-2xl lg:text-3xl text-white leading-snug tracking-tight max-w-4xl">
             &ldquo;{current.body}&rdquo;
           </blockquote>
 
-          <div className="mt-8 pt-6 border-t border-[var(--color-rule)] flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
             <div>
-              <span className="font-bold text-sm text-[var(--color-ink)] block">
+              <span className="font-bold text-sm text-white block">
                 {current.name}
               </span>
-              <span className="text-[var(--color-ink-muted)]">
+              <span className="text-slate-400">
                 {current.role}
               </span>
             </div>
-            <div className="text-[var(--color-ink-dim)] uppercase tracking-wider text-[11px]">
-              VERIFIKASI HUBUNGAN KERJA
+            <div className="text-slate-500 uppercase tracking-wider text-[11px]">
+              VERIFIKASI HUBUNGAN KERJA PRODUKSI
             </div>
           </div>
         </div>

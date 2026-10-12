@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
-import { Sidebar } from "./Sidebar";
-import { MobileNav } from "./MobileNav";
+import { Navbar } from "./Navbar";
+import { LuckyChatbot } from "../ai/LuckyChatbot";
 
 export function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="relative min-h-screen bg-bg">
-      <Sidebar />
-      <MobileNav />
-      <main className="lg:pl-[268px]">{children}</main>
+    <div className="relative min-h-screen bg-[var(--color-paper)] text-[var(--color-ink)]">
+      <Navbar />
+      <main className="w-full pt-16 sm:pt-20">{children}</main>
+      <LuckyChatbot />
     </div>
   );
 }

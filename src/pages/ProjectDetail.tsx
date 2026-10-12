@@ -2,7 +2,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, GitFork, ExternalLink } from "lucide-react";
-import { getProjectBySlug, projects } from "../components/sections/Projects";
+import { getProjectBySlug, projects } from "../data/projectsData";
 import { ProjectGallery } from "../components/ui/ProjectGallery";
 import { Tag } from "../components/ui/Tag";
 import { Footer } from "../components/layout/Footer";
@@ -84,7 +84,7 @@ export function ProjectDetail() {
             <ReactMarkdown
               components={{
                 h2: ({ children }) => (
-                  <h2 className="mt-10 font-display text-xl font-semibold text-text first:mt-0">
+                  <h2 className="[&:not(:first-child)]:mt-10 font-display text-xl font-semibold text-text">
                     {children}
                   </h2>
                 ),

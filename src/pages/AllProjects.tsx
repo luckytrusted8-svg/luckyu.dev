@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { GitFork, ArrowUpRight, ArrowLeft } from "lucide-react";
-import { projects } from "../components/sections/Projects";
+import { projects } from "../data/projectsData";
 import { ProjectThumb } from "../components/ui/ProjectThumb";
 import { Tag } from "../components/ui/Tag";
 import { Footer } from "../components/layout/Footer";

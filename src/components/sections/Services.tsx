@@ -1,81 +1,89 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { getServices } from "../../lib/content";
-import { SectionHeading } from "../ui/SectionHeading";
-import { staggerContainer, fadeUp } from "../../animations/variants";
 
 export function Services() {
   const services = getServices();
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [activeService, setActiveService] = useState<string | null>(null);
 
   return (
-    <section id="services" className="px-5 py-24 sm:px-10 lg:py-32 border-t border-border/60">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Yang Saya Kerjakan"
-          heading="Layanan yang dibangun dari project nyata"
-          description="Layanan ini berangkat dari pengalaman mengerjakan proyek nyata dan dapat disesuaikan dengan kebutuhan Anda."
-          index="02"
-        />
+    <section
+      id="services"
+      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 border-b border-[var(--color-rule)] bg-[var(--color-paper)]"
+    >
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header Folio */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-[var(--color-rule)]">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-ink-muted)]">
+              <span className="px-2 py-0.5 bg-[var(--color-ink)] text-white font-bold">03</span>
+              <span className="uppercase tracking-widest font-semibold">LAYANAN & CAKUPAN SOLUSI</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-[var(--color-ink)] tracking-[-0.035em] leading-tight">
+              rekayasa perangkat lunak terfokus.
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-[var(--color-ink-muted)] max-w-md font-mono">
+            // FOKUS: EFISIENSI ARSITEKTUR, PENGALAMAN PENGGUNA BERSIH, DAN KESTABILAN SISTEM.
+          </p>
+        </div>
 
-        <motion.div
-          variants={staggerContainer(0.1)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {services.map((service) => {
+        {/* Ruled Grid Cells (Swiss Cells, Not Floating Cards) */}
+        <div className="border border-[var(--color-rule)] bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--color-rule)]">
+          {services.map((service, idx) => {
             const Icon = (Icons[service.icon as keyof typeof Icons] ??
               Icons.Sparkles) as LucideIcon;
+            const stepNum = String(idx + 1).padStart(2, "0");
+            const isOpen = activeService === service.slug;
+
             return (
-              <motion.div
+              <div
                 key={service.slug}
-                variants={fadeUp}
-                whileHover={{ y: -6 }}
-                className="group flex flex-col rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-primary/40 hover:bg-surface-hover"
+                className="p-6 sm:p-8 flex flex-col justify-between hover:bg-[var(--color-paper-2)] transition-colors duration-200 group"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 text-primary-soft">
-                  <Icon size={20} />
-                </div>
-                <h3 className="mt-5 font-display text-base font-semibold text-text">
-                  {service.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
-                  {service.summary}
-                </p>
+                <div className="space-y-6">
+                  {/* Step Folio & Icon */}
+                  <div className="flex items-center justify-between border-b border-[var(--color-rule)] pb-4 font-mono text-xs">
+                    <span className="text-[var(--color-signal)] font-bold">[{stepNum}]</span>
+                    <div className="w-8 h-8 rounded-none border border-[var(--color-rule)] bg-white group-hover:border-[var(--color-ink)] flex items-center justify-center text-[var(--color-ink)] transition-colors">
+                      <Icon size={16} />
+                    </div>
+                  </div>
 
-                <AnimatePresence>
-                  {expanded === service.slug && (
-                    <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="overflow-hidden text-sm leading-relaxed text-muted"
-                    >
-                      <span className="mt-3 block border-t border-border pt-3">
-                        {service.body}
-                      </span>
-                    </motion.p>
+                  {/* Title & Summary */}
+                  <div className="space-y-3">
+                    <h3 className="font-display font-bold text-lg sm:text-xl text-[var(--color-ink)] leading-snug">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--color-ink-muted)] leading-relaxed">
+                      {service.summary}
+                    </p>
+                  </div>
+
+                  {/* Expandable Body */}
+                  {isOpen && (
+                    <div className="pt-4 border-t border-[var(--color-rule)] text-xs text-[var(--color-ink)] leading-relaxed bg-white p-3 border">
+                      {service.body}
+                    </div>
                   )}
-                </AnimatePresence>
+                </div>
 
-                <button
-                  className="mt-5 flex items-center gap-1.5 text-xs font-medium text-primary-soft opacity-80 transition-all group-hover:gap-2.5 group-hover:opacity-100"
-                  onClick={() =>
-                    setExpanded(expanded === service.slug ? null : service.slug)
-                  }
-                  aria-expanded={expanded === service.slug}
-                >
-                  {expanded === service.slug ? "Tampilkan lebih sedikit" : "Selengkapnya"}
-                  <Icons.ArrowRight size={13} />
-                </button>
-              </motion.div>
+                {/* Toggle Action */}
+                <div className="pt-6 mt-6 border-t border-[var(--color-rule)]">
+                  <button
+                    type="button"
+                    onClick={() => setActiveService(isOpen ? null : service.slug)}
+                    className="font-mono text-xs font-semibold text-[var(--color-ink)] hover:text-[var(--color-signal)] flex items-center justify-between w-full uppercase tracking-wider cursor-pointer"
+                  >
+                    <span>{isOpen ? "Tutup Rincian" : "Cakupan Teknis"}</span>
+                    <span>{isOpen ? "−" : "+"}</span>
+                  </button>
+                </div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

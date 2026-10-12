@@ -55,7 +55,7 @@ const tableOfContents = useMemo(() => {
     return headings.map((item) => ({
       level: item[1].length,
       title: item[2].trim(),
-      id: item[2].toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, ""),
+      id: item[2].toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""),
     }));
   }, [post]);
 
@@ -136,7 +136,7 @@ const tableOfContents = useMemo(() => {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-[2rem] bg-slate-100">
+              <div className="overflow-hidden rounded-4xl bg-slate-100">
                 <img src={post.cover} alt={post.title} className="h-72 w-full object-cover" />
               </div>
 
@@ -153,7 +153,7 @@ const tableOfContents = useMemo(() => {
                     ))}
                   </div>
                 </div>
-                <div className="hidden rounded-[2rem] border border-border bg-surface p-6 shadow-sm shadow-black/5 lg:block">
+                <div className="hidden rounded-4xl border border-border bg-surface p-6 shadow-sm shadow-black/5 lg:block">
                   <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">Table of Contents</p>
                   <div className="mt-4 space-y-3 text-sm text-text">
                     {tableOfContents.map((item) => (
@@ -232,7 +232,7 @@ pre: ({ children }) => (
           </div>
 
           <div className="mt-16 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-            <div className="rounded-[2rem] border border-border bg-surface p-6 shadow-sm shadow-black/5">
+            <div className="rounded-4xl border border-border bg-surface p-6 shadow-sm shadow-black/5">
               <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">Bagikan</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a
@@ -254,7 +254,7 @@ pre: ({ children }) => (
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-border bg-surface p-6 shadow-sm shadow-black/5">
+            <div className="rounded-4xl border border-border bg-surface p-6 shadow-sm shadow-black/5">
               <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">Artikel terkait</p>
               <div className="mt-4 space-y-3">
                 {related.map((item) => (

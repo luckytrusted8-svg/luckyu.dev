@@ -1,84 +1,105 @@
-import { useState } from "react";
-import * as Icons from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { getServices } from "../../lib/content";
+import { ArrowRight, Layers, Layout, ShieldCheck, Sparkles } from "lucide-react";
 
 export function Services() {
-  const services = getServices();
-  const [activeService, setActiveService] = useState<string | null>(null);
+  const serviceList = [
+    {
+      icon: Layers,
+      title: "Aplikasi Web Full-Stack",
+      summary:
+        "Membangun aplikasi web dari awal: perancangan database, pembuatan API backend, hingga tampilan frontend yang rapi dan terintegrasi.",
+      badge: "Laravel / Next.js",
+      color: "bg-amber-100 text-amber-800",
+    },
+    {
+      icon: Layout,
+      title: "Pengembangan Front-End",
+      summary:
+        "Membuat antarmuka web yang responsif, cepat diakses di perangkat mobile, dan interaktif menggunakan React, Tailwind CSS, serta TypeScript.",
+      badge: "React & Tailwind",
+      color: "bg-blue-100 text-blue-800",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Panel Admin & Kasir (POS)",
+      summary:
+        "Sistem dashboard manajemen inventaris, kasir, hak akses pengguna bertingkat, dan laporan transaksi yang mudah dikelola staf.",
+      badge: "Filament / Blade",
+      color: "bg-emerald-100 text-emerald-800",
+    },
+    {
+      icon: Sparkles,
+      title: "Fitur Web Interaktif & Geotagging",
+      summary:
+        "Integrasi fitur khusus seperti pelacakan lokasi Google Maps untuk absensi, pemindaian QR code untuk event, hingga grafik analitik.",
+      badge: "API & Maps",
+      color: "bg-purple-100 text-purple-800",
+    },
+  ];
 
   return (
     <section
       id="services"
-      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
+      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 bg-[#fafaf9] border-b border-slate-200"
     >
-      <div className="max-w-7xl mx-auto space-y-14">
-        {/* Header Folio */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-white/10">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header Row */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-amber-400">
-              <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 font-bold border border-amber-400/20">03</span>
-              <span className="uppercase tracking-widest font-semibold">LAYANAN &amp; CAKUPAN SOLUSI</span>
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 font-mono">
+              <span>— Services</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.03em] leading-tight">
-              rekayasa perangkat lunak terfokus.
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
+              <span className="text-amber-500">Services</span> I Provide
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-md font-mono">
-            // FOKUS: EFISIENSI ARSITEKTUR, PENGALAMAN PENGGUNA BERSIH, DAN KESTABILAN SISTEM.
-          </p>
+
+          <a
+            href="#projects"
+            className="inline-flex items-center pl-5 pr-2 py-2 rounded-full bg-[#142d1f] hover:bg-[#0d1e14] text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-sm group self-start md:self-auto cursor-pointer"
+          >
+            <span>Lihat Semua Karya</span>
+            <span className="ml-3 w-7 h-7 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+              <ArrowRight size={14} />
+            </span>
+          </a>
         </div>
 
-        {/* 4 Elevated Atmospheric Cards */}
+        {/* 4 Clean Elevated Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, idx) => {
-            const Icon = (Icons[service.icon as keyof typeof Icons] ??
-              Icons.Sparkles) as LucideIcon;
-            const stepNum = String(idx + 1).padStart(2, "0");
-            const isOpen = activeService === service.slug;
-
+          {serviceList.map((service, idx) => {
+            const Icon = service.icon;
             return (
               <div
-                key={service.slug}
-                className="p-6 sm:p-7 rounded-2xl bg-[#0e1422] border border-white/10 hover:border-amber-400/35 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+                key={idx}
+                className="p-7 rounded-2xl bg-white border border-slate-200 hover:border-amber-400/80 transition-all duration-300 flex flex-col justify-between group shadow-xs hover:shadow-lg hover:-translate-y-1"
               >
                 <div className="space-y-5">
-                  {/* Step Folio & Glowing Icon */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4 font-mono text-xs">
-                    <span className="text-amber-400 font-bold">[{stepNum}]</span>
-                    <div className="w-9 h-9 rounded-xl border border-white/10 bg-white/5 group-hover:border-amber-400/40 group-hover:bg-amber-400/10 flex items-center justify-center text-amber-400 transition-colors shadow-xs">
-                      <Icon size={17} />
+                  {/* Icon & Badge */}
+                  <div className="flex items-center justify-between">
+                    <div
+                      className={`w-12 h-12 rounded-xl ${service.color} flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform`}
+                    >
+                      <Icon size={22} />
                     </div>
+                    <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                      {service.badge}
+                    </span>
                   </div>
 
-                  {/* Title & Summary */}
-                  <div className="space-y-2">
-                    <h3 className="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors leading-snug">
+                  {/* Title & Description */}
+                  <div className="space-y-2.5">
+                    <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors leading-snug">
                       {service.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                       {service.summary}
                     </p>
                   </div>
-
-                  {/* Expandable Technical Scope */}
-                  {isOpen && (
-                    <div className="pt-4 border-t border-white/10 text-xs text-slate-200 leading-relaxed bg-[#070a10] p-3 rounded-lg border border-white/5">
-                      {service.body}
-                    </div>
-                  )}
                 </div>
 
-                {/* Scope Toggle Button */}
-                <div className="pt-5 mt-5 border-t border-white/10">
-                  <button
-                    type="button"
-                    onClick={() => setActiveService(isOpen ? null : service.slug)}
-                    className="font-mono text-xs font-semibold text-slate-300 hover:text-amber-400 flex items-center justify-between w-full uppercase tracking-wider cursor-pointer"
-                  >
-                    <span>{isOpen ? "Tutup Rincian" : "Cakupan Teknis"}</span>
-                    <span>{isOpen ? "−" : "+"}</span>
-                  </button>
+                <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-1.5 text-xs font-bold text-slate-800 group-hover:text-amber-600 transition-colors">
+                  <span>Pelajari selengkapnya</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             );

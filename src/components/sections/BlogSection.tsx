@@ -10,33 +10,35 @@ export function BlogSection() {
   return (
     <section
       id="blog"
-      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
+      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 bg-white border-b border-slate-200"
     >
-      <div className="max-w-7xl mx-auto space-y-14">
-        {/* Folio Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-white/10">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-amber-400">
-              <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 font-bold border border-amber-400/20">06</span>
-              <span className="uppercase tracking-widest font-semibold">TULISAN &amp; CATATAN REKAYASA</span>
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 font-mono">
+              <span>— Catatan &amp; Tulisan</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.03em] leading-tight">
-              dokumentasi &amp; analisis teknis.
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
+              Artikel &amp; <span className="text-amber-500">Catatan Belajar</span>
             </h2>
+            <p className="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed">
+              Dokumentasi solusi teknis, eksperimen kode, dan pengalaman nyata membangun sistem web.
+            </p>
           </div>
+
           <Link
             to="/blog"
-            className="font-mono text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 uppercase"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#142d1f] hover:bg-[#0d1e14] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
           >
-            <span>Buka Arsip Lengkap</span>
-            <ArrowUpRight size={13} />
+            <span>Buka Semua Artikel</span>
+            <ArrowUpRight size={14} />
           </Link>
         </div>
 
-        {/* Dark Index Rows */}
-        <div className="rounded-2xl border border-white/10 bg-[#0e1422] divide-y divide-white/10 overflow-hidden shadow-xl">
-          {sortedPosts.slice(0, 4).map((post, idx) => {
-            const issueNumber = String(idx + 1).padStart(2, "0");
+        {/* Clean Article Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sortedPosts.slice(0, 3).map((post) => {
             const dateStr = new Date(post.date).toLocaleDateString("id-ID", {
               day: "numeric",
               month: "short",
@@ -46,39 +48,35 @@ export function BlogSection() {
             return (
               <article
                 key={post.slug}
-                className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 hover:bg-white/[0.03] transition-colors duration-150 items-center group"
+                className="p-7 rounded-2xl bg-[#fafaf9] border border-slate-200 hover:border-amber-400 hover:bg-white hover:shadow-lg transition-all duration-200 flex flex-col justify-between group shadow-xs"
               >
-                {/* Meta & Issue: Cols 1-3 */}
-                <div className="md:col-span-3 space-y-1.5 font-mono text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">ISSUE_{issueNumber}</span>
-                    <span className="px-2 py-0.5 rounded-md border border-white/10 bg-white/5 text-slate-300 text-[10px] uppercase font-bold">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between font-mono text-xs text-slate-500">
+                    <span className="px-2.5 py-1 rounded-full bg-slate-200/80 text-slate-700 font-semibold">
                       {post.category}
                     </span>
+                    <span>{post.readTime}</span>
                   </div>
-                  <div className="text-slate-500 text-[11px] pt-1">
-                    {dateStr} &bull; {post.readTime}
-                  </div>
-                </div>
 
-                {/* Title & Summary: Cols 4-10 */}
-                <div className="md:col-span-7 space-y-1.5">
-                  <h3 className="font-display font-bold text-lg sm:text-xl text-white group-hover:text-amber-300 transition-colors leading-snug">
-                    <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                  <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors leading-snug">
+                    <Link to={`/blog/${post.slug}`} className="hover:underline">
+                      {post.title}
+                    </Link>
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">
+
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
                     {post.summary}
                   </p>
                 </div>
 
-                {/* Action Arrow: Cols 11-12 */}
-                <div className="md:col-span-2 flex justify-end">
+                <div className="pt-6 border-t border-slate-200/60 mt-6 flex items-center justify-between text-xs">
+                  <span className="text-slate-500 font-mono">{dateStr}</span>
                   <Link
                     to={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase text-slate-300 group-hover:text-amber-400 transition-colors"
+                    className="font-bold text-[#142d1f] group-hover:text-amber-600 flex items-center gap-1 transition-colors"
                   >
-                    <span>Baca</span>
-                    <ArrowUpRight size={14} />
+                    <span>Baca tulisan</span>
+                    <span>→</span>
                   </Link>
                 </div>
               </article>

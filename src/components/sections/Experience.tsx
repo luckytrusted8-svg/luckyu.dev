@@ -1,4 +1,5 @@
 import { getExperience } from "../../lib/content";
+import { Briefcase, GraduationCap } from "lucide-react";
 
 export function Experience() {
   const entries = getExperience();
@@ -6,69 +7,60 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
+      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 bg-white border-b border-slate-200"
     >
-      <div className="max-w-7xl mx-auto space-y-14">
-        {/* Folio Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-white/10">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-amber-400">
-              <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 font-bold border border-amber-400/20">05</span>
-              <span className="uppercase tracking-widest font-semibold">REKAM JEJAK &amp; PERJALANAN KARIER</span>
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 font-mono">
+              <span>— Rekam Jejak</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.03em] leading-tight">
-              kronologi pengalaman profesional.
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
+              <span className="text-amber-500">Pengalaman</span> &amp; Riwayat Belajar
             </h2>
           </div>
-          <span className="font-mono text-xs text-slate-500 uppercase">
-            TIMELINE_RECORD: 2023 — 2026
+          <span className="font-mono text-xs font-semibold text-slate-500 uppercase">
+            2023 — Sekarang
           </span>
         </div>
 
-        {/* Career Ledger Table */}
-        <div className="rounded-2xl border border-white/10 bg-[#0e1422] divide-y divide-white/10 overflow-hidden shadow-xl">
-          {entries.map((entry, idx) => {
-            const indexStr = String(idx + 1).padStart(2, "0");
+        {/* Timeline Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {entries.map((entry) => {
             const isWork = entry.type === "work";
+            const Icon = isWork ? Briefcase : GraduationCap;
 
             return (
               <div
                 key={entry.slug}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 hover:bg-white/[0.03] transition-colors duration-150 items-start group"
+                className="p-7 rounded-2xl bg-[#fafaf9] border border-slate-200 hover:border-amber-400 hover:bg-white transition-all duration-200 space-y-4 shadow-xs hover:shadow-md"
               >
-                {/* Period & Category (Cols 1-3) */}
-                <div className="lg:col-span-3 space-y-2 font-mono text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="text-amber-400 font-bold">#{indexStr}</span>
-                    <span
-                      className={`px-2.5 py-0.5 rounded-full text-[10px] uppercase font-bold border ${
-                        isWork
-                          ? "bg-amber-400/10 border-amber-400/30 text-amber-300"
-                          : "bg-white/5 border-white/10 text-slate-400"
-                      }`}
-                    >
-                      {isWork ? "PENGALAMAN KERJA" : "PENDIDIKAN"}
-                    </span>
+                <div className="flex items-center justify-between">
+                  <div
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                      isWork ? "bg-amber-100 text-amber-800" : "bg-emerald-100 text-emerald-800"
+                    }`}
+                  >
+                    <Icon size={18} />
                   </div>
-                  <div className="text-white font-semibold text-sm pt-1">
+                  <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-slate-200/80 text-slate-700">
                     {entry.period}
-                  </div>
+                  </span>
                 </div>
 
-                {/* Role & Org (Cols 4-6) */}
-                <div className="lg:col-span-4 space-y-1">
-                  <h3 className="font-display font-bold text-lg sm:text-xl text-white group-hover:text-amber-300 transition-colors leading-snug">
+                <div className="space-y-1">
+                  <h3 className="font-display font-bold text-lg text-slate-900 leading-snug">
                     {entry.role}
                   </h3>
-                  <p className="font-mono text-xs text-cyan-400 font-medium">
+                  <p className="text-xs font-semibold text-amber-600 uppercase tracking-wide">
                     {entry.org}
                   </p>
                 </div>
 
-                {/* Scope & Impact (Cols 7-12) */}
-                <div className="lg:col-span-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2 border-t border-slate-200/60">
                   {entry.body}
-                </div>
+                </p>
               </div>
             );
           })}

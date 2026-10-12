@@ -1,37 +1,39 @@
-/* Hallmark · genre: atmospheric · macrostructure: Portfolio Grid · theme: Lumen (Night Foundry) · enrichment: E5 hand-built SVG · nav: N5 Floating Pill · footer: Ft5 Statement */
-/* Pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Portfolio Design System · Inspired by Behance/Pinterest Editorial Portfolio */
+/* Palette: Crisp Pure White + Warm Amber/Mango + Deep Forest Pine Accent */
 
 @import "tailwindcss";
 
 @theme {
-  /* Atmospheric Cinematic Palette (Deep Obsidian + Molten Brass + Cyan Chord) */
-  --color-paper: #080b12;
-  --color-paper-2: #0e1422;
-  --color-paper-3: #141c2e;
-  --color-paper-4: #1b263e;
+  --color-paper: #ffffff;
+  --color-paper-2: #f8fafc;
+  --color-paper-3: #f1f5f9;
   
-  --color-ink: #f8fafc;
-  --color-ink-muted: #94a3b8;
-  --color-ink-dim: #64748b;
+  --color-pine: #142d1f;
+  --color-pine-dark: #0d1e14;
+  --color-pine-light: #1c3d2a;
   
-  --color-rule: rgba(255, 255, 255, 0.08);
-  --color-rule-active: rgba(255, 255, 255, 0.22);
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-ink-dim: #94a3b8;
+  
+  --color-rule: #e2e8f0;
+  --color-rule-active: #cbd5e1;
 
-  /* Primary Signal: Molten Brass & Amber */
+  /* Primary Signal: Warm Amber & Mango Yellow */
   --color-signal: #f59e0b;
   --color-signal-hover: #d97706;
+  --color-signal-light: #fef3c7;
   --color-signal-soft: rgba(245, 158, 11, 0.12);
-  --color-signal-glow: rgba(245, 158, 11, 0.25);
 
-  /* Secondary Chord: Electric Cyan */
-  --color-cyan: #38bdf8;
-  --color-cyan-soft: rgba(56, 189, 248, 0.12);
+  /* Secondary Chord: Energetic Coral & Emerald */
+  --color-coral: #f97316;
+  --color-emerald: #10b981;
 
   /* Aliases for UI classes */
   --color-bg: var(--color-paper);
   --color-bg-elevated: var(--color-paper-2);
-  --color-surface: var(--color-paper-2);
-  --color-surface-hover: var(--color-paper-3);
+  --color-surface: var(--color-paper);
+  --color-surface-hover: var(--color-paper-2);
   --color-border: var(--color-rule);
   --color-primary: var(--color-ink);
   --color-primary-soft: var(--color-ink-muted);
@@ -56,7 +58,7 @@
 html {
   background-color: var(--color-paper);
   color: var(--color-ink);
-  color-scheme: dark;
+  color-scheme: light;
   overflow-x: clip;
 }
 
@@ -75,17 +77,18 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   letter-spacing: -0.03em;
   font-weight: 700;
-  line-height: 1.1;
-  color: var(--color-ink);
+  line-height: 1.15;
+  color: inherit;
 }
 
+
 ::selection {
-  background: var(--color-signal);
-  color: #080b12;
+  background: #f59e0b;
+  color: #0f172a;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-signal);
+  outline: 2px solid #f59e0b;
   outline-offset: 2px;
 }
 
@@ -98,32 +101,58 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Atmospheric subtle radial glow backdrop */
-.atmospheric-bloom {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 9999px;
-  filter: blur(120px);
-  opacity: 0.45;
+/* Marquee continuous scroll */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-/* Subtle blueprint dot grid texture */
-.blueprint-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
 }
 
-/* Atmospheric Elevated Card */
-.cinematic-card {
-  background-color: var(--color-paper-2);
-  border: 1px solid var(--color-rule);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
-.cinematic-card:hover {
-  border-color: rgba(245, 158, 11, 0.35);
-  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.06);
+/* Rotating stamp badge animation */
+@keyframes spin-badge {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-badge {
+  animation: spin-badge 14s linear infinite;
+}
+
+/* Subtle dot pattern for clean light sections */
+.light-dots {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Card hover utility */
+.folio-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.folio-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
 }
 
 .tabular-nums {

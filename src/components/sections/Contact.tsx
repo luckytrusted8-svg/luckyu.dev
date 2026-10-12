@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, Check, Copy, ArrowUpRight } from "lucide-react";
+import { Check, Copy, ArrowRight, MessageSquare, Mail, MapPin } from "lucide-react";
 
 const WHATSAPP_BASE_URL = "https://wa.me/62895629244156";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,7 +33,7 @@ export function Contact() {
     if (Object.keys(nextErrors).length > 0) return;
 
     const waMessage =
-      `Halo Lucky,\n\nSaya ingin berkonsultasi mengenai proyek web.\n\n` +
+      `Halo Lucky,\n\nSaya ingin berdiskusi mengenai proyek web.\n\n` +
       `Nama: ${name}\nEmail: ${email}\n\n` +
       `Kebutuhan:\n${message}\n\nTerima kasih.`;
 
@@ -44,166 +44,161 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
+      className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 bg-[#fafaf9] border-b border-slate-200"
     >
-      <div className="max-w-7xl mx-auto space-y-14">
-        {/* Folio Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-white/10">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs text-amber-400">
-              <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 font-bold border border-amber-400/20">08</span>
-              <span className="uppercase tracking-widest font-semibold">KOMUNIKASI &amp; INKUIRI PROYEK</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.03em] leading-tight">
-              mulai diskusi atau kirimkan brief.
-            </h2>
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header */}
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 font-mono">
+            <span>— Hubungi Saya</span>
           </div>
-          <span className="font-mono text-xs text-emerald-400 uppercase font-semibold">
-            ESTIMASI_RESPON: &lt; 24 JAM
-          </span>
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
+            Punya Ide Proyek? <span className="text-amber-500">Mari Wujudkan Bersama.</span>
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
+            Terbuka untuk kolaborasi pembuatan website baru, pengembangan sistem backend, hingga pengerjaan proyek freelance. Silakan hubungi langsung lewat WhatsApp atau formulir di bawah.
+          </p>
         </div>
 
         {/* 12-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Left (Cols 1-5): Direct Channels & Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column (Cols 1-5): Fast Direct Channels */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="rounded-3xl border border-white/10 bg-[#0e1422] p-6 sm:p-8 space-y-6 shadow-xl">
-              <div className="border-b border-white/10 pb-4 font-mono text-xs text-slate-400 uppercase tracking-wider">
-                SALURAN_LANGSUNG
-              </div>
-
-              {/* Email Box with Copy */}
-              <div className="space-y-2">
-                <span className="font-mono text-xs text-slate-400 uppercase block">
-                  Surel (Email)
-                </span>
-                <div className="flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-[#070a10]">
-                  <span className="font-mono text-xs sm:text-sm font-semibold text-white truncate mr-2">
-                    luckyubidillah5@gmail.com
-                  </span>
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-amber-400 text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0"
-                    title="Salin Email"
-                  >
-                    {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
-                  </button>
+            {/* WhatsApp Quick Action Card */}
+            <div className="p-7 rounded-2xl bg-white border border-slate-200 space-y-4 shadow-xs">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                  <MessageSquare size={20} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base text-slate-900">Chat Cepat di WhatsApp</h3>
+                  <p className="text-xs text-slate-500">Respons biasanya dalam beberapa jam</p>
                 </div>
               </div>
+              <p className="text-xs sm:text-sm text-slate-600">
+                Cara paling cepat untuk mendiskusikan timeline, estimasi biaya, dan kebutuhan proyek web kamu.
+              </p>
+              <a
+                href={WHATSAPP_BASE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center w-full py-3 px-5 rounded-full bg-[#142d1f] hover:bg-[#0d1e14] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm"
+              >
+                <span>Buka WhatsApp Sekarang</span>
+                <span className="ml-2">→</span>
+              </a>
+            </div>
 
-              {/* WhatsApp Box */}
-              <div className="space-y-2">
-                <span className="font-mono text-xs text-slate-400 uppercase block">
-                  WhatsApp Bisnis
-                </span>
-                <a
-                  href={WHATSAPP_BASE_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-between p-3.5 rounded-xl border border-white/10 bg-[#070a10] hover:border-emerald-400/50 transition-colors group"
+            {/* Email & Location Card */}
+            <div className="p-7 rounded-2xl bg-white border border-slate-200 space-y-4 shadow-xs">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+                    <Mail size={18} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm text-slate-900">luckyubidillah5@gmail.com</h3>
+                    <p className="text-xs text-slate-500">Email untuk proposal resmi</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
+                  title="Salin Email"
                 >
-                  <span className="font-mono text-xs sm:text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
-                    +62 895 6292 44156
-                  </span>
-                  <ArrowUpRight size={15} className="text-slate-500 group-hover:text-emerald-400" />
-                </a>
+                  {copied ? <Check size={14} className="text-emerald-600" /> : <Copy size={14} />}
+                  <span>{copied ? "Tersalin" : "Salin"}</span>
+                </button>
               </div>
 
-              {/* Location */}
-              <div className="pt-4 border-t border-white/10 font-mono text-xs text-slate-400 space-y-1">
-                <div className="flex items-center gap-1.5 text-white font-semibold">
-                  <MapPin size={13} className="text-amber-400" />
-                  <span>Tangerang &amp; Jabodetabek, Indonesia</span>
-                </div>
-                <p className="text-[11px] text-slate-500">
-                  Terbuka untuk kolaborasi jarak jauh (Remote) atau pertemuan proyek onsite.
-                </p>
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-600 font-medium">
+                <MapPin size={15} className="text-amber-500" />
+                <span>Berbasis di Tangerang, Banten, Indonesia (UTC+7)</span>
               </div>
             </div>
           </div>
 
-          {/* Right (Cols 6-12): Atmospheric Form */}
-          <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-white/15 bg-[#0e1422] p-6 sm:p-10 space-y-6 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 font-mono text-xs">
-                <span className="font-bold text-white uppercase">FORMULIR_INKUIRI_PROYEK</span>
-                <span className="text-slate-500">WHATSAPP DIRECT</span>
-              </div>
+          {/* Right Column (Cols 6-12): WhatsApp Connected Form */}
+          <div className="lg:col-span-7 p-7 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-md">
+            <h3 className="font-display font-black text-xl text-slate-900 mb-6">
+              Kirimkan Pesan Kebutuhan
+            </h3>
 
-              {sent ? (
-                <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-emerald-400">
-                    <Check size={16} />
-                    <span>PESAN BERHASIL DISIAPKAN</span>
-                  </div>
-                  <p className="text-xs text-slate-300">
-                    Tautan WhatsApp telah dibuka. Jika tab belum muncul, silakan klik kontak WhatsApp di samping.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <label htmlFor="contact-name" className="block font-mono text-xs font-semibold uppercase text-slate-300 mb-2">
-                      Nama Lengkap / Instansi *
+            {sent ? (
+              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2">
+                <div className="font-bold text-base">Pesan Anda Siap Dikirim!</div>
+                <p className="text-xs sm:text-sm text-emerald-800">
+                  Tab WhatsApp telah dibuka dengan pesan yang telah disiapkan. Jika belum terbuka otomatis, silakan hubungi langsung ke nomor +62 895-6292-44156.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSent(false)}
+                  className="mt-3 text-xs font-bold text-emerald-950 underline cursor-pointer"
+                >
+                  Kirim pesan baru
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                      Nama Lengkap *
                     </label>
                     <input
-                      id="contact-name"
+                      id="name"
                       type="text"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="e.g. John Doe / PT Nama Bisnis"
-                      className={`w-full p-3.5 rounded-xl text-xs sm:text-sm border bg-[#070a10] text-white font-body focus:outline-none focus:border-amber-400 transition-colors ${
-                        errors.name ? "border-red-500" : "border-white/10"
-                      }`}
+                      placeholder="Nama kamu atau tim"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-sm text-slate-900 placeholder:text-slate-400 transition-all"
                     />
-                    {errors.name && <p className="font-mono text-[11px] text-red-400 mt-1">{errors.name}</p>}
+                    {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                   </div>
 
-                  <div>
-                    <label htmlFor="contact-email" className="block font-mono text-xs font-semibold uppercase text-slate-300 mb-2">
+                  <div className="space-y-1.5">
+                    <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-700">
                       Alamat Email *
                     </label>
                     <input
-                      id="contact-email"
+                      id="email"
                       type="email"
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      placeholder="nama@domain.com"
-                      className={`w-full p-3.5 rounded-xl text-xs sm:text-sm border bg-[#070a10] text-white font-body focus:outline-none focus:border-amber-400 transition-colors ${
-                        errors.email ? "border-red-500" : "border-white/10"
-                      }`}
+                      placeholder="email@domain.com"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-sm text-slate-900 placeholder:text-slate-400 transition-all"
                     />
-                    {errors.email && <p className="font-mono text-[11px] text-red-400 mt-1">{errors.email}</p>}
+                    {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
                   </div>
+                </div>
 
-                  <div>
-                    <label htmlFor="contact-message" className="block font-mono text-xs font-semibold uppercase text-slate-300 mb-2">
-                      Deskripsi Kebutuhan Proyek *
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      rows={4}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Jelaskan gambaran aplikasi web, tujuan, atau fitur utama yang Anda butuhkan..."
-                      className={`w-full p-3.5 rounded-xl text-xs sm:text-sm border bg-[#070a10] text-white font-body focus:outline-none focus:border-amber-400 transition-colors ${
-                        errors.message ? "border-red-500" : "border-white/10"
-                      }`}
-                    />
-                    {errors.message && <p className="font-mono text-[11px] text-red-400 mt-1">{errors.message}</p>}
-                  </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Ceritakan Kebutuhan Proyek *
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={4}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Contoh: Saya membutuhkan pembuatan web landing page atau sistem kasir dengan Laravel..."
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none text-sm text-slate-900 placeholder:text-slate-400 transition-all resize-none"
+                  />
+                  {errors.message && <p className="text-xs text-red-500">{errors.message}</p>}
+                </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 hover:from-amber-300 hover:to-amber-400 font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <span>Kirim Pesan via WhatsApp</span>
-                    <ArrowUpRight size={14} />
-                  </button>
-                </form>
-              )}
-            </div>
+                <button
+                  type="submit"
+                  className="inline-flex items-center pl-6 pr-2 py-2 rounded-full bg-[#142d1f] hover:bg-[#0d1e14] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md group cursor-pointer"
+                >
+                  <span>Kirim ke WhatsApp Saya</span>
+                  <span className="ml-3.5 w-8 h-8 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+                    <ArrowRight size={15} />
+                  </span>
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>

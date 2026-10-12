@@ -1,94 +1,164 @@
+import { ArrowDownToLine } from "lucide-react";
 import { getAbout } from "../../lib/content";
 
 export function About() {
   const about = getAbout();
-  const paragraphs = about.body.split("\n\n");
+
+  const floatingSkills = [
+    {
+      name: "Laravel 11",
+      icon: "/icons/laravel.png",
+      pos: "-top-3 left-2 sm:-top-3 sm:left-4",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "React",
+      icon: "/icons/react.png",
+      pos: "-top-3 right-2 sm:-top-3 sm:right-6",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "Next.js",
+      icon: "/icons/nextjs.png",
+      pos: "top-1/4 -right-6 sm:top-1/4 sm:-right-8",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "/icons/tailwind.png",
+      pos: "top-1/3 -left-6 sm:top-1/3 sm:-left-8",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "TypeScript",
+      icon: "/icons/typescript.png",
+      pos: "bottom-16 -left-6 sm:bottom-16 sm:-left-8",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "Prisma",
+      icon: "/icons/prisma.png",
+      pos: "bottom-14 -right-6 sm:bottom-16 sm:-right-8",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "MySQL",
+      icon: "/icons/mysql.png",
+      pos: "-bottom-4 left-6 sm:-bottom-4 sm:left-10",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+    {
+      name: "Node.js",
+      icon: "/icons/nodejs.png",
+      pos: "-bottom-4 right-6 sm:-bottom-4 sm:right-10",
+      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+    },
+  ];
 
   return (
     <section
       id="about"
-      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 border-b border-white/10 bg-[#080b12]"
+      className="relative px-5 sm:px-8 lg:px-12 py-24 sm:py-32 bg-[#142d1f] text-white overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto space-y-14">
-        {/* Folio Header */}
-        <div className="flex items-center justify-between pb-6 border-b border-white/10 font-mono text-xs text-slate-400">
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded-sm bg-amber-400/10 text-amber-400 font-bold border border-amber-400/20">02</span>
-            <span className="uppercase tracking-widest text-slate-300">PENDEKATAN &amp; LATAR BELAKANG</span>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column (Cols 1-5): Circular Portrait with Floating Skill Badges */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-72 h-72 sm:w-88 sm:h-88">
+              {/* Central Yellow Sun Circle Container */}
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-amber-400 to-amber-500 p-2 sm:p-2.5 shadow-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="w-full h-full rounded-full overflow-hidden bg-amber-200 relative">
+                  <img
+                    src="/image.png"
+                    alt="Lucky Ubaidillah Profile"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+
+              {/* Floating Skill Badges with Real Logos Radiating around the Circle */}
+              {floatingSkills.map((skill, idx) => (
+                <div
+                  key={idx}
+                  className={`absolute z-20 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-xl transition-transform hover:scale-110 cursor-default select-none ${skill.pos} ${skill.badgeStyle}`}
+                >
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="w-4 h-4 sm:w-5 sm:h-5 object-contain shrink-0"
+                  />
+                  <span>{skill.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <span className="text-amber-400 font-semibold uppercase">FILOSOFI_REKAYASA</span>
-        </div>
 
-        {/* 12-Column Split Diptych */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column (Cols 1-5): Bio & Metrics */}
-          <div className="lg:col-span-5 space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
-              dibangun dengan disiplin arsitektur, bukan kebetulan.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              {about.heading}
-            </p>
+          {/* Right Column (Cols 6-12): Human Narrative & Verified Metrics */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">
+                <span>— About Me</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-black tracking-[-0.03em] leading-tight text-white">
+                <span className="text-white">Who is </span>
+                <span className="text-amber-400">Lucky Ubaidillah</span>
+                <span className="text-white">?</span>
+              </h2>
+            </div>
 
-            {/* Glowing Metric Meters */}
-            <div className="rounded-2xl border border-white/10 bg-[#0e1422] grid grid-cols-3 divide-x divide-white/10 font-mono p-2 shadow-xl">
-              <div className="p-4 text-center">
-                <span className="block text-2xl sm:text-3xl font-black text-white tabular-nums">
+            {/* Narrative Prose */}
+            <div className="space-y-4 text-slate-200 text-sm sm:text-base leading-relaxed">
+              <p>
+                Saya Lucky, mahasiswa Rekayasa Perangkat Lunak dan web developer asal Indonesia. Saat ini saya menjalani magang di <strong className="text-white font-semibold">PT Spero Mahakarya Nusantara</strong> sambil menyelesaikan pendidikan di <strong className="text-white font-semibold">SMK Skill Village Islamic School</strong>.
+              </p>
+              <p>
+                Saya menikmati proses membawa sebuah ide dari folder kosong hingga menjadi aplikasi yang berfungsi penuh: mulai dari merancang skema database, membangun API backend, sampai memoles antarmuka agar intuitif dan tidak membingungkan pengguna.
+              </p>
+            </div>
+
+            {/* Counters Row */}
+            <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/15">
+              <div>
+                <span className="block text-3xl sm:text-4xl font-black text-amber-400 tabular-nums">
                   {about.yearsBuilding}+
                 </span>
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider mt-1 block">
-                  Tahun Bangun
+                <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
+                  Tahun Bangun Web
                 </span>
               </div>
-              <div className="p-4 text-center">
-                <span className="block text-2xl sm:text-3xl font-black text-amber-400 tabular-nums">
+              <div>
+                <span className="block text-3xl sm:text-4xl font-black text-amber-400 tabular-nums">
                   {about.projectsShipped}+
                 </span>
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider mt-1 block">
+                <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
                   Proyek Rilis
                 </span>
               </div>
-              <div className="p-4 text-center">
-                <span className="block text-2xl sm:text-3xl font-black text-cyan-400 tabular-nums">
+              <div>
+                <span className="block text-3xl sm:text-4xl font-black text-amber-400 tabular-nums">
                   {about.stacksUsed}+
                 </span>
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider mt-1 block">
-                  Stack Utama
+                <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
+                  Teknologi Aktif
                 </span>
               </div>
             </div>
 
-            {/* Live Availability Callout */}
-            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              <span className="text-emerald-300 font-medium">
-                {about.availability}
-              </span>
-            </div>
-          </div>
+            {/* Action Row: Download CV & Script Signature */}
+            <div className="flex flex-wrap items-center gap-6 pt-2">
+              <a
+                href="/MyCV.pdf"
+                download="Lucky_Ubaidillah_CV.pdf"
+                className="inline-flex items-center pl-6 pr-2 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg group cursor-pointer"
+              >
+                <span>Download CV</span>
+                <span className="ml-3.5 w-8 h-8 rounded-full bg-[#142d1f] text-amber-400 flex items-center justify-center group-hover:translate-y-0.5 transition-transform">
+                  <ArrowDownToLine size={15} />
+                </span>
+              </a>
 
-          {/* Right Column (Cols 6-12): Editorial Prose on Elevated Surface */}
-          <div className="lg:col-span-7 rounded-3xl bg-[#0e1422] border border-white/10 p-6 sm:p-10 space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed shadow-xl">
-            {paragraphs.map((p, i) => (
-              <p
-                key={i}
-                dangerouslySetInnerHTML={{
-                  __html: p.replace(
-                    /\*\*(.+?)\*\*/g,
-                    '<strong class="font-bold text-amber-300">$1</strong>'
-                  ),
-                }}
-              />
-            ))}
-
-            <div className="pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs text-slate-400">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="block text-amber-400 font-bold mb-1">STANDARD KODE:</span>
-                <span>Type-safety ketat, arsitektur modular terisolasi, zero undefined state.</span>
-              </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="block text-cyan-400 font-bold mb-1">PERFORMA EKSTRIM:</span>
-                <span>Optimasi CWV, asset terkompresi, responsive penuh 320px–1440px.</span>
+              <div className="font-serif italic text-2xl sm:text-3xl text-amber-300/90 font-bold select-none">
+                Lucky Ubaidillah
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { Search, Filter, ArrowRight, ArrowLeft } from "lucide-react";
 import { Footer } from "../components/layout/Footer";
 import { Tag } from "../components/ui/Tag";
 import { blogCategories, blogPosts } from "../content/blog";
+import { useLanguage } from "../context/LanguageContext";
 
 const perPage = 6;
 
@@ -30,12 +31,8 @@ function setMetaData() {
   setTag("twitter:card", "summary_large_image");
 }
 
-const sortOptions = [
-  { label: "Terbaru", value: "newest" },
-  { label: "Terlama", value: "oldest" },
-];
-
 export function Blog() {
+  const { language, t } = useLanguage();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("newest");
@@ -44,6 +41,11 @@ export function Blog() {
   useEffect(() => {
     setMetaData();
   }, []);
+
+  const sortOptions = [
+    { label: t("Terbaru", "Newest"), value: "newest" },
+    { label: t("Terlama", "Oldest"), value: "oldest" },
+  ];
 
   const filteredPosts = useMemo(() => {
     const query = search.toLowerCase().trim();
@@ -71,13 +73,13 @@ export function Blog() {
     <div className="bg-bg">
       <section className="relative overflow-hidden px-5 py-16 sm:px-10 lg:px-14 lg:py-20">
         <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-primary/5 to-transparent" />
-<div className="relative mx-auto max-w-6xl">
+        <div className="relative mx-auto max-w-6xl">
           <Link
             to="/#blog"
             className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
           >
             <ArrowLeft size={14} />
-            Kembali ke beranda
+            {t("Kembali ke beranda", "Back to home")}
           </Link>
 
           <motion.div
@@ -86,13 +88,16 @@ export function Blog() {
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 rounded-[2.5rem] border border-border bg-surface/80 p-8 shadow-2xl shadow-black/5 backdrop-blur-xl sm:p-12"
           >
-<div className="max-w-3xl">
+            <div className="max-w-3xl">
               <p className="text-[11px] font-mono uppercase tracking-[0.3em] text-primary-soft">Blog</p>
               <h1 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-text sm:text-5xl">
                 Blog
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-muted sm:text-lg">
-                Tempat saya membagikan pengalaman membangun website, studi kasus project, solusi dari berbagai masalah yang pernah saya hadapi, serta berbagai hal yang saya pelajari selama menjadi Web Developer.
+                {t(
+                  "Tempat saya membagikan pengalaman membangun website, studi kasus project, solusi dari berbagai masalah yang pernah saya hadapi, serta berbagai hal yang saya pelajari selama menjadi Web Developer.",
+                  "Where I share hands-on web development experience, project case studies, real-world bug fixes, and continuous technical lessons."
+                )}
               </p>
             </div>
           </motion.div>
@@ -107,13 +112,15 @@ export function Blog() {
               <div className="rounded-[2rem] border border-border bg-surface p-5 shadow-[0_24px_60px_-38px_rgba(15,23,42,0.4)] backdrop-blur-xl sm:p-6">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="flex flex-col gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-muted-dim">Search</span>
+                    <span className="text-xs uppercase tracking-[0.3em] text-muted-dim">
+                      {t("Pencarian", "Search")}
+                    </span>
                     <div className="flex items-center gap-2 rounded-3xl border border-border bg-bg-elevated px-4 py-3">
                       <Search size={16} className="text-muted" />
                       <input
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
-                        placeholder="Cari artikel, tag, atau kata kunci"
+                        placeholder={t("Cari artikel, tag, atau kata kunci", "Search articles, tags, or keywords")}
                         className="w-full border-0 bg-transparent text-text outline-none placeholder:text-muted"
                         aria-label="Search blog posts"
                       />
@@ -121,7 +128,9 @@ export function Blog() {
                   </label>
 
                   <label className="flex flex-col gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-muted-dim">Kategori</span>
+                    <span className="text-xs uppercase tracking-[0.3em] text-muted-dim">
+                      {t("Kategori", "Category")}
+                    </span>
                     <div className="flex flex-wrap gap-2">
                       {blogCategories.map((option) => (
                         <button
@@ -137,7 +146,7 @@ export function Blog() {
                               : "rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-muted hover:border-primary/40 hover:text-text"
                           }
                         >
-                          {option}
+                          {option === "All" ? t("Semua", "All") : option}
                         </button>
                       ))}
                     </div>
@@ -147,10 +156,14 @@ export function Blog() {
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2 text-sm text-muted">
                     <Filter size={16} />
-                    <span>{filteredPosts.length} artikel ditemukan</span>
+                    <span>
+                      {filteredPosts.length} {t("artikel ditemukan", "articles found")}
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">Sortir</span>
+                    <span className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">
+                      {t("Sortir", "Sort by")}
+                    </span>
                     <div className="rounded-full border border-border bg-bg-elevated px-3 py-2 text-sm text-text">
                       <select
                         value={sort}
@@ -194,14 +207,22 @@ export function Blog() {
                       </h2>
                       <p className="text-sm leading-7 text-muted">{post.summary}</p>
                       <div className="flex items-center justify-between text-xs text-muted">
-                        <span>{new Date(post.date).toLocaleDateString("id-ID", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        })}</span>
-                        <span className="inline-flex items-center gap-1 text-primary-soft">
-                          Baca selengkapnya <ArrowRight size={14} />
+                        <span>
+                          {new Date(post.date).toLocaleDateString(
+                            language === "id" ? "id-ID" : "en-US",
+                            {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            }
+                          )}
                         </span>
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="inline-flex items-center gap-1 text-primary-soft hover:underline"
+                        >
+                          {t("Baca selengkapnya", "Read more")} <ArrowRight size={14} />
+                        </Link>
                       </div>
                     </div>
                   </motion.article>
@@ -210,7 +231,10 @@ export function Blog() {
 
               {filteredPosts.length === 0 && (
                 <div className="rounded-[2rem] border border-border bg-surface p-12 text-center text-muted">
-                  Tidak ada artikel yang cocok. Coba ubah kata kunci atau kategori.
+                  {t(
+                    "Tidak ada artikel yang cocok. Coba ubah kata kunci atau kategori.",
+                    "No matching articles found. Try adjusting your search query or category filter."
+                  )}
                 </div>
               )}
 
@@ -219,9 +243,9 @@ export function Blog() {
                   <button
                     type="button"
                     onClick={() => setVisibleCount((count) => count + perPage)}
-                    className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-6 py-3 text-sm font-medium text-text transition hover:border-primary/40 hover:bg-surface-hover"
+                    className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-6 py-3 text-sm font-medium text-text transition hover:border-primary/40 hover:bg-surface-hover cursor-pointer"
                   >
-                    Muat lebih banyak
+                    {t("Muat lebih banyak", "Load more")}
                   </button>
                 </div>
               )}
@@ -229,15 +253,24 @@ export function Blog() {
 
             <aside className="space-y-6">
               <div className="rounded-[2rem] border border-border bg-surface p-6 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.45)] backdrop-blur-xl">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">Tentang Blog</p>
-                <h3 className="mt-3 text-xl font-semibold text-text">Catatan teknis dan studi kasus</h3>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">
+                  {t("Tentang Blog", "About Blog")}
+                </p>
+                <h3 className="mt-3 text-xl font-semibold text-text">
+                  {t("Catatan teknis dan studi kasus", "Technical notes & case studies")}
+                </h3>
                 <p className="mt-4 text-sm leading-7 text-muted">
-                  Blog ini berisi refleksi saya saat membangun aplikasi web, solusi permasalahan nyata, dan pola desain yang saya gunakan di setiap proyek.
+                  {t(
+                    "Blog ini berisi refleksi saya saat membangun aplikasi web, solusi permasalahan nyata, dan pola desain yang saya gunakan di setiap proyek.",
+                    "This blog documents my reflections engineering web applications, solving real technical problems, and architectural patterns used across projects."
+                  )}
                 </p>
               </div>
 
               <div className="rounded-[2rem] border border-border bg-surface p-6 shadow-sm shadow-black/5">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">Kategori unggulan</p>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">
+                  {t("Kategori unggulan", "Featured categories")}
+                </p>
                 <div className="mt-4 space-y-3">
                   {blogCategories.slice(1).map((item) => (
                     <button
@@ -247,7 +280,7 @@ export function Blog() {
                         setCategory(item);
                         setVisibleCount(perPage);
                       }}
-                      className="w-full rounded-2xl border border-border bg-bg-elevated px-4 py-3 text-left text-sm text-text transition hover:border-primary/40"
+                      className="w-full rounded-2xl border border-border bg-bg-elevated px-4 py-3 text-left text-sm text-text transition hover:border-primary/40 cursor-pointer"
                     >
                       {item}
                     </button>
@@ -256,7 +289,9 @@ export function Blog() {
               </div>
 
               <div className="rounded-[2rem] border border-border bg-surface p-6 shadow-sm shadow-black/5">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">Artikel terbaru</p>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-muted-dim">
+                  {t("Artikel terbaru", "Recent articles")}
+                </p>
                 <div className="mt-4 space-y-3">
                   {blogPosts.slice(0, 4).map((post) => (
                     <Link

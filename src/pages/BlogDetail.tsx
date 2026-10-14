@@ -7,6 +7,7 @@ import { ArrowLeft, Share2, Copy, CalendarDays } from "lucide-react";
 import { Footer } from "../components/layout/Footer";
 import { Tag } from "../components/ui/Tag";
 import { getBlogBySlug, blogPosts } from "../content/blog";
+import { useLanguage } from "../context/LanguageContext";
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
@@ -16,6 +17,7 @@ const scrollToSection = (id: string) => {
 };
 
 export function BlogDetail() {
+  const { language, t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogBySlug(slug) : undefined;
   const [progress, setProgress] = useState(0);
@@ -109,7 +111,7 @@ const tableOfContents = useMemo(() => {
             className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
           >
             <ArrowLeft size={14} />
-            Kembali ke blog
+            {t("Kembali ke blog", "Back to blog")}
           </Link>
 
           <motion.section
@@ -127,7 +129,12 @@ const tableOfContents = useMemo(() => {
                 <div className="space-y-2 rounded-3xl border border-border bg-bg-elevated p-4 text-sm text-muted">
                   <div className="flex items-center gap-2">
                     <CalendarDays size={16} />
-                    <span>{new Date(post.date).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</span>
+                    <span>
+                      {new Date(post.date).toLocaleDateString(
+                        language === "id" ? "id-ID" : "en-US",
+                        { day: "numeric", month: "long", year: "numeric" }
+                      )}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Copy size={16} />
@@ -154,7 +161,9 @@ const tableOfContents = useMemo(() => {
                   </div>
                 </div>
                 <div className="hidden rounded-4xl border border-border bg-surface p-6 shadow-sm shadow-black/5 lg:block">
-                  <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">Table of Contents</p>
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">
+                    {t("Daftar Isi", "Table of Contents")}
+                  </p>
                   <div className="mt-4 space-y-3 text-sm text-text">
                     {tableOfContents.map((item) => (
                       <button
@@ -199,9 +208,9 @@ pre: ({ children }) => (
                     <button
                       type="button"
                       onClick={() => handleCopyCode(String((children as any)?.props?.children ?? ""))}
-                      className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-muted transition hover:border-primary/40 hover:text-text"
+                      className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-muted transition hover:border-primary/40 hover:text-text cursor-pointer"
                     >
-                      <Copy size={14} /> Copy
+                      <Copy size={14} /> {t("Salin", "Copy")}
                     </button>
                     <pre className="overflow-x-auto rounded-3xl bg-slate-950 px-4 py-5 text-sm text-white">
                       {children}
@@ -233,7 +242,9 @@ pre: ({ children }) => (
 
           <div className="mt-16 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
             <div className="rounded-4xl border border-border bg-surface p-6 shadow-sm shadow-black/5">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">Bagikan</p>
+              <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">
+                {t("Bagikan", "Share")}
+              </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
@@ -255,7 +266,9 @@ pre: ({ children }) => (
             </div>
 
             <div className="rounded-4xl border border-border bg-surface p-6 shadow-sm shadow-black/5">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">Artikel terkait</p>
+              <p className="text-[11px] uppercase tracking-[0.28em] text-muted-dim">
+                {t("Artikel terkait", "Related articles")}
+              </p>
               <div className="mt-4 space-y-3">
                 {related.map((item) => (
                   <Link

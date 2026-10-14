@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { getSkills } from "../../lib/content";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Skills() {
   const { categories } = getSkills();
   const [activeTab, setActiveTab] = useState(0);
   const active = categories[activeTab];
+  const { language, t } = useLanguage();
 
   // Specific high-frequency tools with real logos
   const favoriteTools = [
@@ -93,48 +95,56 @@ export function Skills() {
       className="relative px-5 sm:px-8 lg:px-12 py-20 sm:py-28 bg-white border-b border-slate-200"
     >
       <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header */}
+        {/* Header matching Behance reference 1:1 */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 font-mono">
-            <span>// My Favorite Tools</span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-500 font-mono">
+            <span className="w-5 h-[2px] bg-amber-500 inline-block"></span>
+            <span>{t("Teknologi Pilihan", "My Favorite Tools")}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-[-0.03em] leading-tight">
-            <span className="text-amber-500">Exploring the Tools</span> Behind My Code
+            {language === "id" ? (
+              <>
+                <span className="text-amber-500 italic block font-display">Teknologi &amp; Alat Pilihan</span>
+                <span>Di Balik Setiap Baris Kode</span>
+              </>
+            ) : (
+              <>
+                <span className="text-amber-500 italic block font-display">Exploring the Tools</span>
+                <span>Behind My Code</span>
+              </>
+            )}
           </h2>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-            Perangkat lunak, framework, dan teknologi yang saya gunakan sehari-hari untuk mengembangkan aplikasi web dari folder kosong hingga rilis.
+            {t(
+              "Perangkat lunak, framework, dan teknologi yang saya gunakan sehari-hari untuk mengembangkan aplikasi web dari folder kosong hingga rilis.",
+              "Software, frameworks, and tools I use daily to engineer modern web applications from scratch to production."
+            )}
           </p>
         </div>
 
-        {/* Favorite Tools Grid with Real Brand Logos */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* Concentric Double-Ring Circular Tool Pedestals matching slice_3.png 1:1 */}
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10 pt-4">
           {favoriteTools.map((tool, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl bg-[#fafaf9] border border-slate-200 hover:border-amber-400 hover:bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center text-center space-y-3.5 group cursor-default"
+              className="flex flex-col items-center gap-2.5 group cursor-pointer"
             >
-              {/* Tool Logo Icon Box */}
-              <div
-                className={`w-16 h-16 rounded-2xl border ${tool.bgClass} flex items-center justify-center p-3 shadow-xs group-hover:scale-105 transition-transform`}
-              >
-                <img
-                  src={tool.icon}
-                  alt={tool.name}
-                  className="w-full h-full object-contain"
-                />
+              {/* Outer Circular Halo */}
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#f8f9fa] border border-slate-200/90 p-2.5 flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:border-amber-400 group-hover:bg-amber-50/40 transition-all duration-300">
+                {/* Inner White Shadow Disc */}
+                <div className="w-full h-full rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center p-3 sm:p-3.5 group-hover:shadow-lg transition-shadow">
+                  <img
+                    src={tool.icon}
+                    alt={tool.name}
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-1.5 w-full">
-                <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-amber-600 transition-colors">
-                  {tool.name}
-                </h3>
-                <span className="inline-block text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-slate-200/80 text-slate-700">
-                  {tool.category}
-                </span>
-                <p className="text-[11px] text-slate-500 line-clamp-2 pt-1 leading-snug">
-                  {tool.desc}
-                </p>
-              </div>
+              {/* Tool Name Label */}
+              <span className="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-amber-600 transition-colors tracking-tight">
+                {tool.name}
+              </span>
             </div>
           ))}
         </div>

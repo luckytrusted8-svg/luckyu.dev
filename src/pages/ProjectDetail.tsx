@@ -7,8 +7,10 @@ import { ProjectGallery } from "../components/ui/ProjectGallery";
 import { Tag } from "../components/ui/Tag";
 import { Footer } from "../components/layout/Footer";
 import { fadeUp } from "../animations/variants";
+import { useLanguage } from "../context/LanguageContext";
 
 export function ProjectDetail() {
+  const { t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getProjectBySlug(slug) : undefined;
 
@@ -29,7 +31,7 @@ export function ProjectDetail() {
             className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
           >
             <ArrowLeft size={14} />
-            Kembali ke proyek
+            {t("Kembali ke proyek", "Back to projects")}
           </Link>
 
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="mt-8">
@@ -40,8 +42,8 @@ export function ProjectDetail() {
             <p className="mt-4 text-muted leading-relaxed">{project.description}</p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <Tag key={t}>{t}</Tag>
+              {project.tech.map((tItem) => (
+                <Tag key={tItem}>{tItem}</Tag>
               ))}
             </div>
 
@@ -54,7 +56,7 @@ export function ProjectDetail() {
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs font-medium text-muted hover:text-text hover:border-primary-soft transition-colors"
                 >
                   <GitFork size={14} />
-                  Lihat kode
+                  {t("Lihat kode", "View code")}
                 </a>
               )}
               {project.demo && (
@@ -65,7 +67,7 @@ export function ProjectDetail() {
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-medium text-white"
                 >
                   <ExternalLink size={14} />
-                  Demo langsung
+                  {t("Demo langsung", "Live demo")}
                 </a>
               )}
             </div>
@@ -112,7 +114,7 @@ export function ProjectDetail() {
           {others.length > 0 && (
             <div className="mt-16 border-t border-border pt-10">
               <p className="text-xs font-mono uppercase tracking-wider text-muted-dim">
-                Proyek lainnya
+                {t("Proyek lainnya", "Other projects")}
               </p>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {others.map((o) => (

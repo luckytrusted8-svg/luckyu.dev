@@ -1,57 +1,46 @@
 import { ArrowDownToLine } from "lucide-react";
 import { getAbout } from "../../lib/content";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function About() {
   const about = getAbout();
+  const { language, t } = useLanguage();
 
   const floatingSkills = [
     {
-      name: "Laravel 11",
-      icon: "/icons/laravel.png",
-      pos: "-top-3 left-2 sm:-top-3 sm:left-4",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      name: "Full-Stack Web",
+      pos: "top-24 -left-6 sm:top-28 sm:-left-8",
+      badgeStyle: "bg-amber-400 text-slate-950 font-bold border border-amber-300 shadow-xl",
     },
     {
-      name: "React",
-      icon: "/icons/react.png",
+      name: "React & Next.js",
       pos: "-top-3 right-2 sm:-top-3 sm:right-6",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      badgeStyle: "bg-amber-400 text-slate-950 font-bold border border-amber-300 shadow-xl",
     },
     {
-      name: "Next.js",
-      icon: "/icons/nextjs.png",
+      name: "Laravel 11",
       pos: "top-1/4 -right-6 sm:top-1/4 sm:-right-8",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      badgeStyle: "bg-[#183324] text-white border border-white/20 shadow-xl",
     },
     {
       name: "Tailwind CSS",
-      icon: "/icons/tailwind.png",
-      pos: "top-1/3 -left-6 sm:top-1/3 sm:-left-8",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      pos: "bottom-24 -left-6 sm:bottom-28 sm:-left-8",
+      badgeStyle: "bg-amber-400 text-slate-950 font-bold border border-amber-300 shadow-xl",
     },
     {
       name: "TypeScript",
-      icon: "/icons/typescript.png",
-      pos: "bottom-16 -left-6 sm:bottom-16 sm:-left-8",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      pos: "bottom-20 -right-4 sm:bottom-24 sm:-right-6",
+      badgeStyle: "bg-[#183324] text-white border border-white/20 shadow-xl",
     },
     {
-      name: "Prisma",
-      icon: "/icons/prisma.png",
-      pos: "bottom-14 -right-6 sm:bottom-16 sm:-right-8",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      name: "MySQL & Prisma",
+      pos: "-bottom-4 left-4 sm:-bottom-4 sm:left-8",
+      badgeStyle: "bg-[#183324] text-white border border-white/20 shadow-xl",
     },
     {
-      name: "MySQL",
-      icon: "/icons/mysql.png",
-      pos: "-bottom-4 left-6 sm:-bottom-4 sm:left-10",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
-    },
-    {
-      name: "Node.js",
-      icon: "/icons/nodejs.png",
-      pos: "-bottom-4 right-6 sm:-bottom-4 sm:right-10",
-      badgeStyle: "bg-white text-slate-900 border border-slate-200 shadow-xl",
+      name: "RESTful API",
+      pos: "-bottom-4 right-4 sm:-bottom-4 sm:right-8",
+      badgeStyle: "bg-amber-400 text-slate-950 font-bold border border-amber-300 shadow-xl",
     },
   ];
 
@@ -62,7 +51,7 @@ export function About() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column (Cols 1-5): Circular Portrait with Floating Skill Badges */}
+          {/* Left Column: Circular Portrait with Radiating Skill Badges */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-72 h-72 sm:w-88 sm:h-88">
               {/* Central Yellow Sun Circle Container */}
@@ -76,88 +65,107 @@ export function About() {
                 </div>
               </div>
 
-              {/* Floating Skill Badges with Real Logos Radiating around the Circle */}
+              {/* Radiating Skill Badges */}
               {floatingSkills.map((skill, idx) => (
                 <div
                   key={idx}
-                  className={`absolute z-20 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-xl transition-transform hover:scale-110 cursor-default select-none ${skill.pos} ${skill.badgeStyle}`}
+                  className={`absolute z-20 px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-xl transition-transform hover:scale-110 cursor-default select-none ${skill.pos} ${skill.badgeStyle}`}
                 >
-                  <img
-                    src={skill.icon}
-                    alt={skill.name}
-                    className="w-4 h-4 sm:w-5 sm:h-5 object-contain shrink-0"
-                  />
                   <span>{skill.name}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Column (Cols 6-12): Human Narrative & Verified Metrics */}
+          {/* Right Column: Narrative & Metrics */}
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 font-mono">
-                <span>— About Me</span>
+                <span className="w-5 h-[2px] bg-amber-400 inline-block"></span>
+                <span>{t("Tentang Saya", "About Me")}</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-black tracking-[-0.03em] leading-tight text-white">
-                <span className="text-white">Who is </span>
-                <span className="text-amber-400">Lucky Ubaidillah</span>
-                <span className="text-white">?</span>
+                {language === "id" ? (
+                  <>
+                    <span className="text-white">Siapa itu </span>
+                    <span className="text-amber-400">Lucky Ubaidillah</span>
+                    <span className="text-white">?</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-white">Who is </span>
+                    <span className="text-amber-400">Lucky Ubaidillah</span>
+                    <span className="text-white">?</span>
+                  </>
+                )}
               </h2>
             </div>
 
             {/* Narrative Prose */}
             <div className="space-y-4 text-slate-200 text-sm sm:text-base leading-relaxed">
-              <p>
-                Saya Lucky, mahasiswa Rekayasa Perangkat Lunak dan web developer asal Indonesia. Saat ini saya menjalani magang di <strong className="text-white font-semibold">PT Spero Mahakarya Nusantara</strong> sambil menyelesaikan pendidikan di <strong className="text-white font-semibold">SMK Skill Village Islamic School</strong>.
-              </p>
-              <p>
-                Saya menikmati proses membawa sebuah ide dari folder kosong hingga menjadi aplikasi yang berfungsi penuh: mulai dari merancang skema database, membangun API backend, sampai memoles antarmuka agar intuitif dan tidak membingungkan pengguna.
-              </p>
+              {language === "id" ? (
+                <>
+                  <p>
+                    Saya Lucky, web developer asal Indonesia yang berfokus membangun aplikasi web andal, cepat, dan terstruktur. Saat ini saya menjalani magang di <strong className="text-white font-semibold">PT Spero Mahakarya Nusantara</strong> sambil menyelesaikan pendidikan rekayasa perangkat lunak.
+                  </p>
+                  <p>
+                    Dari merancang skema database, membuat arsitektur API backend dengan Laravel atau Express, hingga menyusun tampilan antarmuka responsif dengan React dan Next.js, saya mendedikasikan ketelitian pada setiap baris kode agar produk siap digunakan secara nyata.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    I'm Lucky, a web developer from Indonesia focusing on building reliable, fast, and structured web applications. Currently interning at <strong className="text-white font-semibold">PT Spero Mahakarya Nusantara</strong> while completing my software engineering education.
+                  </p>
+                  <p>
+                    From designing database schemas, architecting backend APIs with Laravel or Express, to building responsive user interfaces with React and Next.js, I commit to precision across every line of code so each solution is production-ready.
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Counters Row */}
             <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/15">
               <div>
-                <span className="block text-3xl sm:text-4xl font-black text-amber-400 tabular-nums">
-                  {about.yearsBuilding}+
-                </span>
-                <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
-                  Tahun Bangun Web
-                </span>
-              </div>
-              <div>
-                <span className="block text-3xl sm:text-4xl font-black text-amber-400 tabular-nums">
+                <span className="block text-3xl sm:text-5xl font-black text-amber-400 tabular-nums">
                   {about.projectsShipped}+
                 </span>
                 <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
-                  Proyek Rilis
+                  {t("Proyek Selesai", "Projects Completed")}
                 </span>
               </div>
               <div>
-                <span className="block text-3xl sm:text-4xl font-black text-amber-400 tabular-nums">
-                  {about.stacksUsed}+
+                <span className="block text-3xl sm:text-5xl font-black text-amber-400 tabular-nums">
+                  100%
                 </span>
                 <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
-                  Teknologi Aktif
+                  {t("Kepuasan Klien", "Client Satisfaction")}
+                </span>
+              </div>
+              <div>
+                <span className="block text-3xl sm:text-5xl font-black text-amber-400 tabular-nums">
+                  {about.yearsBuilding}+
+                </span>
+                <span className="text-xs sm:text-sm text-slate-300 font-medium mt-1 block">
+                  {t("Tahun Pengalaman", "Years of Experience")}
                 </span>
               </div>
             </div>
 
             {/* Action Row: Download CV & Script Signature */}
-            <div className="flex flex-wrap items-center gap-6 pt-2">
+            <div className="flex flex-wrap items-center gap-8 pt-2">
               <a
                 href="/MyCV.pdf"
                 download="Lucky_Ubaidillah_CV.pdf"
-                className="inline-flex items-center pl-6 pr-2 py-2 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg group cursor-pointer"
+                className="inline-flex items-center pl-6 pr-2 py-2 rounded-full bg-[#183324] hover:bg-[#0f2418] text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg border border-white/15 group cursor-pointer"
               >
-                <span>Download CV</span>
-                <span className="ml-3.5 w-8 h-8 rounded-full bg-[#142d1f] text-amber-400 flex items-center justify-center group-hover:translate-y-0.5 transition-transform">
+                <span>{t("Unduh CV", "Download CV")}</span>
+                <span className="ml-3.5 w-8 h-8 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
                   <ArrowDownToLine size={15} />
                 </span>
               </a>
 
-              <div className="font-serif italic text-2xl sm:text-3xl text-amber-300/90 font-bold select-none">
+              <div className="font-serif italic text-2xl sm:text-3xl text-amber-300 font-bold select-none tracking-wide">
                 Lucky Ubaidillah
               </div>
             </div>

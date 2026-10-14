@@ -6,8 +6,10 @@ import { ProjectThumb } from "../components/ui/ProjectThumb";
 import { Tag } from "../components/ui/Tag";
 import { Footer } from "../components/layout/Footer";
 import { staggerContainer, fadeUp } from "../animations/variants";
+import { useLanguage } from "../context/LanguageContext";
 
 export function AllProjects() {
+  const { t } = useLanguage();
   const sorted = [...projects].sort((a, b) => a.order - b.order);
 
   return (
@@ -19,15 +21,18 @@ export function AllProjects() {
             className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-text transition-colors"
           >
             <ArrowLeft size={14} />
-            Kembali ke beranda
+            {t("Kembali ke beranda", "Back to home")}
           </Link>
 
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="mt-8">
             <h1 className="text-3xl font-semibold tracking-[-0.02em] text-text sm:text-4xl">
-              Semua Proyek
+              {t("Semua Proyek", "All Projects")}
             </h1>
             <p className="mt-2 text-muted leading-relaxed">
-              Koleksi lengkap proyek yang telah saya kerjakan
+              {t(
+                "Koleksi lengkap proyek yang telah saya kerjakan",
+                "Complete collection of projects I have engineered and built"
+              )}
             </p>
           </motion.div>
 
@@ -71,8 +76,8 @@ export function AllProjects() {
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tech.slice(0, 4).map((t) => (
-                      <Tag key={t}>{t}</Tag>
+                    {project.tech.slice(0, 4).map((techItem) => (
+                      <Tag key={techItem}>{techItem}</Tag>
                     ))}
                   </div>
 
@@ -84,13 +89,13 @@ export function AllProjects() {
                       className="flex items-center gap-1.5 text-xs font-medium text-muted hover:text-text transition-colors"
                     >
                       <GitFork size={14} />
-                      Kode
+                      {t("Kode", "Code")}
                     </a>
                     <Link
                       to={`/projects/${project.slug}`}
                       className="flex items-center gap-1.5 text-xs font-medium text-primary-soft hover:gap-2.5 transition-all"
                     >
-                      Studi kasus
+                      {t("Studi kasus", "Case study")}
                       <ArrowUpRight size={13} />
                     </Link>
                   </div>

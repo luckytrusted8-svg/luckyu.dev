@@ -4,6 +4,7 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { AppLoader } from "./components/layout/AppLoader";
 import { Home } from "./pages/Home";
 import { useLenis } from "./hooks/useLenis";
+import { LanguageProvider } from "./context/LanguageContext";
 
 // Dynamic import untuk halaman sekunder agar bundle awal lebih ringan
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail").then((m) => ({ default: m.ProjectDetail })));
@@ -59,9 +60,11 @@ function AppShell() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppLoader>
-        <AppShell />
-      </AppLoader>
+      <LanguageProvider>
+        <AppLoader>
+          <AppShell />
+        </AppLoader>
+      </LanguageProvider>
     </BrowserRouter>
   );
 }
